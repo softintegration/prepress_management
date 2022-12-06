@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Top menu item -->
+        <menuitem id="prepress_menu_root"
+            name="Prepress"
+            web_icon="prepress_management,static/description/icon.png"
+            active="True"
+            sequence="50"/>
+
+        <menuitem id="prepress_proof_menu"
+            name="Prepess proofs"
+            parent="prepress_menu_root"
+            sequence="2"/>
+
+        <record id="prepress_proof_main_action" model="ir.actions.act_window">
+            <field name="name">Prepress proof</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prepress.proof</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Prepress proof
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="prepress_proof_action_menu"
+            parent="prepress_proof_menu"
+            action="prepress_management.prepress_proof_main_action"
+            sequence="1" groups="prepress_management.group_prepress_user"/>
+
+
+        <!-- Prepress proof Tree View -->
+        <record id="view_prepress_proof_tree" model="ir.ui.view">
+            <field name="name">view.prepress.proof.tree</field>
+            <field name="model">prepress.proof</field>
+            <field name="arch" type="xml">
+                <tree string="Prepres sproofs" sample="1" decoration-info="state == 'in_progress'" decoration-muted="state == 'cancel'">
+                    <field name="name" readonly="1" decoration-bf="1"/>
+                    <field name="client_ref"/>
+                    <field name="product_id"/>
+                    <field name="partner_id" />
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Prepress proof Form View -->
+        <record id="view_prepress_proof_form" model="ir.ui.view">
+            <field name="name">view.prepress_proof.form</field>
+            <field name="model">prepress.proof</field>
+            <field name="arch" type="xml">
+              <form string="Prepress proof">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="in_progress,validated,flashed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <h3>
+                            <field name="client_ref" placeholder="Customer Prepress proof reference..."/>
+                        </h3>
+                    </div>
+                    <group name="prepress_proof_header">
+                        <group name="prepress_proof_general_info">
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <!--<field name="product_type"/>-->
+                            <label for="product_height" attrs="{'invisible':[('product_id','=',False)]}"/>
+							<div attrs="{'invisible':[('product_id','=',False)]}">
+								<field name="product_height" class="oe_inline" readonly="1"/>
+								<field name="product_height_uom_id" readonly="1" class="oe_inline" />
+                            </div>
+                            <label for="product_width" attrs="{'invisible':[('product_id','=',False)]}"/>
+							<div attrs="{'invisible':[('product_id','=',False)]}">
+								<field name="product_width" class="oe_inline" readonly="1"/>
+								<field name="product_width_uom_id" readonly="1" class="oe_inline" />
+                            </div>
+                            <label for="product_thickness" attrs="{'invisible':[('product_id','=',False)]}"/>
+							<div attrs="{'invisible':[('product_id','=',False)]}">
+								<field name="product_thickness" class="oe_inline" readonly="1"/>
+								<field name="product_thickness_uom_id" readonly="1" class="oe_inline" />
+                            </div>
+                            <label for="product_weight" attrs="{'invisible':[('product_id','=',False)]}"/>
+							<div attrs="{'invisible':[('product_id','=',False)]}">
+								<field name="product_weight" class="oe_inline" readonly="1"/>
+								<field name="product_weight_uom_id" readonly="1" class="oe_inline" />
+                            </div>
+                        </group>
+                        <group name="prepress_proof_dates_info">
+                            <field name="creation_date"/>
+                            <field name="confirm_date"/>
+                            <field name="update_date"/>
+                            <field name="cancel_date"/>
+                            <field name="cancel_motif_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Colors" name="color_list">
+                            <field name="color_ids">
+                                <tree string="Colors" editable="bottom" >
+                                    <field name="sequence" widget="handle" />
+                                    <field name="color_id" />
+                                    <field name="color_name" readonly="1" force_save="1"/>
+                                    <field name="rate" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group name="dummy" string="Dummy">
+                        <field name="dummy" nolabel="1"/>
+                    </group>
+                    <group name="note" string="Note">
+                        <field name="note" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+              </form>
+            </field>
+        </record>
+
+        <!-- Prepress proof Kanban View -->
+        <record model="ir.ui.view" id="view_prepress_proof_kanban">
+            <field name="name">view.prepress.proof.kanban</field>
+            <field name="model">prepress.proof</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+                    <field name="name"/>
+                    <field name="client_ref"/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
+                    <progressbar field="state" colors='{"validated":"info","flashed": "success", "in_progress": "default", "cancel": "danger"}'/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title"><span><t t-esc="record.partner_id.value"/></span></strong>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="state" widget="label_selection" options="{'classes': {'in_progress': 'default', 'cancel': 'danger','validated': 'info', 'flashed': 'success'}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Prepress proof Search View -->
+
+		<record id="view_prepress_proof_search" model="ir.ui.view">
+				<field name="name">view.prepress.proof.search</field>
+				<field name="model">prepress.proof</field>
+				<field name="arch" type="xml">
+					<search string="Search Prepress proofs">
+						<field name="name"/>
+						<field name="client_ref"/>
+						<field name="partner_id"/>
+						<field name="product_id"/>
+						<field name="product_height"/>
+						<field name="product_width"/>
+						<field name="product_thickness"/>
+						<separator/>
+                        <filter name="in_progress" string="In progress" domain="[('state','=','in_progress')]" help="In progress Proofs"/>
+                        <filter name="validated" string="Validated" domain="[('state','=','validated')]" help="Validated Proofs"/>
+                        <filter name="flashed" string="Flashed" domain="[('state','=','flashed')]" help="Flashed Proofs"/>
+                        <filter name="cancelled" string="Cancelled" domain="[('state','=','cancel')]" help="Cancelled Proofs"/>
+						<group expand="0" string="Group By">
+							<filter name="group_by_partner_id" string="Customer" context="{'group_by':'partner_id'}"/>
+							<filter name="group_by_product_id" string="Product" context="{'group_by':'product_id'}"/>
+						</group>
+				   </search>
+				</field>
+		</record>
+
+</odoo>
