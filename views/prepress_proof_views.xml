@@ -61,12 +61,10 @@
                         <h1>
                             <field name="name" readonly="1"/>
                         </h1>
-                        <h3>
-                            <field name="client_ref" placeholder="Customer Prepress proof reference..."/>
-                        </h3>
                     </div>
                     <group name="prepress_proof_header">
                         <group name="prepress_proof_general_info">
+                            <field name="client_ref"/>
                             <field name="partner_id"/>
                             <field name="product_id"/>
                             <!--<field name="product_type"/>-->
