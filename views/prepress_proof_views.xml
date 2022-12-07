@@ -36,12 +36,14 @@
             <field name="name">view.prepress.proof.tree</field>
             <field name="model">prepress.proof</field>
             <field name="arch" type="xml">
-                <tree string="Prepres sproofs" sample="1" decoration-info="state == 'in_progress'" decoration-muted="state == 'cancel'">
+                <tree string="Prepress proofs" sample="1" decoration-danger="state == 'cancel'" decoration-info="state == 'flashed'"
+                >
                     <field name="name" readonly="1" decoration-bf="1"/>
                     <field name="client_ref"/>
                     <field name="partner_id" />
                     <field name="product_id"/>
-                    <field name="state"/>
+                    <field name="state" decoration-warning="state == 'in_progress'" decoration-success="state == 'validated'"
+                    decoration-info="state == 'flashed'" decoration-danger="state == 'cancel'" widget="badge"/>
                 </tree>
             </field>
         </record>
