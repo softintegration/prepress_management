@@ -55,6 +55,7 @@
                 <header>
                     <button name="action_confirm" type="object" states="in_progress" string="Validate" class="oe_highlight"/>
                     <button name="action_flash" type="object" states="validated" string="Flash" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" states="in_progress,validated,flashed" string="Cancel"/>
                     <field name="state" widget="statusbar" statusbar_visible="in_progress,validated,flashed"/>
                 </header>
                 <sheet>

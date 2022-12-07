@@ -61,6 +61,12 @@ class PrepressProof(models.Model):
     def _action_flash(self):
         self.write({'state':'flashed'})
 
+    def action_cancel(self):
+        return self._action_cancel()
+
+    def _action_cancel(self):
+        self.write({'state':'cancel'})
+
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'
 
