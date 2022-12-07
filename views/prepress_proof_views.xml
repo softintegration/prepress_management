@@ -99,18 +99,16 @@
                             <field name="cancel_motif_id" readonly="1"/>
                         </group>
                     </group>
-                    <notebook>
-                        <page string="Colors" name="color_list">
-                            <field name="color_ids">
-                                <tree string="Colors" editable="bottom" >
-                                    <field name="sequence" widget="handle" />
-                                    <field name="color_id" />
-                                    <field name="color_code" />
-                                    <field name="rate" />
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
+                    <group name="colors" string="Colors">
+                       <field name="color_ids" nolabel="1">
+                            <tree editable="bottom" >
+                                <field name="sequence" widget="handle" />
+                                <field name="color_id" />
+                                <field name="color_code" />
+                                <field name="rate" />
+                            </tree>
+                        </field>
+                    </group>
                     <group name="dummy" string="Dummy">
                         <field name="dummy" nolabel="1"/>
                     </group>
