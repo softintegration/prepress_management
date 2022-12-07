@@ -39,8 +39,8 @@
                 <tree string="Prepres sproofs" sample="1" decoration-info="state == 'in_progress'" decoration-muted="state == 'cancel'">
                     <field name="name" readonly="1" decoration-bf="1"/>
                     <field name="client_ref"/>
-                    <field name="product_id"/>
                     <field name="partner_id" />
+                    <field name="product_id"/>
                     <field name="state"/>
                 </tree>
             </field>
