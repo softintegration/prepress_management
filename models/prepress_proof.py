@@ -55,6 +55,12 @@ class PrepressProof(models.Model):
     def _action_confirm(self):
         self.write({'state':'validated'})
 
+    def action_flash(self):
+        return self._action_flash()
+
+    def _action_flash(self):
+        self.write({'state':'flashed'})
+
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'
 

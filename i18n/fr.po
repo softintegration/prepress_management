@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 20:46+0000\n"
-"PO-Revision-Date: 2022-12-07 20:46+0000\n"
+"POT-Creation-Date: 2022-12-07 20:55+0000\n"
+"PO-Revision-Date: 2022-12-07 20:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Dummy"
 msgstr "Maquette"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "Flash"
+msgstr "Flasher"
 
 #. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__flashed
