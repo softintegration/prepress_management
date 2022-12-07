@@ -49,6 +49,11 @@ class PrepressProof(models.Model):
     def _onchange_partner_id(self):
         self.update({'product_id':False})
 
+    def action_confirm(self):
+        return self._action_confirm()
+
+    def _action_confirm(self):
+        self.write({'state':'validated'})
 
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'

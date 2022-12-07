@@ -53,6 +53,7 @@
             <field name="arch" type="xml">
               <form string="Prepress proof">
                 <header>
+                    <button name="action_confirm" type="object" states="in_progress" string="Validate" class="oe_highlight"/>
                     <field name="state" widget="statusbar" statusbar_visible="in_progress,validated,flashed"/>
                 </header>
                 <sheet>
