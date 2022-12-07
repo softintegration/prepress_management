@@ -3,3 +3,5 @@ access_prepress_proof_manager,prepress.proof.manager,model_prepress_proof,prepre
 access_prepress_proof_user,prepress.proof.user,model_prepress_proof,prepress_management.group_prepress_user,1,0,0,0
 access_prepress_proof_color_manager,prepress.proof.color.manager,model_prepress_proof_color,prepress_management.group_prepress_manager,1,1,1,1
 access_prepress_proof_color_user,prepress.proof.color.user,model_prepress_proof_color,prepress_management.group_prepress_user,1,0,0,0
+access_prepress_type_manager,prepress.type.manager,model_prepress_type,prepress_management.group_prepress_manager,1,1,1,1
+access_prepress_type_user,prepress.type.user,model_prepress_type,prepress_management.group_prepress_user,1,0,0,0
