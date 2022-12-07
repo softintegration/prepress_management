@@ -73,13 +73,13 @@ msgstr "BAT(s) annulé(s)"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__color_code
-msgid "Code"
-msgstr ""
+msgid "Color"
+msgstr "Couleur"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__color_id
-msgid "Color"
-msgstr "Couleur"
+msgid "Reference"
+msgstr "Référence"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__color_ids
