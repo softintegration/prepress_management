@@ -66,7 +66,7 @@
                         <group name="prepress_proof_general_info">
                             <field name="client_ref"/>
                             <field name="partner_id"/>
-                            <field name="product_id"/>
+                            <field name="product_id" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id':partner_id}"/>
                             <!--<field name="product_type"/>-->
                             <label for="product_height" attrs="{'invisible':[('product_id','=',False)]}"/>
 							<div attrs="{'invisible':[('product_id','=',False)]}">

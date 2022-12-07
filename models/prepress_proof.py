@@ -20,7 +20,7 @@ class PrepressProof(models.Model):
                               ('cancel', 'Cancelled')], string='Status', required=True, readonly=True, copy=False,
                              tracking=True, default='in_progress')
     partner_id = fields.Many2one('res.partner', required=True, string=u'Customer',
-                                 states={'in_progress': [('readonly', False)]}, readonly=True,index=True)
+                                 states={'in_progress': [('readonly', False)]}, readonly=True,index=True,domain=[('customer_rank','>',0)])
     product_id = fields.Many2one('product.product', string=u'Product', required=True,
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False,index=True)
     #product_type = fields.Many2one()
@@ -44,6 +44,11 @@ class PrepressProof(models.Model):
     company_id = fields.Many2one('res.company', 'Company', required=True,default=lambda s: s.env.company.id, index=True)
     note = fields.Html('Note',states={'in_progress': [('readonly', False)]}, readonly=True)
     dummy = fields.Html('Dummy',states={'in_progress': [('readonly', False)]}, readonly=True)
+
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        self.update({'product_id':False})
+
 
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'
