@@ -13,5 +13,7 @@ class ProductTemplate(models.Model):
 class PrepressType(models.Model):
     _name = 'prepress.type'
 
+
+    code = fields.Char('Code',required=True)
     name = fields.Char('Name',required=True)
     description = fields.Text('Description')
