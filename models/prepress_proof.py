@@ -62,6 +62,7 @@ class PrepressProof(models.Model):
         return self._action_confirm()
 
     def _action_confirm(self):
+        self._update_prepress_proof_version()
         self.write({'state': 'validated'})
 
     def action_flash(self):
@@ -76,6 +77,9 @@ class PrepressProof(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
+    def _update_prepress_proof_version(self):
+        for each in self:
+            each.product_id._increment_prepress_proof_version()
 
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'

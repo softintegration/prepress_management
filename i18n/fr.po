@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 22:02+0000\n"
-"PO-Revision-Date: 2022-12-07 22:02+0000\n"
+"POT-Creation-Date: 2022-12-08 13:32+0000\n"
+"PO-Revision-Date: 2022-12-08 13:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,11 @@ msgstr "Annulé"
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Cancelled Proofs"
 msgstr "BAT(s) annulé(s)"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_type__code
+msgid "Code"
+msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__color_code
@@ -361,6 +366,7 @@ msgstr "BATs"
 
 #. module: prepress_management
 #: model:ir.ui.menu,name:prepress_management.prepress_menu_root
+#: model_terms:ir.ui.view,arch_db:prepress_management.product_template_form_view_inherited
 msgid "Prepress"
 msgstr "Prépresse"
 
@@ -378,9 +384,16 @@ msgstr "Prépresse"
 #: model:ir.actions.act_window,name:prepress_management.prepress_proof_main_action
 #: model:ir.model,name:prepress_management.model_prepress_proof
 #: model:ir.ui.menu,name:prepress_management.prepress_proof_action_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.product_template_form_view_inherited
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Prepress proof"
 msgstr "BAT"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__prepress_proof_next_version
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__prepress_proof_next_version
+msgid "Prepress proof next version"
+msgstr "Version suivante BAT"
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_tree
