@@ -19,6 +19,10 @@
     <menuitem id="product_prepress_config_menu" name="Products" parent="prepress_management.prepress_config_settings"
               sequence="10"/>
 
+    <menuitem id="prepress_proof_prepress_config_menu" name="Prepress proof"
+              parent="prepress_management.prepress_config_settings"
+              sequence="20"/>
+
     <record id="prepress_proof_main_action" model="ir.actions.act_window">
         <field name="name">Prepress proof</field>
         <field name="type">ir.actions.act_window</field>
@@ -127,6 +131,7 @@
                             <field name="update_date"/>
                             <field name="cancel_date"/>
                             <field name="cancel_motif_id" readonly="1"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="hide"/>
                         </group>
                     </group>
                     <group name="colors" string="Colors">
@@ -207,6 +212,7 @@
                 <field name="product_height"/>
                 <field name="product_width"/>
                 <field name="product_thickness"/>
+                <field name="tag_ids"/>
                 <separator/>
                 <filter name="in_progress" string="In progress" domain="[('state','=','in_progress')]"
                         help="In progress Proofs"/>
@@ -221,5 +227,60 @@
             </search>
         </field>
     </record>
+
+
+    <!-- Tags -->
+    <record model="ir.ui.view" id="prepress_proof_tags_search_view">
+        <field name="name">Tags</field>
+        <field name="model">prepress.proof.tags</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="prepress_proof_tags_form_view">
+        <field name="name">Tags</field>
+        <field name="model">prepress.proof.tags</field>
+        <field name="arch" type="xml">
+            <form string="Tags">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="prepress_proof_tags_tree_view">
+        <field name="name">Tags</field>
+        <field name="model">prepress.proof.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Tags" editable="top" sample="1">
+                <field name="name"/>
+                <field name="color" widget="color_picker" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="prepress_proof_tags_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">prepress.proof.tags</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No tags found. Let's create one!
+            </p>
+            <p>
+                Use tags to categorize your Prepress proofs.
+            </p>
+        </field>
+    </record>
+
+    <menuitem action="prepress_proof_tags_action" id="menu_prepress_proof_tags_act"
+              parent="prepress_management.prepress_proof_prepress_config_menu"
+              sequence="10"/>
 
 </odoo>

@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from random import randint
 
 
 class PrepressProof(models.Model):
@@ -48,6 +49,8 @@ class PrepressProof(models.Model):
                                  index=True)
     note = fields.Html('Note', states={'in_progress': [('readonly', False)]}, readonly=True)
     dummy = fields.Html('Dummy', states={'in_progress': [('readonly', False)]}, readonly=True)
+    tag_ids = fields.Many2many('prepress.proof.tags', relation='prepress_proof_prepress_proof_tags_rel', string='Tags',
+                               states={'in_progress': [('readonly', False)]}, readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -89,3 +92,19 @@ class PrepressProofColor(models.Model):
     color_id = fields.Many2one('product.product', string='Reference', required=True)
     color_code = fields.Char(string='Color', required=True, store=True)
     rate = fields.Float(string='Rate (%)')
+
+
+class PrepressProofTags(models.Model):
+    """ Tags of project's tasks """
+    _name = "prepress.proof.tags"
+    _description = "Prepress proof Tags"
+
+    def _get_default_color(self):
+        return randint(1, 11)
+
+    name = fields.Char('Name', required=True)
+    color = fields.Integer(string='Color', default=_get_default_color)
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (name)', "Tag name already exists!"),
+    ]

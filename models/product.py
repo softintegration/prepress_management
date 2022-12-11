@@ -9,5 +9,5 @@ class ProductProduct(models.Model):
 
     def _increment_prepress_proof_version(self):
         return self.mapped("product_tmpl_id")._increment_prepress_proof_version()
-    
+
 

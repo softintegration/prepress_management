@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-08 13:32+0000\n"
-"PO-Revision-Date: 2022-12-08 13:32+0000\n"
+"POT-Creation-Date: 2022-12-11 20:13+0000\n"
+"PO-Revision-Date: 2022-12-11 20:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,6 +83,7 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__color_code
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__color
 msgid "Color"
 msgstr "Couleur"
 
@@ -120,6 +121,7 @@ msgstr "Créer un nouveau type d'article"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__create_uid
 msgid "Created by"
 msgstr "Crée par"
@@ -127,6 +129,7 @@ msgstr "Crée par"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__create_date
 msgid "Created on"
 msgstr ""
@@ -155,6 +158,7 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__display_name
 msgid "Display Name"
 msgstr ""
@@ -224,6 +228,7 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__id
 msgid "ID"
 msgstr ""
@@ -269,6 +274,7 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -276,6 +282,7 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -283,6 +290,7 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__write_date
 msgid "Last Updated on"
 msgstr ""
@@ -309,6 +317,7 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__name
 msgid "Name"
 msgstr "Référence"
@@ -327,6 +336,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_tags_action
+msgid "No tags found. Let's create one!"
+msgstr "Aucunes étiquettes trouvées. Créons-en une!"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__note
@@ -384,10 +398,16 @@ msgstr "Prépresse"
 #: model:ir.actions.act_window,name:prepress_management.prepress_proof_main_action
 #: model:ir.model,name:prepress_management.model_prepress_proof
 #: model:ir.ui.menu,name:prepress_management.prepress_proof_action_menu
+#: model:ir.ui.menu,name:prepress_management.prepress_proof_prepress_config_menu
 #: model_terms:ir.ui.view,arch_db:prepress_management.product_template_form_view_inherited
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Prepress proof"
 msgstr "BAT"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_proof_tags
+msgid "Prepress proof Tags"
+msgstr "Étiquettes"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_product_product__prepress_proof_next_version
@@ -401,6 +421,7 @@ msgid "Prepress proofs"
 msgstr "BATs"
 
 #. module: prepress_management
+#: model:ir.model,name:prepress_management.model_product_product
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_id
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Product"
@@ -467,6 +488,20 @@ msgid ""
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.constraint,message:prepress_management.constraint_prepress_proof_tags_name_uniq
+msgid "Tag name already exists!"
+msgstr ""
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_proof_tags_action
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__tag_ids
+#: model:ir.ui.menu,name:prepress_management.menu_prepress_proof_tags_act
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_tags_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_tags_tree_view
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_thickness
 msgid "Thickness"
 msgstr "Épaisseur"
@@ -502,6 +537,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__update_date
 msgid "Update date"
 msgstr "Date de mise à jour"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_tags_action
+msgid "Use tags to categorize your Prepress proofs."
+msgstr "Utilisez les étiquetes pour catégoriser vos BATs"
 
 #. module: prepress_management
 #: model:res.groups,name:prepress_management.group_prepress_user
