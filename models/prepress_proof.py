@@ -54,7 +54,8 @@ class PrepressProof(models.Model):
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
-        self.update({'product_id': False})
+        if self.product_id and self.product_id.partner_id != self.partner_id:
+            self.update({'product_id': False})
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
@@ -83,6 +84,27 @@ class PrepressProof(models.Model):
     def _update_prepress_proof_version(self):
         for each in self:
             each.product_id._increment_prepress_proof_version()
+
+
+    @api.model
+    def _get_by_product_id(self,product_id,count=False):
+        """:param : product_id : ID of the product"""
+        domain = [('product_id', '=', product_id)]
+        if count:
+            return self.search_count(domain)
+        else:
+            return self.search(domain)
+
+    @api.model
+    def _get_by_product_tmpl_id(self,product_tmpl_id,count=False):
+        """:param : product_tmpl_id : ID of the product template"""
+        product_variant_ids = self.env['product.template'].browse(product_tmpl_id).product_variant_ids
+        domain = [('product_id', 'in', product_variant_ids.ids)]
+        if count:
+            return self.search_count(domain)
+        else:
+            return self.search(domain)
+
 
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'
