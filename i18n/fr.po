@@ -625,7 +625,13 @@ msgid "prepress.type"
 msgstr "Type"
 
 #. module: prepress_management
-#: code:addons/prepress_management/models/prepress_proof.py:117
+#: code:addons/prepress_management/models/prepress_proof.py:119
 #, python-format
 msgid "Only one in progress Prepress Proof is authorised by product!"
 msgstr "Un seul BAT En cours est autorisé par article!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:124
+#, python-format
+msgid "Only one Validated/Flashed Prepress Proof is authorised by product!"
+msgstr "Un seul BAT Validé/Flashé est autorisé par article!"

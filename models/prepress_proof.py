@@ -66,6 +66,7 @@ class PrepressProof(models.Model):
         return self._action_confirm()
 
     def _action_confirm(self):
+        self._check_validated_prepress_proofs()
         self._update_prepress_proof_version()
         self.write({'state': 'validated'})
 
@@ -111,11 +112,16 @@ class PrepressProof(models.Model):
         prepress_proofs._check_in_progress_prepress_proofs()
         return prepress_proofs
 
-    # FIXME:This check must be tested with > 100000 Prepress Proof for evaluating of it's performance
+    # FIXME:This 2 checks must be tested with > 100000 Prepress Proof for evaluating it's performance
     def _check_in_progress_prepress_proofs(self):
-        for each in self.filtered(lambda pp:pp.state == 'in_progress'):
-            if self._get_by_product_id(each.product_id.id).filtered(lambda pp:pp.id != each.id and pp.state=='in_progress'):
-                raise ValidationError(_("Only one in progress Prepress Proof is authorised by product!"))
+        domain = [('state', '=', 'in_progress'), ('product_id', 'in', self.mapped("product_id").ids),('id','not in',self.ids)]
+        if self.search_count(domain) > 0:
+            raise ValidationError(_("Only one in progress Prepress Proof is authorised by product!"))
+
+    def _check_validated_prepress_proofs(self):
+        domain = [('state','in',('validated','flashed')),('product_id','in',self.mapped("product_id").ids)]
+        if self.search_count(domain) > 0:
+            raise ValidationError(_("Only one Validated/Flashed Prepress Proof is authorised by product!"))
 
 
 
