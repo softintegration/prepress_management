@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError,ValidationError
 from random import randint
 
 
@@ -104,6 +104,19 @@ class PrepressProof(models.Model):
             return self.search_count(domain)
         else:
             return self.search(domain)
+
+    @api.model
+    def create(self, vals):
+        prepress_proofs = super(PrepressProof, self).create(vals)
+        prepress_proofs._check_in_progress_prepress_proofs()
+        return prepress_proofs
+
+    # FIXME:This check must be tested with > 100000 Prepress Proof for evaluating of it's performance
+    def _check_in_progress_prepress_proofs(self):
+        for each in self.filtered(lambda pp:pp.state == 'in_progress'):
+            if self._get_by_product_id(each.product_id.id).filtered(lambda pp:pp.id != each.id and pp.state=='in_progress'):
+                raise ValidationError(_("Only one in progress Prepress Proof is authorised by product!"))
+
 
 
 class PrepressProofColor(models.Model):
