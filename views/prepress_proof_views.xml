@@ -40,23 +40,6 @@
               action="prepress_management.prepress_proof_main_action"
               sequence="1" groups="prepress_management.group_prepress_user"/>
 
-    <record id="prepress_type_action" model="ir.actions.act_window">
-        <field name="name">Product type</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">prepress.type</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create a new Product type
-            </p>
-        </field>
-    </record>
-
-    <menuitem id="prepress_type_action_menu"
-              parent="prepress_management.product_prepress_config_menu"
-              action="prepress_management.prepress_type_action"
-              sequence="1"/>
-
 
     <!-- Prepress proof Tree View -->
     <record id="view_prepress_proof_tree" model="ir.ui.view">

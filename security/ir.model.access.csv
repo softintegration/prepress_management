@@ -7,3 +7,5 @@ access_prepress_type_manager,prepress.type.manager,model_prepress_type,prepress_
 access_prepress_type_user,prepress.type.user,model_prepress_type,prepress_management.group_prepress_user,1,0,0,0
 access_prepress_proof_tags_manager,prepress.proof.tags.manager,model_prepress_proof_tags,prepress_management.group_prepress_manager,1,1,1,1
 access_prepress_proof_tags_user,prepress.proof.tags.user,model_prepress_proof_tags,prepress_management.group_prepress_user,1,0,0,0
+access_product_quality_manager,product_quality.manager,model_product_quality,prepress_management.group_prepress_manager,1,1,1,1
+access_product_quality_user,product_quality.user,model_product_quality,prepress_management.group_prepress_user,1,0,0,0

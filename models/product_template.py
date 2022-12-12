@@ -10,6 +10,7 @@ class ProductTemplate(models.Model):
     prepress_type = fields.Many2one('prepress.type', string='Type')
     prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=True, default=1)
     prepress_proofs_count = fields.Integer(compute='_compute_prepress_proofs_count')
+    product_quality_id = fields.Many2one('product.quality',string='Quality')
 
     def _increment_prepress_proof_version(self):
         for each in self:
@@ -46,3 +47,13 @@ class PrepressType(models.Model):
     code = fields.Char('Code', required=True)
     name = fields.Char('Name', required=True)
     description = fields.Text('Description')
+
+
+class ProductQuality(models.Model):
+    _name = 'product.quality'
+
+    name = fields.Char('Name', required=True)
+    description = fields.Text('Description')
+
+
+

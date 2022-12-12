@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 21:17+0000\n"
-"PO-Revision-Date: 2022-12-11 21:17+0000\n"
+"POT-Creation-Date: 2022-12-12 19:44+0000\n"
+"PO-Revision-Date: 2022-12-12 19:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "Annuler"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_date
 msgid "Cancel date"
-msgstr "Date d'annulation"
+msgstr "Dated'annulation"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_id
@@ -130,10 +130,16 @@ msgid "Create a new Product type"
 msgstr "Créer un nouveau type d'article"
 
 #. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.product_quality_action
+msgid "Create a new Quality"
+msgstr "Créer une nouvelle qualité d'article"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__create_uid
 msgid "Created by"
 msgstr "Crée par"
 
@@ -142,6 +148,7 @@ msgstr "Crée par"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__create_date
 msgid "Created on"
 msgstr ""
 
@@ -163,6 +170,7 @@ msgstr "Rèfèrence BAT client"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__description
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__description
 msgid "Description"
 msgstr ""
 
@@ -171,6 +179,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -241,6 +250,7 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__id
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__id
 msgid "ID"
 msgstr ""
 
@@ -287,6 +297,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -295,6 +306,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -303,6 +315,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -332,6 +345,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__name
 msgid "Name"
 msgstr "Référence"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_quality__name
+msgid "Name"
+msgstr "Nom"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_date_deadline
@@ -383,6 +401,18 @@ msgstr ""
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_unread_counter
 msgid "Number of unread messages"
 msgstr ""
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:124
+#, python-format
+msgid "Only one Validated/Flashed Prepress Proof is authorised by product!"
+msgstr "Un seul BAT Validé/Flashé est autorisé par article!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:119
+#, python-format
+msgid "Only one in progress Prepress Proof is authorised by product!"
+msgstr "Un seul BAT En cours est autorisé par article!"
 
 #. module: prepress_management
 #: model:ir.ui.menu,name:prepress_management.prepress_proof_menu
@@ -462,6 +492,14 @@ msgstr "Type d'article"
 #: model:ir.ui.menu,name:prepress_management.product_prepress_config_menu
 msgid "Products"
 msgstr "Articles"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.product_quality_action
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__product_quality_id
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__product_quality_id
+#: model:ir.ui.menu,name:prepress_management.product_quality_action_menu
+msgid "Quality"
+msgstr "Qualité"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__rate
@@ -625,13 +663,6 @@ msgid "prepress.type"
 msgstr "Type"
 
 #. module: prepress_management
-#: code:addons/prepress_management/models/prepress_proof.py:119
-#, python-format
-msgid "Only one in progress Prepress Proof is authorised by product!"
-msgstr "Un seul BAT En cours est autorisé par article!"
-
-#. module: prepress_management
-#: code:addons/prepress_management/models/prepress_proof.py:124
-#, python-format
-msgid "Only one Validated/Flashed Prepress Proof is authorised by product!"
-msgstr "Un seul BAT Validé/Flashé est autorisé par article!"
+#: model:ir.model,name:prepress_management.model_product_quality
+msgid "product.quality"
+msgstr "Qualité"
