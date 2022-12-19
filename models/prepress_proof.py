@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError,ValidationError
+from odoo.exceptions import UserError, ValidationError
 from random import randint
 
 
@@ -86,9 +86,8 @@ class PrepressProof(models.Model):
         for each in self:
             each.product_id._increment_prepress_proof_version()
 
-
     @api.model
-    def _get_by_product_id(self,product_id,count=False):
+    def _get_by_product_id(self, product_id, count=False):
         """:param : product_id : ID of the product"""
         domain = [('product_id', '=', product_id)]
         if count:
@@ -97,7 +96,7 @@ class PrepressProof(models.Model):
             return self.search(domain)
 
     @api.model
-    def _get_by_product_tmpl_id(self,product_tmpl_id,count=False):
+    def _get_by_product_tmpl_id(self, product_tmpl_id, count=False):
         """:param : product_tmpl_id : ID of the product template"""
         product_variant_ids = self.env['product.template'].browse(product_tmpl_id).product_variant_ids
         domain = [('product_id', 'in', product_variant_ids.ids)]
@@ -108,21 +107,23 @@ class PrepressProof(models.Model):
 
     @api.model
     def create(self, vals):
+        self._check_in_progress_prepress_proofs(vals)
+        vals['name'] = self.env['ir.sequence'].with_context(dynamic_prefix_fields=vals).next_by_code('prepress.proof')
         prepress_proofs = super(PrepressProof, self).create(vals)
-        prepress_proofs._check_in_progress_prepress_proofs()
         return prepress_proofs
 
     # FIXME:This 2 checks must be tested with > 100000 Prepress Proof for evaluating it's performance
-    def _check_in_progress_prepress_proofs(self):
-        domain = [('state', '=', 'in_progress'), ('product_id', 'in', self.mapped("product_id").ids),('id','not in',self.ids)]
+    @api.model
+    def _check_in_progress_prepress_proofs(self, vals):
+        domain = [('state', '=', 'in_progress'), ('product_id', '=', vals["product_id"]),
+                  ('company_id','=', vals.get('company_id', self.env.company.id))]
         if self.search_count(domain) > 0:
             raise ValidationError(_("Only one in progress Prepress Proof is authorised by product!"))
 
     def _check_validated_prepress_proofs(self):
-        domain = [('state','in',('validated','flashed')),('product_id','in',self.mapped("product_id").ids)]
+        domain = [('state', 'in', ('validated', 'flashed')), ('product_id', 'in', self.mapped("product_id").ids)]
         if self.search_count(domain) > 0:
             raise ValidationError(_("Only one Validated/Flashed Prepress Proof is authorised by product!"))
-
 
 
 class PrepressProofColor(models.Model):
