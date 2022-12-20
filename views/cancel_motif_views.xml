@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?><odoo>
+  <data>
+
+          <record id="cancel_motif_action" model="ir.actions.act_window">
+              <field name="name">Cancel motif action</field>
+              <field name="res_model">cancel.motif</field>
+              <field name="view_mode">tree,form</field>
+              <field name="domain">[('model','=','prepress.proof')]</field>
+              <field name="context">{'default_model':'prepress.proof'}</field>
+              <field name="target">current</field>
+          </record>
+
+
+          <menuitem action="cancel_motif_action"
+              id="cancel_motif_action_menu"
+              name="Cancel motif"
+              parent="prepress_management.prepress_proof_prepress_config_menu"
+              sequence="60"
+              groups="prepress_management.group_prepress_manager"/>
+
+
+  </data>
+</odoo>

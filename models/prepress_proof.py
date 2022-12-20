@@ -51,6 +51,8 @@ class PrepressProof(models.Model):
     dummy = fields.Html('Dummy', states={'in_progress': [('readonly', False)]}, readonly=True)
     tag_ids = fields.Many2many('prepress.proof.tags', relation='prepress_proof_prepress_proof_tags_rel', string='Tags',
                                states={'in_progress': [('readonly', False)]}, readonly=True)
+    cancel_motif_name = fields.Char(string='Cancel motif',related='cancel_motif_id.name',store=True,readonly=True)
+    cancel_motif_description = fields.Text(string='Cancel motif Details',related='cancel_motif_id.description',store=True,readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -75,6 +77,12 @@ class PrepressProof(models.Model):
 
     def _action_flash(self):
         self.write({'state': 'flashed'})
+
+    def action_cancel_with_motif(self):
+        return self.with_context(model=self._name,
+                                 model_ids=self.ids,
+                                 method='action_cancel',
+                                 default_display_cancel_date=True)._action_cancel_motif_wizard()
 
     def action_cancel(self):
         return self._action_cancel()

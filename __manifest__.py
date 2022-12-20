@@ -10,7 +10,7 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.22',
+    'version': '1.0.1.24',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal','cancel_motif','product_customer'],
@@ -19,7 +19,8 @@
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/prepress_proof_views.xml',
-        'views/product_views.xml'
+        'views/product_views.xml',
+        'views/cancel_motif_views.xml'
     ],
     'license': 'LGPL-3',
 }
