@@ -69,7 +69,7 @@ msgstr "Annuler"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_date
 msgid "Cancel date"
-msgstr "Dated'annulation"
+msgstr "Date d'annulation"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_id
@@ -637,3 +637,9 @@ msgstr "Couleur"
 #: model:ir.model,name:prepress_management.model_prepress_type
 msgid "prepress.type"
 msgstr "Type"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:129
+#, python-format
+msgid "Confirm date is required!"
+msgstr "Date de validation est obligatoire!"

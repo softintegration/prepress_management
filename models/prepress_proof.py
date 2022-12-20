@@ -124,6 +124,11 @@ class PrepressProof(models.Model):
         domain = [('state', 'in', ('validated', 'flashed')), ('product_id', 'in', self.mapped("product_id").ids)]
         if self.search_count(domain) > 0:
             raise ValidationError(_("Only one Validated/Flashed Prepress Proof is authorised by product!"))
+        for each in self:
+            if not each.confirm_date:
+                raise ValidationError(_("Confirm date is required!"))
+
+
 
 
 class PrepressProofColor(models.Model):
