@@ -39,7 +39,8 @@ class PrepressProof(models.Model):
     product_weight = fields.Integer(string='Weight', states={'in_progress': [('readonly', False)]}, readonly=True)
     product_weight_uom_id = fields.Many2one('uom.uom', string="Weight Unit of Measure",
                                             default=lambda self: self.env.ref('uom.product_uom_gram'))
-    creation_date = fields.Date(string='Creation date', states={'in_progress': [('readonly', False)]}, readonly=True)
+    creation_date = fields.Date(string='Creation date', states={'in_progress': [('readonly', False)]}, readonly=True,
+                                default=lambda self: fields.Datetime.now())
     confirm_date = fields.Date(string='Confirm date', states={'in_progress': [('readonly', False)]}, readonly=True)
     update_date = fields.Date(string='Update date', states={'in_progress': [('readonly', False)]}, readonly=True)
     cancel_date = fields.Date(string='Cancel date', states={'in_progress': [('readonly', False)]}, readonly=True)
