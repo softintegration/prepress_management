@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 19:44+0000\n"
-"PO-Revision-Date: 2022-12-12 19:44+0000\n"
+"POT-Creation-Date: 2022-12-20 21:58+0000\n"
+"PO-Revision-Date: 2022-12-20 21:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -69,11 +69,23 @@ msgstr "Annuler"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_date
 msgid "Cancel date"
-msgstr "Date d'annulation"
+msgstr "Dated'annulation"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_name
+#: model:ir.ui.menu,name:prepress_management.cancel_motif_action_menu
 msgid "Cancel motif"
+msgstr "Motif d'annulation"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_description
+msgid "Cancel motif Details"
+msgstr "Détails Motif d'annulation"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.cancel_motif_action
+msgid "Cancel motif action"
 msgstr "Motif d'annulation"
 
 #. module: prepress_management
@@ -120,6 +132,12 @@ msgid "Confirm date"
 msgstr "Date de validation"
 
 #. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
+#, python-format
+msgid "Confirm date is required!"
+msgstr "Date de validation est obligatoire!"
+
+#. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_main_action
 msgid "Create a new Prepress proof"
 msgstr "Créer un nouveau BAT"
@@ -128,8 +146,6 @@ msgstr "Créer un nouveau BAT"
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_type_action
 msgid "Create a new Product type"
 msgstr "Créer un nouveau type d'article"
-
-
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
@@ -336,6 +352,11 @@ msgid "Name"
 msgstr "Référence"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
@@ -387,13 +408,13 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: prepress_management
-#: code:addons/prepress_management/models/prepress_proof.py:124
+#: code:addons/prepress_management/models/prepress_proof.py:0
 #, python-format
 msgid "Only one Validated/Flashed Prepress Proof is authorised by product!"
 msgstr "Un seul BAT Validé/Flashé est autorisé par article!"
 
 #. module: prepress_management
-#: code:addons/prepress_management/models/prepress_proof.py:119
+#: code:addons/prepress_management/models/prepress_proof.py:0
 #, python-format
 msgid "Only one in progress Prepress Proof is authorised by product!"
 msgstr "Un seul BAT En cours est autorisé par article!"
@@ -447,8 +468,8 @@ msgid "Prepress proof next version"
 msgstr "Version suivante BAT"
 
 #. module: prepress_management
-#: code:addons/prepress_management/models/product.py:25
-#: code:addons/prepress_management/models/product_template.py:28
+#: code:addons/prepress_management/models/product.py:0
+#: code:addons/prepress_management/models/product_template.py:0
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_tree
 #, python-format
 msgid "Prepress proofs"
@@ -637,9 +658,3 @@ msgstr "Couleur"
 #: model:ir.model,name:prepress_management.model_prepress_type
 msgid "prepress.type"
 msgstr "Type"
-
-#. module: prepress_management
-#: code:addons/prepress_management/models/prepress_proof.py:129
-#, python-format
-msgid "Confirm date is required!"
-msgstr "Date de validation est obligatoire!"
