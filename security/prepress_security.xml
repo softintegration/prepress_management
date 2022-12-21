@@ -8,15 +8,21 @@
         <field name="sequence">10</field>
     </record>
 
+    <record id="group_prepress_proof_quarantine_process" model="res.groups">
+        <field name="name">Manage Prepress Proof quarantine process</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
     <record id="group_prepress_user" model="res.groups">
         <field name="name">User</field>
         <field name="category_id" ref="prepress_management.module_category_prepress"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
+
     <record id="group_prepress_manager" model="res.groups">
         <field name="name">Administrator</field>
         <field name="category_id" ref="prepress_management.module_category_prepress"/>
-        <field name="implied_ids" eval="[(4, ref('group_prepress_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_prepress_user')),(4, ref('group_prepress_proof_quarantine_process'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 

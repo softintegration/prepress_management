@@ -205,6 +205,7 @@ msgstr "Flasher"
 
 #. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__flashed
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state_before_quarantined__flashed
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Flashed"
 msgstr "Flashé"
@@ -610,6 +611,7 @@ msgstr "Valider"
 
 #. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__validated
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state_before_quarantined__validated
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Validated"
 msgstr "Validé"
@@ -658,3 +660,58 @@ msgstr "Couleur"
 #: model:ir.model,name:prepress_management.model_prepress_type
 msgid "prepress.type"
 msgstr "Type"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "Are you sure to put this Prepress Proof in quarantine?"
+msgstr "Êtes-vous sûr de vouloir mettre ce BAT en quarantaine?"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:129
+#, python-format
+msgid ""
+"Can not put the Prepress Proof %s in quarantine,you have to check the state!"
+msgstr ""
+"Impossible de mettre le BAT %is en quarantaine, Veuillez vérifier le statut!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:123
+#, python-format
+msgid "Can not reset from quarantined,you have to check the state!"
+msgstr "Impossible de remettre le BAT %is à son statut, Veuillez vérifier le statut!"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__quarantined
+msgid "Has been quarantined"
+msgstr "A été mis en quarantaine"
+
+#. module: prepress_management
+#: model:res.groups,name:prepress_management.group_prepress_proof_quarantine_process
+msgid "Manage Prepress Proof quarantine process"
+msgstr "Gérer le processus de la mise en quarantaine des BAT's"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "Put in quarantine"
+msgstr "Mettre en quarantaine"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__quarantined
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
+msgid "Quarantined"
+msgstr "Mise en quarantaine"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
+msgid "Quarantined Proofs"
+msgstr "BAT mise en quarantaine"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "Reset from quarantine"
+msgstr "Remettre au statut initial"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state_before_quarantined
+msgid "State Before Quarantined"
+msgstr "Statut initial"

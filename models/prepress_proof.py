@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from random import randint
 
+QUARANTINE_STATES = ('validated', 'flashed')
 
 class PrepressProof(models.Model):
     _name = 'prepress.proof'
@@ -18,6 +19,7 @@ class PrepressProof(models.Model):
     state = fields.Selection([('in_progress', 'In progress'),
                               ('validated', 'Validated'),
                               ('flashed', 'Flashed'),
+                              ('quarantined', 'Quarantined'),
                               ('cancel', 'Cancelled')], string='Status', required=True, readonly=True, copy=False,
                              tracking=True, default='in_progress')
     partner_id = fields.Many2one('res.partner', required=True, string=u'Customer',
@@ -52,8 +54,12 @@ class PrepressProof(models.Model):
     dummy = fields.Html('Dummy', states={'in_progress': [('readonly', False)]}, readonly=True)
     tag_ids = fields.Many2many('prepress.proof.tags', relation='prepress_proof_prepress_proof_tags_rel', string='Tags',
                                states={'in_progress': [('readonly', False)]}, readonly=True)
-    cancel_motif_name = fields.Char(string='Cancel motif',related='cancel_motif_id.name',store=True,readonly=True)
-    cancel_motif_description = fields.Text(string='Cancel motif Details',related='cancel_motif_id.description',store=True,readonly=True)
+    cancel_motif_name = fields.Char(string='Cancel motif', related='cancel_motif_id.name', store=True, readonly=True)
+    cancel_motif_description = fields.Text(string='Cancel motif Details', related='cancel_motif_id.description',
+                                           store=True, readonly=True)
+    state_before_quarantined = fields.Selection([('validated', 'Validated'),
+                                                 ('flashed', 'Flashed')])
+    quarantined = fields.Boolean(string='Has been quarantined', default=False)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -91,6 +97,37 @@ class PrepressProof(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
+
+    def action_quarantine(self):
+        self.quarantine_check()
+        # we have to register the current state to know how to return
+        self._register_current_state()
+        self._action_quarantine()
+
+    def _action_quarantine(self):
+        self.write({'state': 'quarantined', 'quarantined': True})
+
+    def _register_current_state(self):
+        for each in self:
+            each.write({'state_before_quarantined': each.state})
+
+    def action_reset_from_quarantine(self):
+        self._check_reset_from_quarantine()
+        self._action_reset_from_quarantine()
+    def _action_reset_from_quarantine(self):
+        for each in self:
+            each.write({'state': each.state_before_quarantined})
+
+    def _check_reset_from_quarantine(self):
+        if any(each.state != 'quarantined' for each in self):
+            raise UserError(_("Can not reset from quarantined,you have to check the state!"))
+
+
+    def quarantine_check(self):
+        for each in self:
+            if each.state not in QUARANTINE_STATES:
+                raise UserError(_("Can not put the Prepress Proof %s in quarantine,you have to check the state!") % each.name)
+
     def _update_prepress_proof_version(self):
         for each in self:
             each.product_id._increment_prepress_proof_version()
@@ -125,19 +162,17 @@ class PrepressProof(models.Model):
     @api.model
     def _check_in_progress_prepress_proofs(self, vals):
         domain = [('state', '=', 'in_progress'), ('product_id', '=', vals["product_id"]),
-                  ('company_id','=', vals.get('company_id', self.env.company.id))]
+                  ('company_id', '=', vals.get('company_id', self.env.company.id))]
         if self.search_count(domain) > 0:
             raise ValidationError(_("Only one in progress Prepress Proof is authorised by product!"))
 
     def _check_validated_prepress_proofs(self):
-        domain = [('state', 'in', ('validated', 'flashed')), ('product_id', 'in', self.mapped("product_id").ids)]
+        domain = [('state', 'in', ('validated', 'flashed','quarantined')), ('product_id', 'in', self.mapped("product_id").ids)]
         if self.search_count(domain) > 0:
             raise ValidationError(_("Only one Validated/Flashed Prepress Proof is authorised by product!"))
         for each in self:
             if not each.confirm_date:
                 raise ValidationError(_("Confirm date is required!"))
-
-
 
 
 class PrepressProofColor(models.Model):
