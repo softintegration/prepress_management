@@ -715,3 +715,10 @@ msgstr "Remettre au statut initial"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state_before_quarantined
 msgid "State Before Quarantined"
 msgstr "Statut initial"
+
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:163
+#, python-format
+msgid "Only in progress Prepress Proofs can be removed!"
+msgstr "Impossible de supprimer un BAT dont le statut est différent de En cours"

@@ -158,6 +158,11 @@ class PrepressProof(models.Model):
         prepress_proofs = super(PrepressProof, self).create(vals)
         return prepress_proofs
 
+    def unlink(self):
+        if any(prepress_proof.state != 'in_progress' for prepress_proof in self):
+            raise ValidationError(_("Only in progress Prepress Proofs can be removed!"))
+        return super(PrepressProof,self).unlink()
+
     # FIXME:This 2 checks must be tested with > 100000 Prepress Proof for evaluating it's performance
     @api.model
     def _check_in_progress_prepress_proofs(self, vals):
