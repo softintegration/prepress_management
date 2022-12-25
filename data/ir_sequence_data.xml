@@ -11,5 +11,14 @@
             <field name="company_id" eval="False"/>
         </record>
 
+        <!-- Sequences for prepress.cutting.die -->
+        <record id="seq_prepress_cutting_die" model="ir.sequence">
+            <field name="name">Prepress Cutting die</field>
+            <field name="code">prepress.cutting.die</field>
+            <field name="prefix">FD</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
     </data>
 </odoo>

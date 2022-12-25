@@ -10,15 +10,17 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.27',
+    'version': '1.0.1.28',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal','cancel_motif','product_customer'],
     'data': [
         'security/prepress_security.xml',
         'security/ir.model.access.csv',
+        'data/prepress_management_data.xml',
         'data/ir_sequence_data.xml',
         'views/prepress_proof_views.xml',
+        'views/prepress_cutting_die_views.xml',
         'views/product_views.xml',
         'views/cancel_motif_views.xml'
     ],

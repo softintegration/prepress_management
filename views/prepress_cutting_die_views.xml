@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <!-- Prepress cutting die Tree View -->
+    <record id="view_prepress_cutting_die_tree" model="ir.ui.view">
+        <field name="name">view.prepress.cutting.die.tree</field>
+        <field name="model">prepress.cutting.die</field>
+        <field name="arch" type="xml">
+            <tree string="Cutting die" sample="1" decoration-danger="state == 'cancel'"
+                  decoration-info="state == 'validated'"  js_class="lazy_column_list"
+            >
+                <field name="name" readonly="1" decoration-bf="1"/>
+                <field name="partner_ids" widget="many2many_tags"/>
+                <field name="mounting_type_id" optional="show"/>
+                <field name="height" optional="show"/>
+                <field name="height_uom_id" optional="show"/>
+                <field name="width" optional="show"/>
+                <field name="width_uom_id" optional="show"/>
+                <field name="thickness" optional="show"/>
+                <field name="thickness_uom_id" optional="show"/>
+                <field name="format_type_id" optional="show"/>
+                <field name="cut_height" optional="show"/>
+                <field name="cut_height_uom_id" optional="show"/>
+                <field name="cut_width" optional="show"/>
+                <field name="cut_width_uom_id" optional="show"/>
+                <field name="exposure_nbr" optional="show"/>
+                <field name="state" decoration-bf="state == 'draft'"
+                       decoration-success="state == 'validated'" decoration-danger="state == 'cancel'" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Prepress Cutting die Form View -->
+
+    <record id="view_prepress_cutting_die_form" model="ir.ui.view">
+        <field name="name">view.prepress.cutting.die.form</field>
+        <field name="model">prepress.cutting.die</field>
+        <field name="arch" type="xml">
+            <form string="Cutting die">
+                <header>
+                    <button name="action_confirm" type="object" states="draft" string="Validate"
+                            class="oe_highlight"
+                            data-hotkey="v"/>
+                    <button name="action_reset" type="object" states="validated" string="Reset to Draft"
+                    data-hotkey="r" confirm="Are you sure you want reset this cutting die to Draft?"/>
+                    <button name="action_cancel" type="object" states="validated" string="Cancel"
+                    data-hotkey="c" confirm="Are you sure you want cancel this cutting die?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group name="prepress_cutting_die_header">
+                        <group name="prepress_cutting_die_left_group">
+                            <field name="prepress_type_code" invisible="1"/>
+                            <field name="partner_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                            <field name="prepress_type" options="{'no_create_edit': True}"/>
+                            <field name="prepress_type_code" invisible="1"/>
+                            <field name="format_type_id"
+                                   attrs="{'invisible':[('prepress_type_code','!=','case')],'required':[('prepress_type_code','=','case')]}"
+                                   options="{'no_create_edit': True}"/>
+                            <label for="height"/>
+                            <div name="height">
+                                <field name="height" class="oe_inline"/>
+                                <field name="height_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="width"/>
+                            <div name="width">
+                                <field name="width" class="oe_inline"/>
+                                <field name="width_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="thickness" attrs="{'invisible':[('prepress_type_code','!=','case')]}"/>
+                            <div name="thickness" attrs="{'invisible':[('prepress_type_code','!=','case')]}">
+                                <field name="thickness" class="oe_inline"/>
+                                <field name="thickness_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="cut_height"/>
+                            <div name="cut_height">
+                                <field name="cut_height" class="oe_inline"/>
+                                <field name="cut_height_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="cut_width"/>
+                            <div name="cut_width">
+                                <field name="cut_width" class="oe_inline"/>
+                                <field name="cut_width_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group name="prepress_cutting_die_right_group">
+                            <field name="mounting_type_id"/>
+                            <field name="exposure_nbr"/>
+                            <label for="fin_height" attrs="{'invisible':[('prepress_type_code','!=','case')]}"/>
+                            <div name="fin_height" attrs="{'invisible':[('prepress_type_code','!=','case')]}">
+                                <field name="fin_height" class="oe_inline"/>
+                                <field name="fin_height_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="fin_width" attrs="{'invisible':[('prepress_type_code','!=','case')]}"/>
+                            <div name="fin_width" attrs="{'invisible':[('prepress_type_code','!=','case')]}">
+                                <field name="fin_width" class="oe_inline"/>
+                                <field name="fin_width_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <field name="complexity_factor_id" options="{'no_create_edit':True}"/>
+                            <field name="cutting_count"
+                                   attrs="{'invisible':[('prepress_type_code','!=','case')],'required':[('prepress_type_code','=','case')]}"/>
+                            <field name="with_braille"/>
+                            <field name="shelling_type" widget="radio"/>
+                            <label for="creasing_rule"/>
+                            <div name="creasing_rule">
+                                <field name="creasing_rule" class="oe_inline"/>
+                                <field name="creasing_rule_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <field name="auto_finishing"/>
+                        </group>
+                    </group>
+                    <group name="dummy" string="Dummy">
+                        <field name="dummy" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Prepress Cutting.die Kanban View -->
+
+    <record id="view_prepress_cutting_die_kanban" model="ir.ui.view">
+        <field name="name">view.prepress.cutting.die.kanban</field>
+        <field name="model">prepress.cutting.die</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="name"/>
+                <field name="state"/>
+                <progressbar field="state"
+                             colors='{"draft": "default","validated": "success", "cancel": "danger"}'/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb16">
+                                <div class="o_kanban_record_headings mt4">
+                                    <strong class="o_kanban_record_title">
+                                        <span>
+                                            <t t-esc="record.name"/>
+                                        </span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="state" widget="label_selection"
+                                           options="{'classes': {'draft': 'default', 'cancel': 'danger','validated': 'success'}}"/>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <h4><field name="name"/></h4>
+                                <ul>
+                                    <li><strong>Customers : </strong><field name="partner_ids" widget="many2many_tags"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Prepress Cutting.die Search View -->
+
+    <record id="view_prepress_cutting_die_search" model="ir.ui.view">
+        <field name="name">view.prepress.cutting.die.search</field>
+        <field name="model">prepress.cutting.die</field>
+        <field name="arch" type="xml">
+            <search string="Search Cutting die">
+                <field name="name"/>
+                <field name="format_type_id"/>
+                <field name="height"/>
+                <field name="width"/>
+                <field name="thickness"/>
+                <field name="cut_height"/>
+                <field name="cut_width"/>
+                <field name="exposure_nbr"/>
+                <separator/>
+                <filter name="draft" string="Draft" domain="[('state','=','draft')]"
+                        help="Draft Cutting dies"/>
+                <filter name="validated" string="Validated" domain="[('state','=','validated')]"
+                        help="Validated Cutting dies"/>
+                <filter name="cancelled" string="Cancelled" domain="[('state','=','cancel')]"
+                        help="Cancelled Cutting dies"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_format_type_id" string="Format type" context="{'group_by':'format_type_id'}"/>
+                    <filter name="group_by_exposure_nbr" string="Exposure Nbr" context="{'group_by':'exposure_nbr'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Cutting die Format type Form view -->
+
+    <record model="ir.ui.view" id="prepress_cutting_die_format_type_form_view">
+        <field name="name">prepress.cutting.die.format.type.form.view</field>
+        <field name="model">prepress.cutting.die.format.type</field>
+        <field name="arch" type="xml">
+            <form string="Format type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group name="dummy" string="Dummy">
+                        <field name="dummy" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cutting die Format type Tree view -->
+    <record model="ir.ui.view" id="prepress_cutting_die_format_type_tree_view">
+        <field name="name">prepress.cutting.die.format.type.tree.view</field>
+        <field name="model">prepress.cutting.die.format.type</field>
+        <field name="arch" type="xml">
+            <tree string="Format type">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cutting die Mounting type Form view -->
+
+    <record model="ir.ui.view" id="prepress_cutting_die_mounting_type_form_view">
+        <field name="name">prepress.cutting.die.mounting.type.form.view</field>
+        <field name="model">prepress.cutting.die.mounting.type</field>
+        <field name="arch" type="xml">
+            <form string="Mounting type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="both_sides"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cutting die Mounting type Tree view -->
+    <record model="ir.ui.view" id="prepress_cutting_die_mounting_type_tree_view">
+        <field name="name">prepress.cutting.die.mounting.type.tree.view</field>
+        <field name="model">prepress.cutting.die.mounting.type</field>
+        <field name="arch" type="xml">
+            <tree string="Mounting type">
+                <field name="name"/>
+                <field name="both_sides"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cutting die Complexity factor Form view -->
+
+    <record model="ir.ui.view" id="prepress_cutting_die_complexity_factor_form_view">
+        <field name="name">prepress.cutting.die.complexity.factor.form.view</field>
+        <field name="model">prepress.cutting.die.complexity.factor</field>
+        <field name="arch" type="xml">
+            <form string="Complexity factor">
+                <sheet>
+                    <group>
+                        <field name="index"/>
+                        <field name="rate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cutting die Complexity factor Tree view -->
+    <record model="ir.ui.view" id="prepress_cutting_die_complexity_factor_tree_view">
+        <field name="name">prepress.cutting.die.complexity.factor.tree.view</field>
+        <field name="model">prepress.cutting.die.complexity.factor</field>
+        <field name="arch" type="xml">
+            <tree string="Complexity factor">
+                <field name="index"/>
+                <field name="rate"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Menu and Actions -->
+
+    <menuitem id="prepress_cutting_die_menu"
+              name="Cutting die"
+              parent="prepress_management.prepress_menu_root"
+              sequence="5"/>
+
+    <record id="prepress_cutting_die_main_action" model="ir.actions.act_window">
+        <field name="name">Cutting die</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.cutting.die</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Cutting die
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="prepress_cutting_die_action_menu"
+              parent="prepress_cutting_die_menu"
+              name="Cutting die"
+              action="prepress_management.prepress_cutting_die_main_action"
+              sequence="1" groups="prepress_management.group_prepress_user"/>
+
+    <menuitem id="prepress_cutting_die_prepress_config_menu" name="Cutting die"
+              parent="prepress_management.prepress_config_settings"
+              sequence="50" />
+
+    <record id="prepress_cutting_die_format_type_main_action" model="ir.actions.act_window">
+        <field name="name">Format Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.cutting.die.format.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Format Type
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="prepress_cutting_die_format_type_action_menu"
+              parent="prepress_cutting_die_prepress_config_menu"
+              name="Format type"
+              action="prepress_management.prepress_cutting_die_format_type_main_action"
+              sequence="1"/>
+
+    <record id="prepress_cutting_die_mounting_type_main_action" model="ir.actions.act_window">
+        <field name="name">Mounting Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.cutting.die.mounting.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Mounting Type
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="prepress_cutting_die_mounting_type_action_menu"
+              parent="prepress_cutting_die_prepress_config_menu"
+              name="Mounting type"
+              action="prepress_management.prepress_cutting_die_mounting_type_main_action"
+              sequence="5"/>
+
+    <record id="prepress_cutting_die_complexity_factor_main_action" model="ir.actions.act_window">
+        <field name="name">Complexity factor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.cutting.die.complexity.factor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Complexity factor
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="prepress_cutting_die_complexity_factor_action_menu"
+              parent="prepress_cutting_die_prepress_config_menu"
+              name="Complexity factor"
+              action="prepress_management.prepress_cutting_die_complexity_factor_main_action"
+              sequence="10"/>
+
+</odoo>

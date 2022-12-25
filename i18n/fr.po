@@ -27,26 +27,31 @@ msgstr ""
 "                        </span>"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_needaction
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_needaction
 msgid "Action Needed"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_ids
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_ids
 msgid "Activities"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_exception_decoration
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_state
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_state
 msgid "Activity State"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_type_icon
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_type_icon
 msgid "Activity Type Icon"
 msgstr ""
@@ -54,7 +59,7 @@ msgstr ""
 #. module: prepress_management
 #: model:res.groups,name:prepress_management.group_prepress_manager
 msgid "Administrator"
-msgstr ""
+msgstr "Administrateur"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_attachment_count
@@ -62,17 +67,20 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cancel_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_date
 msgid "Cancel date"
-msgstr "Dated'annulation"
+msgstr "Date d'annulation"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cancel_motif_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_name
 #: model:ir.ui.menu,name:prepress_management.cancel_motif_action_menu
 msgid "Cancel motif"
@@ -89,6 +97,7 @@ msgid "Cancel motif action"
 msgstr "Motif d'annulation"
 
 #. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__state__cancel
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__cancel
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Cancelled"
@@ -100,9 +109,10 @@ msgid "Cancelled Proofs"
 msgstr "BAT(s) annulé(s)"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__prepress_type_code
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__code
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__color_code
@@ -117,6 +127,10 @@ msgid "Colors"
 msgstr "Couleurs"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__company_id
 msgid "Company"
 msgstr "Société"
@@ -148,6 +162,10 @@ msgid "Create a new Product type"
 msgstr "Créer un nouveau type d'article"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_uid
@@ -156,6 +174,10 @@ msgid "Created by"
 msgstr "Crée par"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_date
@@ -193,6 +215,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__dummy
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__dummy
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__dummy
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_format_type_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__dummy
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Dummy"
@@ -216,39 +243,46 @@ msgid "Flashed Proofs"
 msgstr "BAT(s) flashé(s)"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_follower_ids
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_follower_ids
 msgid "Followers"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_partner_ids
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__activity_type_icon
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Group By"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__has_message
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__has_message
 msgid "Has Message"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__height
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_height
 msgid "Height"
 msgstr "Hauteur"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__height_uom_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_height_uom_id
 msgid "Height Unit of Measure"
-msgstr "Unité Hauteur"
+msgstr "Udm.Hauteur"
 
 #. module: prepress_management
 #: model:ir.module.category,description:prepress_management.module_category_prepress
@@ -256,6 +290,10 @@ msgid "Helps you handle your Prepress process : Prepress proofing, etc."
 msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__id
@@ -264,22 +302,28 @@ msgid "ID"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_exception_icon
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_exception_icon
 msgid "Icon"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__activity_exception_icon
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__message_needaction
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__message_unread
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_needaction
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__message_has_error
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__message_has_sms_error
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_has_error
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
@@ -297,11 +341,16 @@ msgid "In progress Proofs"
 msgstr "BAT(s) en cours"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_is_follower
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_is_follower
 msgid "Is Follower"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags____last_update
@@ -310,6 +359,10 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__write_uid
@@ -318,6 +371,10 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__write_date
@@ -326,26 +383,31 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_main_attachment_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_has_error
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_has_error
 msgid "Message Delivery error"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_ids
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_ids
 msgid "Messages"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__my_activity_date_deadline
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__name
@@ -353,21 +415,25 @@ msgid "Name"
 msgstr "Référence"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_calendar_event_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_date_deadline
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_summary
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_summary
 msgid "Next Activity Summary"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_type_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
@@ -384,21 +450,25 @@ msgid "Note"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_needaction_counter
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_has_error_counter
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_has_error_counter
 msgid "Number of errors"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__message_needaction_counter
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__message_has_error_counter
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
@@ -510,11 +580,13 @@ msgid "Reference"
 msgstr "Référence"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__activity_user_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__activity_user_id
 msgid "Responsible User"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_has_sms_error
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr ""
@@ -530,11 +602,13 @@ msgid "Sequence"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__state
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state
 msgid "Status"
 msgstr "Statut"
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__activity_state
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__activity_state
 msgid ""
 "Status based on activities\n"
@@ -558,16 +632,19 @@ msgid "Tags"
 msgstr "Étiquettes"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__thickness
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_thickness
 msgid "Thickness"
 msgstr "Épaisseur"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__thickness_uom_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_thickness_uom_id
 msgid "Thickness Unit of Measure"
-msgstr "Unité Épaisseur"
+msgstr "UdM.Épaisseur"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__prepress_type
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__prepress_type
 #: model:ir.model.fields,field_description:prepress_management.field_product_product__prepress_type
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__prepress_type
@@ -575,6 +652,7 @@ msgid "Type"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__activity_exception_decoration
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
@@ -585,11 +663,13 @@ msgid "Unread Messages"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_unread
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_unread_counter
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__update_date
 msgid "Update date"
 msgstr "Date de mise à jour"
@@ -605,11 +685,13 @@ msgid "User"
 msgstr ""
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Validate"
 msgstr "Valider"
 
 #. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__state__validated
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__validated
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state_before_quarantined__validated
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
@@ -622,11 +704,13 @@ msgid "Validated Proofs"
 msgstr "BAT(s) validé(s)"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__website_message_ids
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__website_message_ids
 msgid "Website Messages"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__website_message_ids
 #: model:ir.model.fields,help:prepress_management.field_prepress_proof__website_message_ids
 msgid "Website communication history"
 msgstr ""
@@ -722,3 +806,271 @@ msgstr "Statut initial"
 #, python-format
 msgid "Only in progress Prepress Proofs can be removed!"
 msgstr "Impossible de supprimer un BAT dont le statut est différent de En cours"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_kanban
+msgid "<strong>Customers : </strong>"
+msgstr "<strong>Clients : </strong>"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+msgid "Are you sure you want cancel this cutting die?"
+msgstr "Êtes-vous sûr de vouloir annuler cette forme de découpe?"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+msgid "Are you sure you want reset this cutting die to Draft?"
+msgstr "Êtes-vous sûr de vouloir remettre cette forme de découpe à brouillon?"
+
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__auto_finishing
+msgid "Auto finishing"
+msgstr "Finition automatique"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__shelling_type__auto
+msgid "Automatic"
+msgstr "Automatique"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__both_sides
+msgid "Both sides"
+msgstr "Recto-verso"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_cutting_die.py:80
+#, python-format
+msgid "Can not validate non draft Cutting dies!"
+msgstr "Impossible de valider une forme de découpe dont le statut est différent de brouillon!"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Cancelled Cutting dies"
+msgstr "Formes de découpes annulées"
+
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_complexity_factor_main_action
+#: model:ir.model,name:prepress_management.model_prepress_cutting_die_complexity_factor
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__complexity_factor_id
+#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_complexity_factor_action_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_complexity_factor_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_complexity_factor_tree_view
+msgid "Complexity factor"
+msgstr "Facteur de complexité"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__creasing_rule_uom_id
+msgid "Creasing Rule Unit of Measure"
+msgstr "UdM Filet rainage"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__creasing_rule
+msgid "Creasing rule 1 exposure"
+msgstr "Filet raineur de 1 pose"
+
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_complexity_factor_main_action
+msgid "Create a new Complexity factor"
+msgstr "Créer un nouveau Facteur de complexité"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_main_action
+msgid "Create a new Cutting die"
+msgstr "Créer une nouvelle Forme de découpe"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_format_type_main_action
+msgid "Create a new Format Type"
+msgstr "Créer un nouveau Type de format"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_mounting_type_main_action
+msgid "Create a new Mounting Type"
+msgstr "Créer un nouveau Type de montage"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__partner_ids
+msgid "Customers"
+msgstr "Clients"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_cutting_die
+msgid "Cutting Die"
+msgstr "Forme de découpe"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cutting_count
+msgid "Cutting count"
+msgstr "Nbr de formes de découpes"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_main_action
+#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_action_menu
+#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_menu
+#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_prepress_config_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_tree
+msgid "Cutting die"
+msgstr "Forme de découpe"
+
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__description
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__description
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_type__description
+msgid "Description"
+msgstr "Description"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__state__draft
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Draft Cutting dies"
+msgstr "Forme(s) de découpe Brouillon(s)"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__exposure_nbr
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Exposure Nbr"
+msgstr "Nbr.Pose"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_height_uom_id
+msgid "Fin Height Unit of Measure"
+msgstr "UdM Hauteur.finition"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_width_uom_id
+msgid "Fin Width Unit of Measure"
+msgstr "UdM Largeur.finition"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_height
+msgid "Finishing height"
+msgstr "Hauteur finition"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_width
+msgid "Finishing width"
+msgstr "Largeur finition"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_format_type_main_action
+msgid "Format Type"
+msgstr "Type de format"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_cutting_die_format_type
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__format_type_id
+#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_format_type_action_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_format_type_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_format_type_tree_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Format type"
+msgstr "Type de format"
+
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__index
+msgid "Index"
+msgstr "Indice"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__shelling_type__manual
+msgid "Manual"
+msgstr "Manuel"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cut_height_uom_id
+msgid "Mounting Height Unit of Measure"
+msgstr "Udm.Hauteur montage"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_mounting_type_main_action
+msgid "Mounting Type"
+msgstr "Type de montage"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cut_width_uom_id
+msgid "Mounting Width Unit of Measure"
+msgstr "Udm.Largeur montage"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cut_height
+msgid "Mounting height"
+msgstr "Hauteur montage"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_cutting_die_mounting_type
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__mounting_type_id
+#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_mounting_type_action_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_mounting_type_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_mounting_type_tree_view
+msgid "Mounting type"
+msgstr "Type de montage"
+
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cut_width
+msgid "Mounting width"
+msgstr "Largeur montage"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_cutting_die.py:0
+#, python-format
+msgid "Only validated Cutting dies can be cancelled!"
+msgstr "Impossible d'annuler une forme de découpe dont le statut est différent de validée"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_cutting_die.py:0
+#, python-format
+msgid "Only validated Cutting dies can be reset!"
+msgstr "Impossible de remettre à brouillon une forme de découpe dont le statut est différent de validée"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__rate
+msgid "Rate(%)"
+msgstr "Taux(%)"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+msgid "Reset to Draft"
+msgstr "Remettre à brouillon"
+
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Search Cutting die"
+msgstr "Rechercher Forme(s) de découpe(s)"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__shelling_type
+msgid "Shelling Type"
+msgstr ""
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+msgid "Validated Cutting dies"
+msgstr "Formes de découpe validées"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__width
+msgid "Width"
+msgstr "Largeur"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__width_uom_id
+msgid "Width unit of Measure"
+msgstr "UdM.Largeur"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__with_braille
+msgid "With braille"
+msgstr ""

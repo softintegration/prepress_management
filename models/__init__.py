@@ -2,3 +2,5 @@
 from . import prepress_proof
 from . import product_template
 from . import product
+from . import prepress_cutting_die
+from . import prepress_type
