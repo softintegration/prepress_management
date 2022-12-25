@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     prepress_type = fields.Many2one('prepress.type', string='Type')
-    prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=True, default=1)
+    prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=True, default=0)
     prepress_proofs_count = fields.Integer(compute='_compute_prepress_proofs_count')
 
 
