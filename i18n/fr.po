@@ -1024,3 +1024,28 @@ msgstr "Braille"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__shelling
 msgid "Shelling"
 msgstr "Décorticage"
+
+#. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_cutting_die__locked
+msgid "If the cutting die is locked we can't edit Customers"
+msgstr "Si la Forme de découpe est verrouillée, nous ne pouvons pas modifier les clients"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+msgid "Lock"
+msgstr "Bloquer"
+
+#. module: prepress_management
+#: model:res.groups,name:prepress_management.group_prepress_cutting_die_lock_unlock
+msgid "Lock/Unlock Cutting Dies"
+msgstr "Verrouiller/déverrouiller les formes de découpe"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__locked
+msgid "Locked"
+msgstr "Verrouillée"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+msgid "Unlock"
+msgstr "Déverrouiller"

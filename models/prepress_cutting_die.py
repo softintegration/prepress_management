@@ -59,6 +59,8 @@ class PrepressCuttingDie(models.Model):
     creasing_rule_uom_id = fields.Many2one('uom.uom', string="Creasing Rule Unit of Measure",
                                            default=lambda self: self.env.ref('uom.product_uom_cm'))
     dummy = fields.Html(string='Dummy', states={'draft': [('readonly', False)]}, readonly=True)
+    locked = fields.Boolean(string='Locked', help="If the cutting die is locked we can't edit Customers",
+                            default=False)
 
     def action_confirm(self):
         return self._action_confirm()
@@ -67,7 +69,7 @@ class PrepressCuttingDie(models.Model):
         self._check_validated_cutting_die()
         for each in self:
             each._set_name_by_sequence()
-        self.write({'state': 'validated'})
+        self.write({'state': 'validated','locked': True})
 
     def _check_validated_cutting_die(self):
         for each in self:
@@ -117,6 +119,13 @@ class PrepressCuttingDie(models.Model):
 
     def _action_reset(self):
         self.write({'state': 'draft'})
+
+
+    def action_lock(self):
+        self.write({'locked': True})
+
+    def action_unlock(self):
+        self.write({'locked': False})
 
 class CuttingDieMountingType(models.Model):
     _name = 'prepress.cutting.die.mounting.type'
