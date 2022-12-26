@@ -10,7 +10,7 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.22',
+    'version': '1.0.1.30',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal','cancel_motif','product_customer','web_custom_groups'],
