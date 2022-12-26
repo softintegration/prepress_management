@@ -10,10 +10,10 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.21',
+    'version': '1.0.1.22',
     'category': 'Prepress',
     'demo': [],
-    'depends': ['portal','cancel_motif','product_customer'],
+    'depends': ['portal','cancel_motif','product_customer','web_custom_groups'],
     'data': [
         'security/prepress_security.xml',
         'security/ir.model.access.csv',

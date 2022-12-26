@@ -127,7 +127,8 @@
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="hide"/>
                         </group>
                     </group>
-                    <group name="colors" string="Colors">
+                    <div class="o_new-group o_new-group-big">Colors</div>
+                    <group name="colors">
                         <field name="color_ids" nolabel="1">
                             <tree editable="bottom">
                                 <field name="sequence" widget="handle"/>
@@ -137,10 +138,12 @@
                             </tree>
                         </field>
                     </group>
-                    <group name="dummy" string="Dummy">
+                    <div class="o_new-group o_new-group-big">Dummy</div>
+                    <group name="dummy">
                         <field name="dummy" nolabel="1"/>
                     </group>
-                    <group name="note" string="Note">
+                    <div class="o_new-group o_new-group-big">Note</div>
+                    <group name="note">
                         <field name="note" nolabel="1"/>
                     </group>
                 </sheet>
