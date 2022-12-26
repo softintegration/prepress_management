@@ -104,20 +104,19 @@
                                 <field name="fin_width" class="oe_inline"/>
                                 <field name="fin_width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <field name="complexity_factor_id" options="{'no_create_edit':True}"/>
                             <field name="cutting_count"
                                    attrs="{'invisible':[('prepress_type_code','!=','case')],'required':[('prepress_type_code','=','case')]}"/>
-                            <field name="with_braille"/>
-                            <field name="shelling_type" widget="radio"/>
+                            <field name="with_braille" widget="boolean_toggle"/>
+                            <field name="shelling" widget="boolean_toggle"/>
                             <label for="creasing_rule"/>
                             <div name="creasing_rule">
                                 <field name="creasing_rule" class="oe_inline"/>
                                 <field name="creasing_rule_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <field name="auto_finishing"/>
                         </group>
                     </group>
-                    <group name="dummy" string="Dummy">
+                    <div class="o_new-group o_new-group-big">Dummy</div>
+                    <group name="dummy">
                         <field name="dummy" nolabel="1"/>
                     </group>
                 </sheet>
@@ -266,35 +265,6 @@
         </field>
     </record>
 
-    <!-- Cutting die Complexity factor Form view -->
-
-    <record model="ir.ui.view" id="prepress_cutting_die_complexity_factor_form_view">
-        <field name="name">prepress.cutting.die.complexity.factor.form.view</field>
-        <field name="model">prepress.cutting.die.complexity.factor</field>
-        <field name="arch" type="xml">
-            <form string="Complexity factor">
-                <sheet>
-                    <group>
-                        <field name="index"/>
-                        <field name="rate"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Cutting die Complexity factor Tree view -->
-    <record model="ir.ui.view" id="prepress_cutting_die_complexity_factor_tree_view">
-        <field name="name">prepress.cutting.die.complexity.factor.tree.view</field>
-        <field name="model">prepress.cutting.die.complexity.factor</field>
-        <field name="arch" type="xml">
-            <tree string="Complexity factor">
-                <field name="index"/>
-                <field name="rate"/>
-            </tree>
-        </field>
-    </record>
-
     <!-- Menu and Actions -->
 
     <menuitem id="prepress_cutting_die_menu"
@@ -359,23 +329,5 @@
               name="Mounting type"
               action="prepress_management.prepress_cutting_die_mounting_type_main_action"
               sequence="5"/>
-
-    <record id="prepress_cutting_die_complexity_factor_main_action" model="ir.actions.act_window">
-        <field name="name">Complexity factor</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">prepress.cutting.die.complexity.factor</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create a new Complexity factor
-            </p>
-        </field>
-    </record>
-
-     <menuitem id="prepress_cutting_die_complexity_factor_action_menu"
-              parent="prepress_cutting_die_prepress_config_menu"
-              name="Complexity factor"
-              action="prepress_management.prepress_cutting_die_complexity_factor_main_action"
-              sequence="10"/>
 
 </odoo>

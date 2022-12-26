@@ -128,7 +128,6 @@ msgstr "Couleurs"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__company_id
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__company_id
@@ -163,7 +162,6 @@ msgstr "Créer un nouveau type d'article"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_uid
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
@@ -175,7 +173,6 @@ msgstr "Crée par"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_date
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_date
@@ -291,7 +288,6 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__id
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__id
@@ -348,7 +344,6 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die____last_update
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof____last_update
@@ -360,7 +355,6 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__write_uid
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_uid
@@ -372,7 +366,6 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__write_date
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_date
@@ -822,17 +815,6 @@ msgstr "Êtes-vous sûr de vouloir annuler cette forme de découpe?"
 msgid "Are you sure you want reset this cutting die to Draft?"
 msgstr "Êtes-vous sûr de vouloir remettre cette forme de découpe à brouillon?"
 
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__auto_finishing
-msgid "Auto finishing"
-msgstr "Finition automatique"
-
-#. module: prepress_management
-#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__shelling_type__auto
-msgid "Automatic"
-msgstr "Automatique"
-
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__both_sides
 msgid "Both sides"
@@ -851,16 +833,6 @@ msgstr "Formes de découpes annulées"
 
 
 #. module: prepress_management
-#: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_complexity_factor_main_action
-#: model:ir.model,name:prepress_management.model_prepress_cutting_die_complexity_factor
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__complexity_factor_id
-#: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_complexity_factor_action_menu
-#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_complexity_factor_form_view
-#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_cutting_die_complexity_factor_tree_view
-msgid "Complexity factor"
-msgstr "Facteur de complexité"
-
-#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__creasing_rule_uom_id
 msgid "Creasing Rule Unit of Measure"
 msgstr "UdM Filet rainage"
@@ -869,12 +841,6 @@ msgstr "UdM Filet rainage"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__creasing_rule
 msgid "Creasing rule 1 exposure"
 msgstr "Filet raineur de 1 pose"
-
-
-#. module: prepress_management
-#: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_complexity_factor_main_action
-msgid "Create a new Complexity factor"
-msgstr "Créer un nouveau Facteur de complexité"
 
 #. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_main_action
@@ -939,7 +905,7 @@ msgstr "Forme(s) de découpe Brouillon(s)"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__exposure_nbr
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 msgid "Exposure Nbr"
-msgstr "Nbr.Pose"
+msgstr "Nombre de pose"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_height_uom_id
@@ -975,17 +941,6 @@ msgstr "Type de format"
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 msgid "Format type"
 msgstr "Type de format"
-
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__index
-msgid "Index"
-msgstr "Indice"
-
-#. module: prepress_management
-#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__shelling_type__manual
-msgid "Manual"
-msgstr "Manuel"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cut_height_uom_id
@@ -1035,11 +990,6 @@ msgid "Only validated Cutting dies can be reset!"
 msgstr "Impossible de remettre à brouillon une forme de découpe dont le statut est différent de validée"
 
 #. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_complexity_factor__rate
-msgid "Rate(%)"
-msgstr "Taux(%)"
-
-#. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 msgid "Reset to Draft"
 msgstr "Remettre à brouillon"
@@ -1049,11 +999,6 @@ msgstr "Remettre à brouillon"
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 msgid "Search Cutting die"
 msgstr "Rechercher Forme(s) de découpe(s)"
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__shelling_type
-msgid "Shelling Type"
-msgstr ""
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
@@ -1073,4 +1018,9 @@ msgstr "UdM.Largeur"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__with_braille
 msgid "With braille"
-msgstr ""
+msgstr "Braille"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__shelling
+msgid "Shelling"
+msgstr "Décorticage"

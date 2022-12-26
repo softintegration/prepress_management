@@ -48,17 +48,12 @@ class PrepressCuttingDie(models.Model):
     fin_width = fields.Float(string='Finishing width', states={'draft': [('readonly', False)]}, readonly=True)
     fin_width_uom_id = fields.Many2one('uom.uom', string="Fin Width Unit of Measure",
                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
-    complexity_factor_id = fields.Many2one('prepress.cutting.die.complexity.factor', string="Complexity factor",
-                                           states={'draft': [('readonly', False)]},
-                                           readonly=True)
     exposure_nbr = fields.Integer('Exposure Nbr', states={'draft': [('readonly', False)]}, readonly=True)
     cutting_count = fields.Integer('Cutting count', states={'draft': [('readonly', False)]}, readonly=True)
     with_braille = fields.Boolean(string='With braille', states={'draft': [('readonly', False)]}, readonly=True)
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
-    auto_finishing = fields.Boolean(string='Auto finishing', states={'draft': [('readonly', False)]}, readonly=True)
-    shelling_type = fields.Selection([('manual', 'Manual'), ('auto', 'Automatic')], default='manual',
-                                     states={'draft': [('readonly', False)]}, readonly=True)
+    shelling = fields.Boolean(string="Shelling",states={'draft': [('readonly', False)]}, readonly=True,default=False)
     creasing_rule = fields.Float(string='Creasing rule 1 exposure', states={'draft': [('readonly', False)]},
                                  readonly=True)
     creasing_rule_uom_id = fields.Many2one('uom.uom', string="Creasing Rule Unit of Measure",
@@ -145,13 +140,3 @@ class CuttingDieFormatType(models.Model):
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
 
-
-class CuttingDieComplexityFactor(models.Model):
-    _name = 'prepress.cutting.die.complexity.factor'
-    _description = 'Complexity factor'
-    _rec_name = 'index'
-    # fields
-    # stored fields
-    index = fields.Float(string='Index', required=True)
-    rate = fields.Float(string='Rate(%)', required=True, default=0)
-    company_id = fields.Many2one('res.company', default=lambda self: self.env.user.company_id)
