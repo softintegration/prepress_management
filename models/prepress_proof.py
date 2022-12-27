@@ -29,15 +29,17 @@ class PrepressProof(models.Model):
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False, index=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
                                     readonly=True)
-    product_height = fields.Float(string='Height', states={'in_progress': [('readonly', False)]}, readonly=True)
-    product_height_uom_id = fields.Many2one('uom.uom', string="Height Unit of Measure",
-                                            default=lambda self: self.env.ref('uom.product_uom_millimeter'))
-    product_width = fields.Float(string='Width', states={'in_progress': [('readonly', False)]}, readonly=True)
-    product_width_uom_id = fields.Many2one('uom.uom', string="Width unit of Measure",
-                                           default=lambda self: self.env.ref('uom.product_uom_millimeter'))
-    product_thickness = fields.Float(string='Thickness', states={'in_progress': [('readonly', False)]}, readonly=True)
-    product_thickness_uom_id = fields.Many2one('uom.uom', string="Thickness Unit of Measure",
-                                               default=lambda self: self.env.ref('uom.product_uom_millimeter'))
+    product_height = fields.Float(string='Height',related='product_id.height',states={'in_progress': [('readonly', False)]}, readonly=True,store=True)
+    product_height_uom_id = fields.Many2one('uom.uom',related='product_id.height_uom_id', string="Height Unit of Measure",
+                                            default=lambda self: self.env.ref('uom.product_uom_millimeter'),store=True)
+    product_width = fields.Float(string='Width',related='product_id.width',states={'in_progress': [('readonly', False)]},
+                                 readonly=True,store=True)
+    product_width_uom_id = fields.Many2one('uom.uom',related='product_id.width_uom_id',string="Width unit of Measure",
+                                           default=lambda self: self.env.ref('uom.product_uom_millimeter'),store=True)
+    product_thickness = fields.Float(string='Thickness',related='product_id.thickness', states={'in_progress': [('readonly', False)]}, readonly=True,
+                                     store=True)
+    product_thickness_uom_id = fields.Many2one('uom.uom',related='product_id.thickness_uom_id',string="Thickness Unit of Measure",
+                                               default=lambda self: self.env.ref('uom.product_uom_millimeter'),store=True)
     product_weight = fields.Integer(string='Weight', states={'in_progress': [('readonly', False)]}, readonly=True)
     product_weight_uom_id = fields.Many2one('uom.uom', string="Weight Unit of Measure",
                                             default=lambda self: self.env.ref('uom.product_uom_gram'))
