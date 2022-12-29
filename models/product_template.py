@@ -10,6 +10,7 @@ class ProductTemplate(models.Model):
     prepress_type = fields.Many2one('prepress.type', string='Type')
     prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=True, default=0)
     prepress_proofs_count = fields.Integer(compute='_compute_prepress_proofs_count')
+    color_cpt = fields.Integer(string='Number of Colors')
 
 
     def _increment_prepress_proof_version(self):

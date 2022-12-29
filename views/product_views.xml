@@ -15,6 +15,10 @@
                     </group>
                 </page>
             </xpath>
+            <field name="detailed_type" position="after">
+                <field name="color_cpt"
+                       attrs="{'invisible':[('type','!=','product')]}"/>
+            </field>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button class="oe_stat_button" name="show_related_prepress_proofs" icon="fa-file-image-o"
                         groups="prepress_management.group_prepress_user" type="object"
