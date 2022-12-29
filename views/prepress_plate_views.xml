@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <!-- Prepress Plate CTP Tree View -->
+
+    <record id="view_prepress_plate_ctp_tree" model="ir.ui.view">
+        <field name="name">view.prepress.plate.ctp.tree</field>
+        <field name="model">prepress.plate</field>
+        <field name="arch" type="xml">
+            <tree string="CTP Plate" sample="1" decoration-danger="state == 'cancel'"
+                  decoration-info="state == 'validated'"  js_class="lazy_column_list"
+            >
+                <field name="name" readonly="1" decoration-bf="1"/>
+                <field name="type_format" optional="show"/>
+                <field name="product_id" optional="show"/>
+                <field name="height" optional="show"/>
+                <field name="height_uom_id" optional="hide"/>
+                <field name="width" optional="show"/>
+                <field name="width_uom_id" optional="hide"/>
+                <field name="exposure_nbr" optional="show"/>
+                <field name="state" decoration-bf="state == 'draft'"
+                       decoration-success="state == 'validated'" decoration-danger="state == 'cancel'" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Prepress Plate Varnish Tree View -->
+
+    <record id="view_prepress_plate_varnish_tree" model="ir.ui.view">
+        <field name="name">view.prepress.plate.varnish.tree</field>
+        <field name="model">prepress.plate</field>
+        <field name="arch" type="xml">
+            <tree string="Varnish Plate" sample="1" decoration-danger="state == 'cancel'"
+                  decoration-info="state == 'validated'"  js_class="lazy_column_list"
+            >
+                <field name="name" readonly="1" decoration-bf="1"/>
+                <field name="cutting_die_id" optional="show"/>
+                <field name="type_format" optional="show"/>
+                <field name="height" optional="show"/>
+                <field name="height_uom_id" optional="hide"/>
+                <field name="width" optional="show"/>
+                <field name="width_uom_id" optional="hide"/>
+                <field name="exposure_nbr" optional="show"/>
+                <field name="state" decoration-bf="state == 'draft'"
+                       decoration-success="state == 'validated'" decoration-danger="state == 'cancel'" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Prepress Plate Form View -->
+
+    <record id="view_prepress_plate_form" model="ir.ui.view">
+        <field name="name">view.prepress.plate.form</field>
+        <field name="model">prepress.plate</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                     <button name="action_confirm" type="object" states="draft" string="Validate"
+                            class="oe_highlight"
+                            data-hotkey="v"/>
+                    <button name="action_reset" type="object" states="validated" string="Reset to Draft"
+                    data-hotkey="r" confirm="Are you sure you want reset this Plate to Draft?"/>
+                    <button name="action_cancel" type="object" states="validated" string="Cancel"
+                            data-hotkey="c" confirm="Are you sure you want cancel this Plate?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group name="prepress_plate_header">
+                        <group name="prepress_plate_left_group">
+                            <field name="company_id" invisible="1"/>
+                            <field name="product_plate_type" required="1" invisible="1"/>
+                            <field name="partner_id"
+                                       attrs="{'invisible':[('product_plate_type','!=','plate_ctp')],'required':[('product_plate_type','=','plate_ctp')]}"
+                                       options="{'no_create':True,'no_edit':True}"/>
+                            <field name="product_id"
+                                       options="{'no_create':True,'no_edit':True}"
+                                       attrs="{'invisible':['|',('product_plate_type','!=','plate_ctp'),('partner_id','=',False)],'required':[('product_plate_type','=','plate_ctp'),('partner_id','!=',False)]}"
+                                       domain="[('partner_id','=',partner_id),('type','=','product')]"
+                                       context="{'default_type':'product','default_partner_id':partner_id}"/>
+                            <field name="prepress_proof_id" attrs="{'invisible':[('product_id','=',False)]}" readonly="1" force_save="1"/>
+                            <field name="product_varnish_id"
+                                   attrs="{'invisible':[('product_plate_type','!=','plate_varnish')],'required':[('product_plate_type','=','plate_varnish')]}"
+                                   options="{'no_create':True,'no_edit':True}"/>
+                            <field name="lineation" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
+                            <field name="frame_type_id" options="{'no_create':True}" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
+                            <field name="point_form_id" options="{'no_create':True}" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
+                        </group>
+                        <group name="prepress_plate_right_group">
+                            <field name="cutting_die_id"
+                                   attrs="{'invisible':[('product_id','=',False),('product_varnish_id','=',False)]}"
+                                   options="{'no_create':True,'no_edit':True}"
+                                   />
+                            <field name="type_format" required="1"/>
+                            <label for="height"/>
+                            <div name="height">
+                                <field name="height" class="oe_inline"/>
+                                <field name="height_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="width"/>
+                            <div name="width">
+                                <field name="width" class="oe_inline"/>
+                                <field name="width_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <field name="exposure_nbr" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Prepress Plate Search View -->
+
+    <record id="view_prepress_plate_search" model="ir.ui.view">
+        <field name="name">view.prepress.plate.search</field>
+        <field name="model">prepress.plate</field>
+        <field name="arch" type="xml">
+            <search string="Search Plates">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="prepress_proof_id"/>
+                <field name="cutting_die_id"/>
+                <separator/>
+                <filter name="draft" string="Draft" domain="[('state','=','draft')]"
+                        help="Draft Plates"/>
+                <filter name="validated" string="Validated" domain="[('state','=','validated')]"
+                        help="Validated Plates"/>
+                <filter name="cancelled" string="Cancelled" domain="[('state','=','cancel')]"
+                        help="Cancelled Plates"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_product_id" string="Product" context="{'group_by':'product_id'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- PLate Frame type Form view -->
+
+    <record model="ir.ui.view" id="prepress_plate_frame_type_form_view">
+        <field name="name">prepress.plate.frame.type.form.view</field>
+        <field name="model">prepress.plate.frame.type</field>
+        <field name="arch" type="xml">
+            <form string="Frame type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Plate Frame type Tree view -->
+    <record model="ir.ui.view" id="prepress_plate_frame_type_tree_view">
+        <field name="name">prepress.plate.frame.type.tree.view</field>
+        <field name="model">prepress.plate.frame.type</field>
+        <field name="arch" type="xml">
+            <tree string="Frame type">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- PLate Point form Form view -->
+
+    <record model="ir.ui.view" id="prepress_plate_point_form_form_view">
+        <field name="name">prepress.plate.point.form.form.view</field>
+        <field name="model">prepress.plate.point.form</field>
+        <field name="arch" type="xml">
+            <form string="Plate Point form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Plate Point form Tree view -->
+    <record model="ir.ui.view" id="prepress_plate_point_form_tree_view">
+        <field name="name">prepress.plate.point.form.tree.view</field>
+        <field name="model">prepress.plate.point.form</field>
+        <field name="arch" type="xml">
+            <tree string="Plate Point form">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Menu and Actions -->
+
+    <menuitem id="prepress_plate_menu"
+              name="Plate"
+              parent="prepress_management.prepress_menu_root"
+              sequence="8"/>
+
+    <record id="prepress_plate_ctp_main_action" model="ir.actions.act_window">
+        <field name="name">Plate CTP</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.plate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('product_plate_type','=','plate_ctp')]</field>
+        <field name="context">{'default_product_plate_type':'plate_ctp'}</field>
+        <field name="view_id" ref="prepress_management.view_prepress_plate_ctp_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new CTP Plate
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="prepress_plate_ctp_action_menu"
+              parent="prepress_plate_menu"
+              name="Plate CTP"
+              action="prepress_management.prepress_plate_ctp_main_action"
+              sequence="1" groups="prepress_management.group_prepress_user"/>
+
+
+    <record id="prepress_plate_varnish_main_action" model="ir.actions.act_window">
+        <field name="name">Plate Varnish</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.plate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('product_plate_type','=','plate_varnish')]</field>
+        <field name="context">{'default_product_plate_type':'plate_varnish'}</field>
+        <field name="view_id" ref="prepress_management.view_prepress_plate_varnish_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Varnish Plate
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="prepress_plate_varnish_action_menu"
+              parent="prepress_plate_menu"
+              name="Plate Varnish"
+              action="prepress_management.prepress_plate_varnish_main_action"
+              sequence="1" groups="prepress_management.group_prepress_user"/>
+
+
+
+    <menuitem id="prepress_plate_prepress_config_menu" name="Plate"
+              parent="prepress_management.prepress_config_settings"
+              sequence="70" />
+
+    <record id="prepress_plate_frame_type_main_action" model="ir.actions.act_window">
+        <field name="name">Frame Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.plate.frame.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Frame Type
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="prepress_plate_frame_type_action_menu"
+              parent="prepress_plate_prepress_config_menu"
+              name="Frame type"
+              action="prepress_management.prepress_plate_frame_type_main_action"
+              sequence="1"/>
+
+    <record id="prepress_plate_point_form_main_action" model="ir.actions.act_window">
+        <field name="name">Point form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.plate.point.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Plate Point form
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="prepress_plate_point_form_action_menu"
+              parent="prepress_plate_prepress_config_menu"
+              name="Point form"
+              action="prepress_management.prepress_plate_point_form_main_action"
+              sequence="10"/>
+
+
+</odoo>

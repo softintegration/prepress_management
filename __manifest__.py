@@ -10,7 +10,7 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.33',
+    'version': '1.0.1.34',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal',
@@ -25,6 +25,7 @@
         'data/ir_sequence_data.xml',
         'views/prepress_proof_views.xml',
         'views/prepress_cutting_die_views.xml',
+        'views/prepress_plate_views.xml',
         'views/product_views.xml',
         'views/cancel_motif_views.xml'
     ],

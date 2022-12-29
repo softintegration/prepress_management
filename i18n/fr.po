@@ -68,18 +68,21 @@ msgstr ""
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cancel_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__cancel_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_date
 msgid "Cancel date"
 msgstr "Date d'annulation"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__cancel_motif_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cancel_motif_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__cancel_motif_name
 #: model:ir.ui.menu,name:prepress_management.cancel_motif_action_menu
@@ -98,7 +101,9 @@ msgstr "Motif d'annulation"
 
 #. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__state__cancel
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__state__cancel
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__cancel
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Cancelled"
 msgstr "Annulé"
@@ -128,6 +133,9 @@ msgstr "Couleurs"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__company_id
@@ -164,6 +172,9 @@ msgstr "Créer un nouveau type d'article"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_uid
@@ -175,6 +186,9 @@ msgstr "Crée par"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_date
@@ -189,6 +203,7 @@ msgstr "Date de création"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__partner_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__partner_id
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Customer"
 msgstr "Client"
@@ -199,6 +214,8 @@ msgid "Customer Prepress proof reference"
 msgstr "Rèfèrence BAT client"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__description
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__description
 msgid "Description"
 msgstr ""
@@ -208,6 +225,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -260,6 +280,7 @@ msgstr ""
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
 msgid "Group By"
 msgstr ""
 
@@ -272,12 +293,14 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__height
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_height
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__height
 msgid "Height"
 msgstr "Hauteur"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__height_uom_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_height_uom_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__height_uom_id
 msgid "Height Unit of Measure"
 msgstr "Udm.Hauteur"
 
@@ -294,6 +317,9 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__id
 msgid "ID"
 msgstr ""
 
@@ -404,6 +430,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__name
 msgid "Name"
 msgstr "Référence"
 
@@ -495,6 +522,7 @@ msgid "Prepress"
 msgstr "Prépresse"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__prepress_proof_id
 msgid "Prepress Proof"
 msgstr "BAT"
@@ -541,7 +569,9 @@ msgstr "BATs"
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_product_product
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__product_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_id
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Product"
 msgstr "Article"
@@ -597,6 +627,8 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__state
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__state
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
 msgid "Status"
 msgstr "Statut"
 
@@ -641,6 +673,7 @@ msgstr "UdM.Épaisseur"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__prepress_type
 #: model:ir.model.fields,field_description:prepress_management.field_product_product__prepress_type
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__prepress_type
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__product_plate_type
 msgid "Type"
 msgstr ""
 
@@ -680,6 +713,7 @@ msgstr ""
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
 msgid "Validate"
 msgstr "Valider"
 
@@ -687,6 +721,7 @@ msgstr "Valider"
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__state__validated
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__validated
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state_before_quarantined__validated
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__state__validated
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Validated"
 msgstr "Validé"
@@ -720,13 +755,15 @@ msgstr "Unité Grammage"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_width
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__width
 msgid "Width"
 msgstr "Largeur"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_width_uom_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__width_uom_id
 msgid "Width unit of Measure"
-msgstr "Unité Largeur"
+msgstr "UdM.Largeur"
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_proof_color
@@ -863,6 +900,7 @@ msgid "Customers"
 msgstr "Clients"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__cutting_die_id
 #: model:ir.model,name:prepress_management.model_prepress_cutting_die
 msgid "Cutting Die"
 msgstr "Forme de découpe"
@@ -892,7 +930,9 @@ msgstr "Description"
 
 #. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_cutting_die__state__draft
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__state__draft
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
 msgid "Draft"
 msgstr "Brouillon"
 
@@ -903,6 +943,7 @@ msgstr "Forme(s) de découpe Brouillon(s)"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__exposure_nbr
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__exposure_nbr
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 msgid "Exposure Nbr"
 msgstr "Nombre de pose"
@@ -991,6 +1032,7 @@ msgstr "Impossible de remettre à brouillon une forme de découpe dont le statut
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
 msgid "Reset to Draft"
 msgstr "Remettre à brouillon"
 
@@ -1049,3 +1091,199 @@ msgstr "Verrouillée"
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 msgid "Unlock"
 msgstr "Déverrouiller"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+msgid "Are you sure you want cancel this Plate?"
+msgstr "Êtes-vous sûr de vouloir annuler cette Plaque"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+msgid "Are you sure you want reset this Plate to Draft?"
+msgstr "Êtes-vous sûr de vouloir remettre cette Plaque à brouillon?"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__type_format__big_format
+msgid "Big format"
+msgstr "Grand format"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__product_plate_type__plate_ctp
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_tree
+msgid "CTP Plate"
+msgstr "Plaque CTP"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:0
+#, python-format
+msgid "Can not validate non draft Plates!"
+msgstr ""
+"Impossible de valider une plaque dont le statut est différent de "
+"brouillon!"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
+msgid "Cancelled Plates"
+msgstr "Plaques annulées"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_ctp_main_action
+msgid "Create a new CTP Plate"
+msgstr "Créer une nouvelle Plaque CTP"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_varnish_main_action
+msgid "Create a new Varnish Plate"
+msgstr "Créer une nouvelle Plaque vernis"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_frame_type_main_action
+msgid "Create a new Frame Type"
+msgstr "Créer un nouveau type de trame"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_point_form_main_action
+msgid "Create a new Plate Point form"
+msgstr "Créer un nouveau forme de point"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:87
+#, python-format
+msgid "Cutting Die is required in varnish Plate!"
+msgstr "Forme de découpe est obligatoire dans les Plaques vernis"
+
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
+msgid "Draft Plates"
+msgstr "Plaque(s) Brouillon(s)"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__type_format
+msgid "Format"
+msgstr "Format"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_plate_frame_type_main_action
+msgid "Frame Type"
+msgstr "Type de trame"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__frame_type_id
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_frame_type_action_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_plate_frame_type_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_plate_frame_type_tree_view
+msgid "Frame type"
+msgstr "Type de trame"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__lineation
+msgid "Lineation"
+msgstr "Linéature"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:124
+#, python-format
+msgid "Only validated Plates can be cancelled!"
+msgstr ""
+"Impossible d'annuler une Plaque dont le statut est différent de "
+"validée"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:134
+#, python-format
+msgid "Only validated Plates can be reset!"
+msgstr ""
+"Impossible de remettre à brouillon une Plaque dont le statut est "
+"différent de validée"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__type_format__optimal_format
+msgid "Optimal format"
+msgstr "Format optimal"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_plate
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_menu
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_prepress_config_menu
+msgid "Plate"
+msgstr "Plaque"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_plate_ctp_main_action
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_ctp_action_menu
+msgid "Plate CTP"
+msgstr "Plaque CTP"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_plate_frame_type
+msgid "Plate Frame type"
+msgstr "Type de trame"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_plate_point_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_plate_point_form_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_plate_point_form_tree_view
+msgid "Plate Point form"
+msgstr "Forme de point"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_plate_varnish_main_action
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_varnish_action_menu
+msgid "Plate Varnish"
+msgstr "Plaque vernis"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_plate_point_form_main_action
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_point_form_action_menu
+msgid "Point form"
+msgstr "Forme de point"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__point_form_id
+msgid "Point forme"
+msgstr "Forme de point"
+
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:93
+#, python-format
+msgid ""
+"Prepress Proof has been changed,Please refresh the Prepress proof by re-"
+"selecting the product!"
+msgstr ""
+"Le BAT a été modifiée, veuillez actualiser le BAT en re-"
+"sélectionnant l'article!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:91
+#, python-format
+msgid "Prepress Proof is required in CTP Plate!"
+msgstr "BAT obligatoire dans les Plaques CTP"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:0
+#, python-format
+msgid "Product is required in CTP Plate!"
+msgstr "Article est obligatoire dans les Plaques CTP!"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
+msgid "Search Plates"
+msgstr "Rechercher Plaques"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
+msgid "Validated Plates"
+msgstr "Plaque(s) validée(s)"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_plate__product_plate_type__plate_varnish
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_varnish_tree
+msgid "Varnish Plate"
+msgstr "Plaque vernis"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__product_varnish_id
+msgid "Varnish"
+msgstr "Vernis"
