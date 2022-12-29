@@ -18,6 +18,9 @@
             <field name="detailed_type" position="after">
                 <field name="color_cpt"
                        attrs="{'invisible':[('type','!=','product')]}"/>
+                <field name="with_braille"
+                       attrs="{'invisible':[('type','!=','product')]}"
+                        widget="boolean_toggle"/>
             </field>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button class="oe_stat_button" name="show_related_prepress_proofs" icon="fa-file-image-o"

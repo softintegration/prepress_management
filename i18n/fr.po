@@ -1059,6 +1059,7 @@ msgstr "UdM.Largeur"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__with_braille
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__with_braille
 msgid "With braille"
 msgstr "Braille"
 
