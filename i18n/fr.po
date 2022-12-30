@@ -854,6 +854,8 @@ msgid "Are you sure you want reset this cutting die to Draft?"
 msgstr "Êtes-vous sûr de vouloir remettre cette forme de découpe à brouillon?"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__both_sides
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__both_sides
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__both_sides
 msgid "Both sides"
 msgstr "Recto-verso"

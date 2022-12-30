@@ -13,6 +13,7 @@ class ProductTemplate(models.Model):
     color_cpt = fields.Integer(string='Number of Colors')
     with_braille = fields.Boolean(string='With braille')
     complexity_factor_id = fields.Many2one('complexity.factor', string="Complexity factor")
+    both_sides = fields.Boolean(string='Both sides', default=False)
 
 
     def _increment_prepress_proof_version(self):
