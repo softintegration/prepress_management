@@ -18,6 +18,10 @@
             <field name="detailed_type" position="after">
                 <field name="color_cpt"
                        attrs="{'invisible':[('type','!=','product')]}"/>
+                <field name="is_varnish"
+                       attrs="{'invisible':[('type','!=','product')]}"
+                       widget="boolean_toggle"
+                />
                 <field name="with_braille"
                        attrs="{'invisible':[('type','!=','product')]}"
                         widget="boolean_toggle"/>

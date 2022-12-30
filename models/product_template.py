@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
     with_braille = fields.Boolean(string='With braille')
     complexity_factor_id = fields.Many2one('complexity.factor', string="Complexity factor")
     both_sides = fields.Boolean(string='Both sides', default=False)
+    is_varnish = fields.Boolean(string='Varnish')
 
 
     def _increment_prepress_proof_version(self):
