@@ -25,8 +25,11 @@
                 <field name="with_braille"
                        attrs="{'invisible':[('type','!=','product')]}"
                         widget="boolean_toggle"/>
+                <field name="format_type_id"
+                       attrs="{'invisible':[('type','!=','product')]}"
+                       options="{'no_create':True,'no_edit':True}"/>
                 <field name="complexity_factor_id"
-                       attrs="{'invisible':[('type','!=','product')]}" options="{'no_create':True}"/>
+                       attrs="{'invisible':[('type','!=','product')]}" options="{'no_create':True,'no_edit':True}"/>
                 <field name="both_sides" attrs="{'invisible':[('type','!=','product')]}"
                        widget="boolean_toggle"/>
             </field>
