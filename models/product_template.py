@@ -12,6 +12,7 @@ class ProductTemplate(models.Model):
     prepress_proofs_count = fields.Integer(compute='_compute_prepress_proofs_count')
     color_cpt = fields.Integer(string='Number of Colors')
     with_braille = fields.Boolean(string='With braille')
+    complexity_factor_id = fields.Many2one('complexity.factor', string="Complexity factor")
 
 
     def _increment_prepress_proof_version(self):
@@ -44,7 +45,15 @@ class ProductTemplate(models.Model):
 
 
 
+class ComplexityFactor(models.Model):
+    _name = 'complexity.factor'
+    _rec_name = 'index'
 
+    # fields
+    # stored fields
+    index = fields.Float(string='Index', required=True)
+    rate = fields.Float(string='Rate(%)', required=True, default=0)
+    company_id = fields.Many2one('res.company', default=lambda self: self.env.user.company_id)
 
 
 

@@ -21,6 +21,8 @@
                 <field name="with_braille"
                        attrs="{'invisible':[('type','!=','product')]}"
                         widget="boolean_toggle"/>
+                <field name="complexity_factor_id"
+                       attrs="{'invisible':[('type','!=','product')]}" options="{'no_create':True}"/>
             </field>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button class="oe_stat_button" name="show_related_prepress_proofs" icon="fa-file-image-o"
@@ -70,7 +72,6 @@
     </record>
 
 
-
     <record id="prepress_type_action" model="ir.actions.act_window">
         <field name="name">Product type</field>
         <field name="type">ir.actions.act_window</field>
@@ -89,6 +90,51 @@
               sequence="1"/>
 
 
+    <!-- Complexity factor Form View -->
+    <record id="view_complexity_factor_form" model="ir.ui.view">
+        <field name="name">view.complexity.factor.form</field>
+        <field name="model">complexity.factor</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <group>
+                        <field name="index"/>
+                        <field name="rate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
+    <!-- Complexity factor tree View -->
+    <record id="view_complexity_factor_tree" model="ir.ui.view">
+        <field name="name">view.complexity.factor.tree</field>
+        <field name="model">complexity.factor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="index"/>
+                <field name="rate"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="complexity_factor_action" model="ir.actions.act_window">
+        <field name="name">Complexity factor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">complexity.factor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Create a new Complexity factor
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="complexity_factor_action_menu"
+              parent="prepress_management.product_prepress_config_menu"
+              action="prepress_management.complexity_factor_action"
+              sequence="5"/>
 
 </odoo>

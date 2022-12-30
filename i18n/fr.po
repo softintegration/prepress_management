@@ -132,6 +132,7 @@ msgid "Colors"
 msgstr "Couleurs"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_complexity_factor__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__company_id
@@ -1294,3 +1295,32 @@ msgstr "Vernis"
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__color_cpt
 msgid "Number of Colors"
 msgstr "Nombre de couleur"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.complexity_factor_action
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__complexity_factor_id
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__complexity_factor_id
+#: model:ir.ui.menu,name:prepress_management.complexity_factor_action_menu
+msgid "Complexity factor"
+msgstr "Facteur de complexité"
+
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.complexity_factor_action
+msgid "Create a new Complexity factor"
+msgstr "Créer un nouveau facteur de complexité"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_complexity_factor__index
+msgid "Index"
+msgstr "Indice"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_complexity_factor__rate
+msgid "Rate(%)"
+msgstr "Taux(%)"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_complexity_factor
+msgid "complexity.factor"
+msgstr "Facteur de complexité"

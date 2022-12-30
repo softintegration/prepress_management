@@ -19,3 +19,5 @@ access_prepress_plate_frame_type_manager,prepress.plate.frame.type.manager,model
 access_prepress_plate_frame_type_user,prepress.plate.frame.type.user,model_prepress_plate_frame_type,prepress_management.group_prepress_user,1,0,0,0
 access_prepress_plate_point_form_manager,prepress.plate.point.form.manager,model_prepress_plate_point_form,prepress_management.group_prepress_manager,1,1,1,1
 access_prepress_plate_point_form_user,prepress.plate.point.form.user,model_prepress_plate_point_form,prepress_management.group_prepress_user,1,0,0,0
+access_complexity_factor_manager,complexity.factor.manager,model_complexity_factor,prepress_management.group_prepress_manager,1,1,1,1
+access_complexity_factor_user,complexity.factor.user,model_complexity_factor,prepress_management.group_prepress_user,1,0,0,0
