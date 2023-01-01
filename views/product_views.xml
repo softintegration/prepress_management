@@ -11,7 +11,9 @@
                     <group name="prepress_proof" string="Prepress proof"
                            attrs="{'invisible':['|',('sale_ok','=',False),('type','!=','product')]}">
                         <field name="prepress_type"/>
-                        <field name="prepress_proof_next_version"/>
+                        <field name="update_prepress_proof_next_version" invisible="1"/>
+                        <field name="prepress_proof_next_version" attrs="{'readonly':[('update_prepress_proof_next_version','=',False)]}"
+                        force_save="1"/>
                     </group>
                 </page>
             </xpath>

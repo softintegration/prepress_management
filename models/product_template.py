@@ -8,7 +8,8 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     prepress_type = fields.Many2one('prepress.type', string='Type')
-    prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=True, default=0)
+    prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=False, default=0)
+    update_prepress_proof_next_version = fields.Boolean(compute='_update_prepress_proof_next_version')
     prepress_proofs_count = fields.Integer(compute='_compute_prepress_proofs_count')
     color_cpt = fields.Integer(string='Number of Colors')
     with_braille = fields.Boolean(string='With braille')
@@ -22,6 +23,9 @@ class ProductTemplate(models.Model):
     varnish_type = fields.Many2one('product.varnish', string='Varnish type')
 
 
+    def _update_prepress_proof_next_version(self):
+        for each in self:
+            each.update_prepress_proof_next_version = each.user_has_groups('prepress_management.group_prepress_proof_next_version_update')
 
     def _increment_prepress_proof_version(self):
         for each in self:
