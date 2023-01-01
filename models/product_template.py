@@ -16,6 +16,9 @@ class ProductTemplate(models.Model):
     both_sides = fields.Boolean(string='Both sides', default=False)
     is_varnish = fields.Boolean(string='Varnish')
     format_type_id = fields.Many2one('prepress.cutting.die.format.type', string='Format type')
+    notice_type = fields.Selection([('flat','Flat'),
+                                    ('folded','Folded')], string='Type of notice')
+
 
 
     def _increment_prepress_proof_version(self):

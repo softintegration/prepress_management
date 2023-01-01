@@ -1334,3 +1334,20 @@ msgstr "Facteur de complexité"
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__format_type_id
 msgid "Format type"
 msgstr "Type format"
+
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__product_template__notice_type__flat
+msgid "Flat"
+msgstr "À plat"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__product_template__notice_type__folded
+msgid "Folded"
+msgstr "Pliée"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__notice_type
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__notice_type
+msgid "Type of notice"
+msgstr "Type de notice"
