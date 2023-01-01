@@ -1351,3 +1351,9 @@ msgstr "Pliée"
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__notice_type
 msgid "Type of notice"
 msgstr "Type de notice"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__folding_dimension
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__folding_dimension
+msgid "Folding dimension"
+msgstr "Dimensions de pliage"

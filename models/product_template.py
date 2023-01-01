@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
     format_type_id = fields.Many2one('prepress.cutting.die.format.type', string='Format type')
     notice_type = fields.Selection([('flat','Flat'),
                                     ('folded','Folded')], string='Type of notice')
-
+    folding_dimension = fields.Char(string='Folding dimension')
 
 
     def _increment_prepress_proof_version(self):

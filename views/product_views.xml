@@ -30,6 +30,8 @@
                        options="{'no_create':True,'no_edit':True}"/>
                 <field name="notice_type"
                        attrs="{'invisible':[('type','!=','product')]}"/>
+                <field name="folding_dimension"
+                       attrs="{'invisible':['|',('type','!=','product'),('notice_type','!=','folded')],'required':[('type','=','product'),('notice_type','=','folded')]}"/>
                 <field name="complexity_factor_id"
                        attrs="{'invisible':[('type','!=','product')]}" options="{'no_create':True,'no_edit':True}"/>
                 <field name="both_sides" attrs="{'invisible':[('type','!=','product')]}"
