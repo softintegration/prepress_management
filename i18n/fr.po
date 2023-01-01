@@ -140,6 +140,7 @@ msgstr "Couleurs"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__company_id
+#: model:ir.model.fields,field_description:prepress_management.field_product_varnish__company_id
 msgid "Company"
 msgstr "Société"
 
@@ -218,6 +219,7 @@ msgstr "Rèfèrence BAT client"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__description
+#: model:ir.model.fields,field_description:prepress_management.field_product_varnish__description
 msgid "Description"
 msgstr ""
 
@@ -1357,3 +1359,18 @@ msgstr "Type de notice"
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__folding_dimension
 msgid "Folding dimension"
 msgstr "Dimensions de pliage"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.product_varnish_action
+msgid "Create a new Varnish type"
+msgstr "Créer un nouveau Type de vernis"
+
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.product_varnish_action
+#: model:ir.model,name:prepress_management.model_product_varnish
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__varnish_type
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__varnish_type
+#: model:ir.ui.menu,name:prepress_management.product_varnish_action_menu
+msgid "Varnish type"
+msgstr "Type de vernis"

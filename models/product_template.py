@@ -19,6 +19,8 @@ class ProductTemplate(models.Model):
     notice_type = fields.Selection([('flat','Flat'),
                                     ('folded','Folded')], string='Type of notice')
     folding_dimension = fields.Char(string='Folding dimension')
+    varnish_type = fields.Many2one('product.varnish', string='Varnish type')
+
 
 
     def _increment_prepress_proof_version(self):
@@ -60,6 +62,16 @@ class ComplexityFactor(models.Model):
     index = fields.Float(string='Index', required=True)
     rate = fields.Float(string='Rate(%)', required=True, default=0)
     company_id = fields.Many2one('res.company', default=lambda self: self.env.user.company_id)
+
+
+class VarnishType(models.Model):
+    _name = 'product.varnish'
+    _description = 'Varnish type'
+
+    name = fields.Char(string='Nom', required=True)
+    description = fields.Text(string='Description')
+    company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
+                                 index=True)
 
 
 
