@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="prepress_proof_flash_form" model="ir.ui.view">
+            <field name="name">prepress.proof.flash.form</field>
+            <field name="model">prepress.proof.flash</field>
+            <field name="arch" type="xml">
+                <form string="Flash Prepress Proof">
+                    <group>
+                        <field name="product_id" invisible="1"/>
+                        <field name="height" invisible="1"/>
+                        <field name="height_uom_id" invisible="1"/>
+                        <field name="width" invisible="1"/>
+                        <field name="width_uom_id" invisible="1"/>
+                        <field name="thickness" invisible="1"/>
+                        <field name="thickness_uom_id" invisible="1"/>
+                        <field name="excluded_plate_ctp_ids" invisible="1"/>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="flash_date"/>
+                        <field name="cutting_die_id"
+                               required="1"
+                               options="{'no_create':True,'no_edit':True}"
+                               domain="[('state','=','validated'),('partner_ids','in',partner_id),('height','=',height),
+                               ('height_uom_id','=',height_uom_id),('width','=',width),('width_uom_id','=',width_uom_id),
+                               '&amp;','&amp;',('prepress_type.code','=','case'),('thickness','=',thickness),('thickness_uom_id','=',thickness_uom_id)]"
+                        />
+                        <field name="prepress_plate_ctp_id"
+                               required="1"
+                               options="{'no_create':True,'no_edit':True}"
+                               domain="[('state','=','validated'),('product_plate_type','=','plate_ctp'),('product_id','=',product_id),
+                               ('id','not in',excluded_plate_ctp_ids)]"
+                        />
+                        <field name="prepress_plate_varnish_id"
+                               options="{'no_create':True,'no_edit':True}"
+                               domain="[('state','=','validated'),('product_plate_type','=','plate_varnish'),('cutting_die_id','=',cutting_die_id)]"
+                               attrs="{'invisible':[('cutting_die_id','=',False)]}"
+                        />
+                    </group>
+                    <footer>
+                        <button string="Confirm" name="apply" type="object" default_focus="1" class="btn-primary" data-hotkey="c"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_prepress_proof_flash" model="ir.actions.act_window">
+            <field name="name">Flash Prepress proof</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prepress.proof.flash</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="prepress_proof_flash_form"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="help">This wizard will flash the current Prepress proof.</field>
+            <field name="binding_model_id" ref="prepress_management.model_prepress_proof" />
+        </record>
+
+    </data>
+
+</odoo>

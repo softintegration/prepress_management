@@ -23,3 +23,8 @@ access_complexity_factor_manager,complexity.factor.manager,model_complexity_fact
 access_complexity_factor_user,complexity.factor.user,model_complexity_factor,prepress_management.group_prepress_user,1,0,0,0
 access_product_varnish_manager,product.varnish.manager,model_product_varnish,prepress_management.group_prepress_manager,1,1,1,1
 access_product_varnish_user,product.varnish.user,model_product_varnish,prepress_management.group_prepress_user,1,0,0,0
+access_prepress_proof_flash_manager,prepress.proof.flash.manager,model_prepress_proof_flash,prepress_management.group_prepress_manager,1,1,1,1
+access_prepress_proof_flash_user,prepress.proof.flash.user,model_prepress_proof_flash,prepress_management.group_prepress_user,1,1,1,1
+access_prepress_proof_flash_line_manager,prepress.proof.flash.line.manager,model_prepress_proof_flash_line,prepress_management.group_prepress_manager,1,1,1,1
+access_prepress_proof_flash_line_user,prepress.proof.flash.line.user,model_prepress_proof_flash_line,prepress_management.group_prepress_user,1,1,1,1
+

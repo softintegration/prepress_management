@@ -70,7 +70,7 @@
                     <button name="action_confirm" type="object" states="in_progress" string="Validate"
                             class="oe_highlight"
                             data-hotkey="c"/>
-                    <button name="action_flash" type="object" states="validated" string="Flash" class="oe_highlight"
+                    <button name="action_flash_wizard" type="object" states="validated,flashed" string="Flash" class="oe_highlight"
                     data-hotkey="f"/>
                     <button name="action_quarantine" type="object" states="validated,flashed" string="Put in quarantine"
                             groups="prepress_management.group_prepress_proof_quarantine_process"
@@ -83,7 +83,20 @@
                     <field name="state" widget="statusbar" statusbar_visible="in_progress,validated,flashed"/>
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="show_flash_lines" icon="fa-list"
+                                type="object" attrs="{'invisible':[('flash_line_ids_count','=',0)]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="flash_line_ids_count" class="mr4"/>
+                                    <span>Flash</span>
+                                </span>
+                                <span class="o_stat_text">
+                                    Lines
+                                </span>
+                            </div>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="1"/>
@@ -225,6 +238,65 @@
         </field>
     </record>
 
+    <!-- Flash lines-->
+    <record id="prepress_proof_flash_line_form_view"  model="ir.ui.view">
+        <field name="name">Prepress Proof Flash line form view</field>
+        <field name="model">prepress.proof.flash.line</field>
+        <field name="arch" type="xml">
+            <form string="Flash line">
+                <sheet>
+                    <group>
+                        <field name="cutting_die_id"/>
+                        <field name="prepress_plate_varnish_id"/>
+                        <field name="exposure_nbr"/>
+                        <field name="prepress_plate_ctp_id"/>
+                        <field name="flash_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="prepress_proof_flash_line_tree_view"  model="ir.ui.view">
+        <field name="name">Prepress Proof Flash line tree view</field>
+        <field name="model">prepress.proof.flash.line</field>
+        <field name="arch" type="xml">
+            <tree string="Flash line">
+                <field name="cutting_die_id"/>
+                <field name="prepress_plate_varnish_id"/>
+                <field name="exposure_nbr"/>
+                <field name="prepress_plate_ctp_id"/>
+                <field name="flash_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="prepress_proof_flash_line_search_view"  model="ir.ui.view">
+        <field name="name">Prepress Proof Flash line search view</field>
+        <field name="model">prepress.proof.flash.line</field>
+        <field name="arch" type="xml">
+            <search string="Flash line">
+                <field name="cutting_die_id"/>
+                <field name="prepress_plate_varnish_id"/>
+                <field name="exposure_nbr"/>
+                <field name="prepress_plate_ctp_id"/>
+                <field name="flash_date"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_cutting_die_id" string="Cutting Die" context="{'group_by':'cutting_die_id'}"/>
+                    <filter name="group_by_prepress_plate_varnish_id" string="Plate Varnish" context="{'group_by':'prepress_plate_varnish_id'}"/>
+                    <filter name="group_by_prepress_plate_ctp_id" string="Plate CTP" context="{'group_by':'prepress_plate_ctp_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="prepress_proof_flash_line_action" model="ir.actions.act_window">
+        <field name="name">Prepress proof flash line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.proof.flash.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
     <!-- Tags -->
     <record model="ir.ui.view" id="prepress_proof_tags_search_view">

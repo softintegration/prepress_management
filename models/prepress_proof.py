@@ -62,6 +62,10 @@ class PrepressProof(models.Model):
     state_before_quarantined = fields.Selection([('validated', 'Validated'),
                                                  ('flashed', 'Flashed')])
     quarantined = fields.Boolean(string='Has been quarantined', default=False)
+    flash_line_ids = fields.One2many('prepress.proof.flash.line','prepress_proof_id')
+    flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
+    flash_cpt = fields.Integer(string='Flash cpt', default=0)
+
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -73,6 +77,26 @@ class PrepressProof(models.Model):
         self.update({
             'prepress_type': self.product_id and self.product_id.prepress_type and self.product_id.prepress_type.id or False})
 
+
+    @api.depends('flash_line_ids')
+    def _compute_flash_line_ids_count(self):
+        for each in self:
+            each.flash_line_ids_count = len(each.flash_line_ids)
+
+    def show_flash_lines(self):
+        self.ensure_one()
+        domain = [('prepress_proof_id', 'in', self.ids)]
+        return {
+            'name': _('Flash lines'),
+            'view_mode': 'tree,form',
+            'views': [(self.env.ref('prepress_management.prepress_proof_flash_line_tree_view').id, 'tree'),
+                      (self.env.ref('prepress_management.prepress_proof_flash_line_form_view').id, 'form')],
+            'res_model': 'prepress.proof.flash.line',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'domain': domain,
+        }
+
     def action_confirm(self):
         return self._action_confirm()
 
@@ -81,8 +105,26 @@ class PrepressProof(models.Model):
         self._update_prepress_proof_version()
         self.write({'state': 'validated'})
 
-    def action_flash(self):
-        return self._action_flash()
+    def action_flash(self,flash_date,cutting_die,prepress_plate_ctp,prepress_plate_varnish):
+        flash_line = self._prepare_flash_line(flash_date,cutting_die,prepress_plate_ctp,prepress_plate_varnish)
+        self.env['prepress.proof.flash.line'].create(flash_line)
+        self.incr_flash_cpt()
+        if self.state != 'flashed':
+            return self._action_flash()
+
+    def incr_flash_cpt(self):
+        self.ensure_one()
+        self.write({'flash_cpt': self.flash_cpt + 1})
+
+    def _prepare_flash_line(self,flash_date,cutting_die,prepress_plate_ctp,prepress_plate_varnish):
+        return {
+            'prepress_proof_id':self.id,
+            'flash_date':flash_date,
+            'cutting_die_id':cutting_die.id,
+            'exposure_nbr':cutting_die.exposure_nbr,
+            'prepress_plate_ctp_id':prepress_plate_ctp and prepress_plate_ctp.id or False,
+            'prepress_plate_varnish_id':prepress_plate_varnish and prepress_plate_varnish.id or False
+        }
 
     def _action_flash(self):
         self.write({'state': 'flashed'})
@@ -181,6 +223,53 @@ class PrepressProof(models.Model):
             if not each.confirm_date:
                 raise ValidationError(_("Confirm date is required!"))
 
+
+    def action_flash_wizard(self):
+        ''' Open the prepress.proof.flash wizard to flash the current Prepress Proof.
+        :return: An action opening the prepress.proof.flash wizard.
+        '''
+        self.ensure_one()
+        # we have to exclude already select Plate CTPs from being select again
+        excluded_plate_ctp_ids = self.flash_line_ids.mapped("prepress_plate_ctp_id").ids
+        prepress_proof_flash_wizard_id = self.env['prepress.proof.flash'].create({
+            'product_id':self.product_id.id,
+            'partner_id':self.partner_id.id,
+            'excluded_plate_ctp_ids':[(6, 0, excluded_plate_ctp_ids)]
+        })
+        return {
+            'name': _('Flash Prepress proof'),
+            'res_model': 'prepress.proof.flash',
+            'view_mode': 'form',
+            'context': {
+                'active_model': 'prepress.proof',
+                'active_ids': self.ids,
+            },
+            'res_id':prepress_proof_flash_wizard_id.id,
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }
+
+
+class PrepressProofFlashLine(models.Model):
+    _name = 'prepress.proof.flash.line'
+
+    # fields
+    prepress_proof_id = fields.Many2one('prepress.proof', ondelete='cascade')
+    cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die",required=True)
+    prepress_plate_ctp_id = fields.Many2one('prepress.plate', string="CTP Plate")
+    prepress_plate_varnish_id = fields.Many2one('prepress.plate', string="Varnish Plate")
+    is_default = fields.Boolean(string="Default", default=False)
+    exposure_nbr = fields.Integer('Exposure Nbr',related='cutting_die_id.exposure_nbr',store=True)
+
+    company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
+                                 index=True)
+    flash_date = fields.Date(string='Flash Date', default=fields.Date.context_today, required=True)
+
+    def unlink(self):
+        for each in self:
+            if each.prepress_proof_id and each.prepress_proof_id.state in ('validated','flashed'):
+                raise ValidationError(_("Can not remove flash line of Validated/Flashed Prepress Proof"))
+        return super(PrepressProofFlashLine,self).unlink()
 
 class PrepressProofColor(models.Model):
     _name = 'prepress.proof.color'

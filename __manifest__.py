@@ -10,7 +10,7 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.45',
+    'version': '1.0.1.46',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal',
@@ -27,7 +27,8 @@
         'views/prepress_cutting_die_views.xml',
         'views/prepress_plate_views.xml',
         'views/product_views.xml',
-        'views/cancel_motif_views.xml'
+        'views/cancel_motif_views.xml',
+        'wizard/prepress_proof_flash_views.xml'
     ],
     'license': 'LGPL-3',
 }
