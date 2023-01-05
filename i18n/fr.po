@@ -757,13 +757,20 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_weight
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__gram_weight
 msgid "Weight"
 msgstr "Grammage"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_weight_uom_id
 msgid "Weight Unit of Measure"
-msgstr "Unité Grammage"
+msgstr "UdM.Grammage"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__weight_g_uom_id
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__weight_g_uom_id
+msgid "Weight unit of Measure"
+msgstr "UdM.Grammage"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_width

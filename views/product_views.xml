@@ -59,6 +59,21 @@
         </field>
     </record>
 
+    <record id="product_template_form_view_inherited" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherited</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product_dimensions.product_template_form_view_inherited"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='thickness']" position="after">
+                <label for="gram_weight" attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
+                <div name="gram_weight" attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+                    <field name="gram_weight" class="oe_inline"/>
+                    <field name="gram_weight_uom_id" class="oe_inline" force_save="1" readonly="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
     <!-- Prepress type Form View -->
     <record id="view_prepress_type_form" model="ir.ui.view">
         <field name="name">view.prepress.type.form</field>
