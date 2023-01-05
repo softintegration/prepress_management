@@ -60,7 +60,7 @@ class PrepressCuttingDie(models.Model):
                                            default=lambda self: self.env.ref('uom.product_uom_cm'))
     dummy = fields.Html(string='Dummy', states={'draft': [('readonly', False)]}, readonly=True)
     tag_ids = fields.Many2many('prepress.tags', relation='prepress_cutting_die_tags_rel', string='Tags',
-                               states={'draft': [('readonly', False)]}, readonly=True,domain=lambda self:[('model','=',self._name)])
+                               states={'draft': [('readonly', False)]}, readonly=True)
     locked = fields.Boolean(string='Locked', help="If the cutting die is locked we can't edit Customers",
                             default=False)
 

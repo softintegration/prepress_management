@@ -55,7 +55,7 @@ class PrepressProof(models.Model):
     note = fields.Html('Note', states={'in_progress': [('readonly', False)]}, readonly=True)
     dummy = fields.Html('Dummy', states={'in_progress': [('readonly', False)]}, readonly=True)
     tag_ids = fields.Many2many('prepress.tags', relation='prepress_proof_tags_rel', string='Tags',
-                               states={'in_progress': [('readonly', False)]}, readonly=True,domain=lambda self:[('model','=',self._name)])
+                               states={'in_progress': [('readonly', False)]}, readonly=True)
     cancel_motif_name = fields.Char(string='Cancel motif', related='cancel_motif_id.name', store=True, readonly=True)
     cancel_motif_description = fields.Text(string='Cancel motif Details', related='cancel_motif_id.description',
                                            store=True, readonly=True)

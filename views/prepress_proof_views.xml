@@ -138,7 +138,9 @@
                             <field name="cancel_date"/>
                             <field name="cancel_motif_id" invisible="1"/>
                             <field name="cancel_motif_name"/>
-                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"
+                            <field name="tag_ids" widget="many2many_tags"
+                                   domain="[('model','=','prepress.proof')]"
+                                   options="{'color_field': 'color'}"
                                    context="{'default_model':'prepress.proof'}"/>
                         </group>
                     </group>

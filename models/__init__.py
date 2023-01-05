@@ -5,3 +5,4 @@ from . import product
 from . import prepress_cutting_die
 from . import prepress_type
 from . import prepress_plate
+from . import prepress_tags

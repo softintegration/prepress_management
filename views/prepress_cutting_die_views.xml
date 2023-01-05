@@ -121,7 +121,9 @@
                                 <field name="creasing_rule" class="oe_inline"/>
                                 <field name="creasing_rule_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"
+                            <field name="tag_ids" widget="many2many_tags"
+                                   domain="[('model','=','prepress.cutting.die')]"
+                                   options="{'color_field': 'color'}"
                                    context="{'default_model':'prepress.cutting.die'}"/>
                         </group>
                     </group>
