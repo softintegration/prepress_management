@@ -9,7 +9,7 @@
               sequence="50"/>
 
     <menuitem id="prepress_proof_menu"
-              name="Prepess proofs"
+              name="Prepess proof"
               parent="prepress_management.prepress_menu_root"
               sequence="2"/>
 
@@ -70,16 +70,17 @@
                     <button name="action_confirm" type="object" states="in_progress" string="Validate"
                             class="oe_highlight"
                             data-hotkey="c"/>
-                    <button name="action_flash_wizard" type="object" states="validated,flashed" string="Flash" class="oe_highlight"
-                    data-hotkey="f"/>
+                    <button name="action_flash_wizard" type="object" states="validated,flashed" string="Flash"
+                            class="oe_highlight"
+                            data-hotkey="f"/>
                     <button name="action_quarantine" type="object" states="validated,flashed" string="Put in quarantine"
                             groups="prepress_management.group_prepress_proof_quarantine_process"
-                    confirm="Are you sure to put this Prepress Proof in quarantine?" data-hotkey="q"/>
+                            confirm="Are you sure to put this Prepress Proof in quarantine?" data-hotkey="q"/>
                     <button name="action_reset_from_quarantine" type="object" states="quarantined"
                             string="Reset from quarantine"
                             groups="prepress_management.group_prepress_proof_quarantine_process"/>
                     <button name="action_cancel_with_motif" type="object" states="validated,flashed" string="Cancel"
-                    data-hotkey="a"/>
+                            data-hotkey="a"/>
                     <field name="state" widget="statusbar" statusbar_visible="in_progress,validated,flashed"/>
                 </header>
                 <sheet>
@@ -137,7 +138,8 @@
                             <field name="cancel_date"/>
                             <field name="cancel_motif_id" invisible="1"/>
                             <field name="cancel_motif_name"/>
-                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="hide"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"
+                                   context="{'default_model':'prepress.proof'}"/>
                         </group>
                     </group>
                     <div class="o_new-group o_new-group-big">Colors</div>
@@ -228,7 +230,8 @@
                 <filter name="validated" string="Validated" domain="[('state','=','validated')]"
                         help="Validated Proofs"/>
                 <filter name="flashed" string="Flashed" domain="[('state','=','flashed')]" help="Flashed Proofs"/>
-                <filter name="quarantined" string="Quarantined" domain="[('state','=','quarantined')]" help="Quarantined Proofs"/>
+                <filter name="quarantined" string="Quarantined" domain="[('state','=','quarantined')]"
+                        help="Quarantined Proofs"/>
                 <filter name="cancelled" string="Cancelled" domain="[('state','=','cancel')]" help="Cancelled Proofs"/>
                 <group expand="0" string="Group By">
                     <filter name="group_by_partner_id" string="Customer" context="{'group_by':'partner_id'}"/>
@@ -239,7 +242,7 @@
     </record>
 
     <!-- Flash lines-->
-    <record id="prepress_proof_flash_line_form_view"  model="ir.ui.view">
+    <record id="prepress_proof_flash_line_form_view" model="ir.ui.view">
         <field name="name">Prepress Proof Flash line form view</field>
         <field name="model">prepress.proof.flash.line</field>
         <field name="arch" type="xml">
@@ -257,7 +260,7 @@
         </field>
     </record>
 
-    <record id="prepress_proof_flash_line_tree_view"  model="ir.ui.view">
+    <record id="prepress_proof_flash_line_tree_view" model="ir.ui.view">
         <field name="name">Prepress Proof Flash line tree view</field>
         <field name="model">prepress.proof.flash.line</field>
         <field name="arch" type="xml">
@@ -271,7 +274,7 @@
         </field>
     </record>
 
-    <record id="prepress_proof_flash_line_search_view"  model="ir.ui.view">
+    <record id="prepress_proof_flash_line_search_view" model="ir.ui.view">
         <field name="name">Prepress Proof Flash line search view</field>
         <field name="model">prepress.proof.flash.line</field>
         <field name="arch" type="xml">
@@ -283,9 +286,12 @@
                 <field name="flash_date"/>
                 <separator/>
                 <group expand="0" string="Group By">
-                    <filter name="group_by_cutting_die_id" string="Cutting Die" context="{'group_by':'cutting_die_id'}"/>
-                    <filter name="group_by_prepress_plate_varnish_id" string="Plate Varnish" context="{'group_by':'prepress_plate_varnish_id'}"/>
-                    <filter name="group_by_prepress_plate_ctp_id" string="Plate CTP" context="{'group_by':'prepress_plate_ctp_id'}"/>
+                    <filter name="group_by_cutting_die_id" string="Cutting Die"
+                            context="{'group_by':'cutting_die_id'}"/>
+                    <filter name="group_by_prepress_plate_varnish_id" string="Plate Varnish"
+                            context="{'group_by':'prepress_plate_varnish_id'}"/>
+                    <filter name="group_by_prepress_plate_ctp_id" string="Plate CTP"
+                            context="{'group_by':'prepress_plate_ctp_id'}"/>
                 </group>
             </search>
         </field>
@@ -299,9 +305,9 @@
     </record>
 
     <!-- Tags -->
-    <record model="ir.ui.view" id="prepress_proof_tags_search_view">
+    <record model="ir.ui.view" id="prepress_tags_search_view">
         <field name="name">Tags</field>
-        <field name="model">prepress.proof.tags</field>
+        <field name="model">prepress.tags</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
@@ -309,13 +315,14 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="prepress_proof_tags_form_view">
+    <record model="ir.ui.view" id="prepress_tags_form_view">
         <field name="name">Tags</field>
-        <field name="model">prepress.proof.tags</field>
+        <field name="model">prepress.tags</field>
         <field name="arch" type="xml">
             <form string="Tags">
                 <sheet>
                     <group>
+                        <field name="model" invisible="1"/>
                         <field name="name"/>
                         <field name="color" widget="color_picker"/>
                     </group>
@@ -324,9 +331,9 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="prepress_proof_tags_tree_view">
+    <record model="ir.ui.view" id="prepress_tags_tree_view">
         <field name="name">Tags</field>
-        <field name="model">prepress.proof.tags</field>
+        <field name="model">prepress.tags</field>
         <field name="arch" type="xml">
             <tree string="Tags" editable="top" sample="1">
                 <field name="name"/>
@@ -337,7 +344,9 @@
 
     <record id="prepress_proof_tags_action" model="ir.actions.act_window">
         <field name="name">Tags</field>
-        <field name="res_model">prepress.proof.tags</field>
+        <field name="res_model">prepress.tags</field>
+        <field name="domain">[('model','=','prepress.proof')]</field>
+        <field name="context">{'default_model':'prepress.proof'}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No tags found. Let's create one!
@@ -351,5 +360,6 @@
     <menuitem action="prepress_proof_tags_action" id="menu_prepress_proof_tags_act"
               parent="prepress_management.prepress_proof_prepress_config_menu"
               sequence="10"/>
+
 
 </odoo>

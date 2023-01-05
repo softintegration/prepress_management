@@ -5,8 +5,8 @@ access_prepress_proof_color_manager,prepress.proof.color.manager,model_prepress_
 access_prepress_proof_color_user,prepress.proof.color.user,model_prepress_proof_color,prepress_management.group_prepress_user,1,0,0,0
 access_prepress_type_manager,prepress.type.manager,model_prepress_type,prepress_management.group_prepress_manager,1,1,1,1
 access_prepress_type_user,prepress.type.user,model_prepress_type,prepress_management.group_prepress_user,1,0,0,0
-access_prepress_proof_tags_manager,prepress.proof.tags.manager,model_prepress_proof_tags,prepress_management.group_prepress_manager,1,1,1,1
-access_prepress_proof_tags_user,prepress.proof.tags.user,model_prepress_proof_tags,prepress_management.group_prepress_user,1,0,0,0
+access_prepress_proof_tags_manager,prepress.tags.manager,model_prepress_tags,prepress_management.group_prepress_manager,1,1,1,1
+access_prepress_proof_tags_user,prepress.tags.user,model_prepress_tags,prepress_management.group_prepress_user,1,0,0,0
 access_prepress_cutting_die_manager,prepress.cutting.die.manager,model_prepress_cutting_die,prepress_management.group_prepress_manager,1,1,1,1
 access_prepress_cutting_die_user,prepress.cutting.die.user,model_prepress_cutting_die,prepress_management.group_prepress_user,1,1,1,1
 access_prepress_cutting_die_mounting_type_manager,prepress.cutting.die.mounting.type.manager,model_prepress_cutting_die_mounting_type,prepress_management.group_prepress_manager,1,1,1,1
