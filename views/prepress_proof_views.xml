@@ -133,8 +133,8 @@
                         </group>
                         <group name="prepress_proof_dates_info">
                             <field name="creation_date"/>
-                            <field name="confirm_date"/>
                             <field name="update_date"/>
+                            <field name="confirm_date"/>
                             <field name="cancel_date"/>
                             <field name="cancel_motif_id" invisible="1"/>
                             <field name="cancel_motif_name"/>
