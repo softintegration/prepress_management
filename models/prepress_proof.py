@@ -71,6 +71,8 @@ class PrepressProof(models.Model):
     state_before_quarantined = fields.Selection([('validated', 'Validated'),
                                                  ('flashed', 'Flashed')])
     quarantined = fields.Boolean(string='Has been quarantined', default=False)
+    quarantined_history_ids = fields.One2many('prepress.proof.quarantined.history','prepress_proof_id')
+    quarantined_history_ids_count = fields.Integer(compute='_compute_quarantined_history_ids_count')
     flash_line_ids = fields.One2many('prepress.proof.flash.line', 'prepress_proof_id')
     flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
     flash_cpt = fields.Integer(string='Flash cpt', default=0)
@@ -90,6 +92,7 @@ class PrepressProof(models.Model):
         for each in self:
             each.flash_line_ids_count = len(each.flash_line_ids)
 
+
     def show_flash_lines(self):
         self.ensure_one()
         domain = [('prepress_proof_id', 'in', self.ids)]
@@ -102,6 +105,24 @@ class PrepressProof(models.Model):
             'type': 'ir.actions.act_window',
             'target': 'current',
             'domain': domain,
+        }
+
+    @api.depends('quarantined_history_ids')
+    def _compute_quarantined_history_ids_count(self):
+        for each in self:
+            each.quarantined_history_ids_count = len(each.quarantined_history_ids)
+
+    def show_quarantined_history(self):
+        self.ensure_one()
+        return {
+            'name': _('Quarantine history'),
+            'view_mode': 'tree,form',
+            'views': [(self.env.ref('prepress_management.prepress_proof_quarantined_history_tree_view').id, 'tree'),
+                      (self.env.ref('prepress_management.prepress_proof_quarantined_history_form_view').id, 'form')],
+            'res_model': 'prepress.proof.quarantined.history',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'res_ids': self.quarantined_history_ids.ids,
         }
 
     def action_confirm(self):
@@ -148,11 +169,20 @@ class PrepressProof(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
-    def action_quarantine(self):
+    def action_quarantine(self,quarantined_motif):
         self.quarantine_check()
         # we have to register the current state to know how to return
         self._register_current_state()
+        self._register_quarantine_history(quarantined_motif)
         self._action_quarantine()
+
+    def _register_quarantine_history(self,quarantined_motif):
+        for each in self:
+            self.env['prepress.proof.quarantined.history'].create({
+                'prepress_proof_id':each.id,
+                'quarantined_motif':quarantined_motif.name,
+                'quarantined_motif_description':quarantined_motif.description
+            })
 
     def _action_quarantine(self):
         self.write({'state': 'quarantined', 'quarantined': True})
@@ -256,12 +286,28 @@ class PrepressProof(models.Model):
             'type': 'ir.actions.act_window',
         }
 
+    def action_quarantine_wizard(self):
+        self.ensure_one()
+        prepress_proof_quarantined_confirmation_wizard = self.env['prepress.proof.quarantined.confirmation'].create({})
+        return {
+            'name': _('Quarantine Confirmation'),
+            'res_model': 'prepress.proof.quarantined.confirmation',
+            'view_mode': 'form',
+            'context': {
+                'active_model': 'prepress.proof',
+                'active_ids': self.ids,
+            },
+            'res_id': prepress_proof_quarantined_confirmation_wizard.id,
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }
+
 
 class PrepressProofFlashLine(models.Model):
     _name = 'prepress.proof.flash.line'
 
     # fields
-    prepress_proof_id = fields.Many2one('prepress.proof', ondelete='cascade')
+    prepress_proof_id = fields.Many2one('prepress.proof',required=True,ondelete='cascade')
     cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die", required=True)
     prepress_plate_ctp_id = fields.Many2one('prepress.plate', string="CTP Plate")
     prepress_plate_varnish_id = fields.Many2one('prepress.plate', string="Varnish Plate")
@@ -277,6 +323,26 @@ class PrepressProofFlashLine(models.Model):
             if each.prepress_proof_id and each.prepress_proof_id.state in ('validated', 'flashed'):
                 raise ValidationError(_("Can not remove flash line of Validated/Flashed Prepress Proof"))
         return super(PrepressProofFlashLine, self).unlink()
+
+class PrepressProofQuarantinedHistory(models.Model):
+    _name = 'prepress.proof.quarantined.history'
+
+    prepress_proof_id = fields.Many2one('prepress.proof', required=True,ondelete='cascade')
+    quarantined_motif = fields.Char(string='Motif',required=True)
+    quarantined_motif_description = fields.Char(string='Motif details')
+    quarantined_date = fields.Datetime(string='Quarantined date',default=lambda self: fields.Datetime.now(),required=True)
+
+    def name_get(self):
+        res = []
+        for quarantined_history in self:
+            res.append((quarantined_history.id,'%s (%s)'%(quarantined_history.prepress_proof_id.name,quarantined_history.quarantined_motif)))
+        return res
+
+class PrepressProofQuarantinedMotif(models.Model):
+    _name = 'prepress.proof.quarantined.motif'
+
+    name = fields.Char(string='Motif',required=True)
+    description = fields.Text(string='Motif Detail')
 
 
 class PrepressProofColor(models.Model):

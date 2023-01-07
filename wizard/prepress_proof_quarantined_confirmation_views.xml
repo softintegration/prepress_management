@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="prepress_proof_quarantined_confirmation_form" model="ir.ui.view">
+            <field name="name">prepress.proof.quarantined.confirmation.form</field>
+            <field name="model">prepress.proof.quarantined.confirmation</field>
+            <field name="arch" type="xml">
+                <form string="Quarantined motif">
+                <p>
+                    <strong>What is the reason for this Quarantine?</strong>
+                </p>
+                <group>
+                    <field name="quarantined_motif_id" nolabel="1" required="1"/>
+                </group>
+                <footer>
+                    <button name="apply" string="Confirm" type="object" class="oe_highlight" data-hotkey="c"/>
+                    <button string="_Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_prepress_proof_quarantined_confirmation" model="ir.actions.act_window">
+            <field name="name">Quarantine Confirmation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prepress.proof.quarantined.confirmation</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="prepress_proof_quarantined_confirmation_form"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="prepress_management.model_prepress_proof" />
+        </record>
+
+    </data>
+
+</odoo>

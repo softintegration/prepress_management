@@ -183,6 +183,9 @@ msgstr "Créer un nouveau type d'article"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_tags__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_motif__create_uid
 msgid "Created by"
 msgstr "Crée par"
 
@@ -290,6 +293,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_search_view
 msgid "Group By"
 msgstr "Regrouper par"
 
@@ -1429,6 +1433,7 @@ msgstr "Impossible de supprimer une ligne de Flashage dont le BAT est Validé/Fl
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_flash_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_confirmation_form
 msgid "Confirm"
 msgstr "Confirmer"
 
@@ -1516,3 +1521,126 @@ msgstr "<span>Lignes de</span>"
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_tags_action
 msgid "Use tags to categorize your Cutting Dies."
 msgstr "Utilisez les étiquetes pour catégoriser vos Formes de découpes"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__quarantined_motif
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_motif__name
+msgid "Motif"
+msgstr "Motif"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_motif__description
+msgid "Motif Detail"
+msgstr "Détails Motif"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__quarantined_motif_description
+msgid "Motif details"
+msgstr "Détails Motif"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_quarantined_motif_action
+msgid "No quarantined motif found. Let's create one!"
+msgstr "Aucun motif de mise en quarantaine n'a été trouvé. Créons-en une!"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_proof_quarantined_motif_action
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__quarantined_motif_id
+#: model:ir.ui.menu,name:prepress_management.menu_prepress_proof_quarantined_motif_act
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_confirmation_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_motif_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_motif_tree_view
+msgid "Quarantined motif"
+msgstr "Motif de mise en quarantaine"
+
+#. module: prepress_management
+#: code:addons/prepress_management/wizard/prepress_proof_quarantined_confirmation.py:16
+#, python-format
+msgid "Quarantined motif is required!"
+msgstr "Motif de mise en quarantaine est obligatoire"
+
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_proof_quarantined_history
+msgid "prepress.proof.quarantined.history"
+msgstr "Historique mise en quarantaine"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_proof_quarantined_motif
+msgid "prepress.proof.quarantined.motif"
+msgstr "Motif mise en quarantaine"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"                                    history\n"
+"                                </span>"
+msgstr ""
+"<span class=\"o_stat_text\">\n"
+"                                    mise en quarantaine\n"
+"                                </span>"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "<span>Quarantine</span>"
+msgstr "<span>Historique</span>"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_confirmation_form
+msgid "<strong>What is the reason for this Quarantine?</strong>"
+msgstr "<strong>Quelle est la raison de cette mise en quarantaine?</strong>"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_proof_quarantined_history_action
+msgid "Prepress proof quarantine history"
+msgstr "Historique de mise en quarantaine"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
+#: model:ir.actions.act_window,name:prepress_management.action_prepress_proof_quarantined_confirmation
+#, python-format
+msgid "Quarantine Confirmation"
+msgstr "Confirmation de mise en quarantaine"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_search_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_tree_view
+#, python-format
+msgid "Quarantine history"
+msgstr "Historique de mise en quarantaine"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_form_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_search_view
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_tree_view
+msgid "Quarantined By"
+msgstr "Mise en quarantaine par"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__quarantined_history_ids
+msgid "Quarantined History"
+msgstr "Historique de mise en quarantaine"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__quarantined_history_ids_count
+msgid "Quarantined History Ids Count"
+msgstr ""
+
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_proof_quarantined_confirmation
+msgid "Quarantined confirmation"
+msgstr "Confirmation de mise en quarantaine"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__quarantined_date
+msgid "Quarantined date"
+msgstr "Date mise en quarantaine"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_confirmation_form
+msgid "_Cancel"
+msgstr "Annuler"
