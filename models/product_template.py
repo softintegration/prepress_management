@@ -24,6 +24,7 @@ class ProductTemplate(models.Model):
     gram_weight = fields.Float(string='Weight')
     gram_weight_uom_id = fields.Many2one('uom.uom', string="Weight unit of Measure",
                                    default=lambda self: self.env.ref('uom.product_uom_gram'))
+    color_code = fields.Char(string='Color')
 
 
     def _update_prepress_proof_next_version(self):

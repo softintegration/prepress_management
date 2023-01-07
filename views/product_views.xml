@@ -14,6 +14,7 @@
                         <field name="update_prepress_proof_next_version" invisible="1"/>
                         <field name="prepress_proof_next_version" attrs="{'readonly':[('update_prepress_proof_next_version','=',False)]}"
                         force_save="1"/>
+                        <field name="color_code" widget="color"/>
                     </group>
                 </page>
             </xpath>
