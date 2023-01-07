@@ -161,7 +161,7 @@
                             <tree editable="bottom">
                                 <field name="sequence" widget="handle"/>
                                 <field name="color_id"/>
-                                <field name="color_code" widget="color"/>
+                                <field name="color_code" widget="color" force_save="1"/>
                                 <field name="rate"/>
                             </tree>
                         </field>

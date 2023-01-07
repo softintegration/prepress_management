@@ -351,5 +351,5 @@ class PrepressProofColor(models.Model):
     prepress_proof_id = fields.Many2one('prepress.proof', ondelete='cascade', index=True, required=True)
     sequence = fields.Integer(string='Sequence')
     color_id = fields.Many2one('product.product', string='Reference', required=True)
-    color_code = fields.Char(string='Color', required=True, store=True)
+    color_code = fields.Char(string='Color',related='color_id.color_code',required=True, store=True)
     rate = fields.Float(string='Rate (%)')
