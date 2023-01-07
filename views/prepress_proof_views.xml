@@ -125,10 +125,10 @@
                                 <field name="product_thickness" class="oe_inline" readonly="1"/>
                                 <field name="product_thickness_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <label for="product_weight" attrs="{'invisible':[('product_id','=',False)]}"/>
+                            <label for="product_gram_weight" attrs="{'invisible':[('product_id','=',False)]}"/>
                             <div attrs="{'invisible':[('product_id','=',False)]}">
-                                <field name="product_weight" class="oe_inline" readonly="1"/>
-                                <field name="product_weight_uom_id" readonly="1" class="oe_inline"/>
+                                <field name="product_gram_weight" class="oe_inline" readonly="1"/>
+                                <field name="product_gram_weight_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                         </group>
                         <group name="prepress_proof_dates_info">

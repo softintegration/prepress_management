@@ -59,7 +59,7 @@
         </field>
     </record>
 
-    <record id="product_template_form_view_inherited" model="ir.ui.view">
+    <record id="product_template_form_view_inherited2" model="ir.ui.view">
         <field name="name">product.template.form.view.inherited</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product_dimensions.product_template_form_view_inherited"/>
