@@ -25,7 +25,7 @@ class PrepressProof(models.Model):
                              tracking=True, default='in_progress')
     partner_id = fields.Many2one('res.partner', required=True, string=u'Customer',
                                  states={'in_progress': [('readonly', False)]}, readonly=True, index=True,
-                                 domain=[('customer_rank', '>', 0)])
+                                 domain=[('customer_rank', '>', 0),('parent_id','=',False)])
     product_id = fields.Many2one('product.product', string=u'Product', required=True,
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False, index=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
