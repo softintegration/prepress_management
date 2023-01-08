@@ -1403,7 +1403,7 @@ msgstr "Créer un nouveau Type de vernis"
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__varnish_type
 #: model:ir.ui.menu,name:prepress_management.product_varnish_action_menu
 msgid "Varnish type"
-msgstr "Type de vernis
+msgstr "Type de vernis"
 
 #. module: prepress_management
 #: model:res.groups,name:prepress_management.group_prepress_proof_next_version_update
