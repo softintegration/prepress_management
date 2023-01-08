@@ -1658,3 +1658,9 @@ msgstr "Impossible de supprimer une Plaque validée"
 #, python-format
 msgid "Exposure Nbr must be strictly positive"
 msgstr "Nombre de pose doit être strictement positif"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:0
+#, python-format
+msgid "Height/Width must be more than 0"
+msgstr "Hauteur/Largeur doivent être supérieurs à 0"

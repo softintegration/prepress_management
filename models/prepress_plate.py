@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from random import randint
+from odoo.tools.float_utils import float_compare
 DEFAULT_CODE_PLATE = "prepress.plate"
 
 
@@ -142,6 +143,15 @@ class PrepressPlate(models.Model):
             if each.state == 'validated':
                 raise ValidationError(_("Can not remove validated Plate!"))
         return super(PrepressPlate,self).unlink()
+
+    @api.constrains('height','width')
+    def _check_dimensions(self):
+        for each in self:
+            if float_compare(each.height, 0, precision_rounding=each.height_uom_id.rounding) <= 0 or float_compare(each.width, 0, precision_rounding=each.width_uom_id.rounding) <= 0:
+                raise ValidationError(_("Height/Width must be more than 0"))
+
+
+
 
 
 class PrepressPlateFrameType(models.Model):
