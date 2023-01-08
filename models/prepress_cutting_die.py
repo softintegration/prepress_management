@@ -129,6 +129,13 @@ class PrepressCuttingDie(models.Model):
     def action_unlock(self):
         self.write({'locked': False})
 
+
+    @api.constrains('exposure_nbr')
+    def _check_exposure_nbr(self):
+        for each in self:
+            if each.exposure_nbr < 1:
+                raise ValidationError(_("Exposure Nbr must be strictly positive"))
+
 class CuttingDieMountingType(models.Model):
     _name = 'prepress.cutting.die.mounting.type'
     _description = 'Mounting type'
