@@ -58,7 +58,7 @@ class PrepressProof(models.Model):
     update_date = fields.Date(string='Update date', states={'in_progress': [('readonly', False)]}, readonly=True)
     cancel_date = fields.Date(string='Cancel date', states={'in_progress': [('readonly', False)]}, readonly=True)
     color_ids = fields.One2many('prepress.proof.color', 'prepress_proof_id', string="Colors",
-                                states={'in_progress': [('readonly', False)]}, readonly=True)
+                                states={'in_progress': [('readonly', False)]},readonly=True)
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
     note = fields.Html('Note', states={'in_progress': [('readonly', False)]}, readonly=True)
@@ -350,6 +350,6 @@ class PrepressProofColor(models.Model):
 
     prepress_proof_id = fields.Many2one('prepress.proof', ondelete='cascade', index=True, required=True)
     sequence = fields.Integer(string='Sequence')
-    color_id = fields.Many2one('product.product', string='Reference', required=True)
+    color_id = fields.Many2one('product.product', string='Reference', required=True,domain=[('color_code','!=',False),('type','=','product')])
     color_code = fields.Char(string='Color',related='color_id.color_code',required=True, store=True)
     rate = fields.Float(string='Rate (%)')
