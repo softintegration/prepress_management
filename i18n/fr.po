@@ -1619,7 +1619,7 @@ msgstr "Historique de mise en quarantaine"
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_search_view
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_history_tree_view
 msgid "Quarantined By"
-msgstr "Mise en quarantaine par"
+msgstr "Mis en quarantaine par"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__quarantined_history_ids
