@@ -1664,3 +1664,14 @@ msgstr "Nombre de pose doit être strictement positif"
 #, python-format
 msgid "Height/Width must be more than 0"
 msgstr "Hauteur/Largeur doivent être supérieurs à 0"
+
+
+#. module: prepress_management
+#: model_terms:prepress.type,name:prepress_management.prepress_type_case
+msgid "Case"
+msgstr "Étui"
+
+#. module: prepress_management
+#: model_terms:prepress.type,name:prepress_management.prepress_type_leaflet
+msgid "Leaflet"
+msgstr "Notice"
