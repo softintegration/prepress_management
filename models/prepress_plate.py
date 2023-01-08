@@ -137,6 +137,11 @@ class PrepressPlate(models.Model):
     def _action_reset(self):
         self.write({'state': 'draft'})
 
+    def unlink(self):
+        for each in self:
+            if each.state == 'validated':
+                raise ValidationError(_("Can not remove validated Plate!"))
+        return super(PrepressPlate,self).unlink()
 
 
 class PrepressPlateFrameType(models.Model):
