@@ -351,5 +351,12 @@ class PrepressProofColor(models.Model):
     prepress_proof_id = fields.Many2one('prepress.proof', ondelete='cascade', index=True, required=True)
     sequence = fields.Integer(string='Sequence')
     color_id = fields.Many2one('product.product', string='Reference', required=True,domain=[('color_code','!=',False),('type','=','product')])
-    color_code = fields.Char(string='Color',related='color_id.color_code',required=True, store=True)
+    color_code = fields.Char(string='Color',compute='_compute_color_code',required=True, store=True,readonly=False)
     rate = fields.Float(string='Rate (%)')
+
+    @api.depends('color_id')
+    def _compute_color_code(self):
+        for each in self:
+            if each.color_id and not each.color_code:
+                each.color_code = each.color_id.color_code
+
