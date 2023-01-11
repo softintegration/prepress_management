@@ -25,7 +25,7 @@ class PrepressProof(models.Model):
                              tracking=True, default='in_progress')
     partner_id = fields.Many2one('res.partner', required=True, string=u'Customer',
                                  states={'in_progress': [('readonly', False)]}, readonly=True, index=True,
-                                 domain=[('customer_rank', '>', 0),('parent_id','=',False)])
+                                 domain=[('customer_rank', '>', 0), ('parent_id', '=', False)])
     product_id = fields.Many2one('product.product', string=u'Product', required=True,
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False, index=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
@@ -48,17 +48,17 @@ class PrepressProof(models.Model):
                                                default=lambda self: self.env.ref('uom.product_uom_millimeter'),
                                                store=True)
     product_gram_weight = fields.Float(string='Weight', related='product_id.gram_weight',
-                                    states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
+                                       states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_uom_id = fields.Many2one('uom.uom', related='product_id.gram_weight_uom_id',
-                                            string="Weight Unit of Measure",
-                                            default=lambda self: self.env.ref('uom.product_uom_gram'), store=True)
+                                                 string="Weight Unit of Measure",
+                                                 default=lambda self: self.env.ref('uom.product_uom_gram'), store=True)
     creation_date = fields.Date(string='Creation date', states={'in_progress': [('readonly', False)]}, readonly=True,
                                 default=lambda self: fields.Datetime.now())
     confirm_date = fields.Date(string='Confirm date', states={'in_progress': [('readonly', False)]}, readonly=True)
     update_date = fields.Date(string='Update date', states={'in_progress': [('readonly', False)]}, readonly=True)
     cancel_date = fields.Date(string='Cancel date', states={'in_progress': [('readonly', False)]}, readonly=True)
     color_ids = fields.One2many('prepress.proof.color', 'prepress_proof_id', string="Colors",
-                                states={'in_progress': [('readonly', False)]},readonly=True)
+                                states={'in_progress': [('readonly', False)]}, readonly=True)
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
     note = fields.Html('Note', states={'in_progress': [('readonly', False)]}, readonly=True)
@@ -71,7 +71,7 @@ class PrepressProof(models.Model):
     state_before_quarantined = fields.Selection([('validated', 'Validated'),
                                                  ('flashed', 'Flashed')])
     quarantined = fields.Boolean(string='Has been quarantined', default=False)
-    quarantined_history_ids = fields.One2many('prepress.proof.quarantined.history','prepress_proof_id')
+    quarantined_history_ids = fields.One2many('prepress.proof.quarantined.history', 'prepress_proof_id')
     quarantined_history_ids_count = fields.Integer(compute='_compute_quarantined_history_ids_count')
     flash_line_ids = fields.One2many('prepress.proof.flash.line', 'prepress_proof_id')
     flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
@@ -91,7 +91,6 @@ class PrepressProof(models.Model):
     def _compute_flash_line_ids_count(self):
         for each in self:
             each.flash_line_ids_count = len(each.flash_line_ids)
-
 
     def show_flash_lines(self):
         self.ensure_one()
@@ -169,19 +168,19 @@ class PrepressProof(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
-    def action_quarantine(self,quarantined_motif):
+    def action_quarantine(self, quarantined_motif):
         self.quarantine_check()
         # we have to register the current state to know how to return
         self._register_current_state()
         self._register_quarantine_history(quarantined_motif)
         self._action_quarantine()
 
-    def _register_quarantine_history(self,quarantined_motif):
+    def _register_quarantine_history(self, quarantined_motif):
         for each in self:
             self.env['prepress.proof.quarantined.history'].create({
-                'prepress_proof_id':each.id,
-                'quarantined_motif':quarantined_motif.name,
-                'quarantined_motif_description':quarantined_motif.description
+                'prepress_proof_id': each.id,
+                'quarantined_motif': quarantined_motif.name,
+                'quarantined_motif_description': quarantined_motif.description
             })
 
     def _action_quarantine(self):
@@ -253,13 +252,28 @@ class PrepressProof(models.Model):
             raise ValidationError(_("Only one in progress Prepress Proof is authorised by product!"))
 
     def _check_validated_prepress_proofs(self):
+        self._check_prepress_proof_data()
         domain = [('state', 'in', ('validated', 'flashed', 'quarantined')),
                   ('product_id', 'in', self.mapped("product_id").ids)]
         if self.search_count(domain) > 0:
             raise ValidationError(_("Only one Validated/Flashed Prepress Proof is authorised by product!"))
+
+    def _check_prepress_proof_data(self):
+        prepress_proof_not_in_progress= self.env['prepress.proof']
+        prepress_proof_without_confirm_date = self.env['prepress.proof']
         for each in self:
+            if each.state != 'in_progress':
+                prepress_proof_not_in_progress |= each
             if not each.confirm_date:
-                raise ValidationError(_("Confirm date is required!"))
+                prepress_proof_without_confirm_date |= each
+        if prepress_proof_not_in_progress:
+            raise ValidationError(
+                _("All selected Prepress proof(s) must be in progress,%s are not in progress!") % (
+                    ",".join(prepress_proof_not_in_progress.mapped("name"))))
+        if prepress_proof_without_confirm_date:
+            raise ValidationError(
+                _("Confirm date is required,no confirm date has been detected in the prepress proofs %s!") % (
+                    ",".join(prepress_proof_without_confirm_date.mapped("name"))))
 
     def action_flash_wizard(self):
         ''' Open the prepress.proof.flash wizard to flash the current Prepress Proof.
@@ -307,7 +321,7 @@ class PrepressProofFlashLine(models.Model):
     _name = 'prepress.proof.flash.line'
 
     # fields
-    prepress_proof_id = fields.Many2one('prepress.proof',required=True,ondelete='cascade')
+    prepress_proof_id = fields.Many2one('prepress.proof', required=True, ondelete='cascade')
     cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die", required=True)
     prepress_plate_ctp_id = fields.Many2one('prepress.plate', string="CTP Plate")
     prepress_plate_varnish_id = fields.Many2one('prepress.plate', string="Varnish Plate")
@@ -324,24 +338,28 @@ class PrepressProofFlashLine(models.Model):
                 raise ValidationError(_("Can not remove flash line of Validated/Flashed Prepress Proof"))
         return super(PrepressProofFlashLine, self).unlink()
 
+
 class PrepressProofQuarantinedHistory(models.Model):
     _name = 'prepress.proof.quarantined.history'
 
-    prepress_proof_id = fields.Many2one('prepress.proof', required=True,ondelete='cascade')
-    quarantined_motif = fields.Char(string='Motif',required=True)
+    prepress_proof_id = fields.Many2one('prepress.proof', required=True, ondelete='cascade')
+    quarantined_motif = fields.Char(string='Motif', required=True)
     quarantined_motif_description = fields.Char(string='Motif details')
-    quarantined_date = fields.Datetime(string='Quarantined date',default=lambda self: fields.Datetime.now(),required=True)
+    quarantined_date = fields.Datetime(string='Quarantined date', default=lambda self: fields.Datetime.now(),
+                                       required=True)
 
     def name_get(self):
         res = []
         for quarantined_history in self:
-            res.append((quarantined_history.id,'%s (%s)'%(quarantined_history.prepress_proof_id.name,quarantined_history.quarantined_motif)))
+            res.append((quarantined_history.id, '%s (%s)' % (
+            quarantined_history.prepress_proof_id.name, quarantined_history.quarantined_motif)))
         return res
+
 
 class PrepressProofQuarantinedMotif(models.Model):
     _name = 'prepress.proof.quarantined.motif'
 
-    name = fields.Char(string='Motif',required=True)
+    name = fields.Char(string='Motif', required=True)
     description = fields.Text(string='Motif Detail')
 
 
@@ -350,8 +368,9 @@ class PrepressProofColor(models.Model):
 
     prepress_proof_id = fields.Many2one('prepress.proof', ondelete='cascade', index=True, required=True)
     sequence = fields.Integer(string='Sequence')
-    color_id = fields.Many2one('product.product', string='Reference', required=True,domain=[('color_code','!=',False),('type','=','product')])
-    color_code = fields.Char(string='Color',compute='_compute_color_code',required=True, store=True,readonly=False)
+    color_id = fields.Many2one('product.product', string='Reference', required=True,
+                               domain=[('color_code', '!=', False), ('type', '=', 'product')])
+    color_code = fields.Char(string='Color', compute='_compute_color_code', required=True, store=True, readonly=False)
     rate = fields.Float(string='Rate (%)')
 
     @api.depends('color_id')
@@ -359,4 +378,3 @@ class PrepressProofColor(models.Model):
         for each in self:
             if each.color_id and not each.color_code:
                 each.color_code = each.color_id.color_code
-

@@ -161,8 +161,14 @@ msgstr "Date de validation"
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_proof.py:0
 #, python-format
-msgid "Confirm date is required!"
-msgstr "Date de validation est obligatoire!"
+msgid "Confirm date is required,no confirm date has been detected in the prepress proofs %s!"
+msgstr "Date de validation est obligatoire,les BAT(s) %s doivent avoir une date de validation!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
+#, python-format
+msgid "All selected Prepress proof(s) must be in progress,%s are not in progress!"
+msgstr "Tous les BAT(s) à valider doivent étre en cours,le statut des BAT(s) %s est différent de En cours!"
 
 #. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_main_action
@@ -729,9 +735,11 @@ msgid "User"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.actions.server,name:prepress_management.action_confirm_multi_prepress_proof
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_tree
 msgid "Validate"
 msgstr "Valider"
 
