@@ -171,6 +171,20 @@ msgid "All selected Prepress proof(s) must be in progress,%s are not in progress
 msgstr "Tous les BAT(s) à valider doivent étre en cours,le statut des BAT(s) %s est différent de En cours!"
 
 #. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
+#, python-format
+msgid "Number of Colors in product must be the same as the number of colors in Prepress proof,"
+"The Prepress proofs %s does not respect this rule!"
+msgstr "Le nombre de couleurs de l'article doit être le même que le nombre des couleurs du BAT,"
+"Incohérence détecté dans les BAT(s) %s!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
+#, python-format
+msgid "Can not select the same color many times,please check the colors in %s!"
+msgstr "Interdit de sélectionner la même couleur plusieurs fois, veuillez vérifier les couleurs dans le(s) BAT(s) %s"
+
+#. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_main_action
 msgid "Create a new Prepress proof"
 msgstr "Créer un nouveau BAT"

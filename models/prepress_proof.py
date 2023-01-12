@@ -261,11 +261,17 @@ class PrepressProof(models.Model):
     def _check_prepress_proof_data(self):
         prepress_proof_not_in_progress= self.env['prepress.proof']
         prepress_proof_without_confirm_date = self.env['prepress.proof']
+        prepress_proof_with_incoherent_color_nbr = self.env['prepress.proof']
+        prepress_proof_with_wrong_color_nbr = self.env['prepress.proof']
         for each in self:
             if each.state != 'in_progress':
                 prepress_proof_not_in_progress |= each
             if not each.confirm_date:
                 prepress_proof_without_confirm_date |= each
+            if each.product_id.color_cpt != len(each.color_ids):
+                prepress_proof_with_incoherent_color_nbr |= each
+            if len(each.color_ids) != len(each.color_ids.mapped("color_id")):
+                prepress_proof_with_wrong_color_nbr |= each
         if prepress_proof_not_in_progress:
             raise ValidationError(
                 _("All selected Prepress proof(s) must be in progress,%s are not in progress!") % (
@@ -274,6 +280,17 @@ class PrepressProof(models.Model):
             raise ValidationError(
                 _("Confirm date is required,no confirm date has been detected in the prepress proofs %s!") % (
                     ",".join(prepress_proof_without_confirm_date.mapped("name"))))
+        if prepress_proof_with_incoherent_color_nbr:
+            raise ValidationError(_("Number of Colors in product must be the same as the number of colors in Prepress proof,"
+                                    "The Prepress proofs %s does not respect this rule!")% (
+                    ",".join(prepress_proof_with_incoherent_color_nbr.mapped("name"))))
+        if prepress_proof_with_wrong_color_nbr:
+            raise ValidationError(
+                _("Can not select the same color many times,please check the colors in %s!") % (
+                    ",".join(prepress_proof_with_wrong_color_nbr.mapped("name"))))
+
+
+
 
     def action_flash_wizard(self):
         ''' Open the prepress.proof.flash wizard to flash the current Prepress Proof.
