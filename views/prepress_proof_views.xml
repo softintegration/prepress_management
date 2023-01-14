@@ -252,6 +252,7 @@
                 <group expand="0" string="Group By">
                     <filter name="group_by_partner_id" string="Customer" context="{'group_by':'partner_id'}"/>
                     <filter name="group_by_product_id" string="Product" context="{'group_by':'product_id'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
                 </group>
             </search>
         </field>

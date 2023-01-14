@@ -664,6 +664,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__state
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Status"
 msgstr "Statut"
 
