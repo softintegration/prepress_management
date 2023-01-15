@@ -51,6 +51,8 @@
             >
                 <header>
                     <button name="action_confirm" type="object" string="Validate"/>
+                    <button name="action_quarantine_wizard" type="object" string="Put in quarantine"
+                            groups="prepress_management.group_prepress_proof_quarantine_process"/>
                 </header>
                 <field name="name" readonly="1" decoration-bf="1"/>
                 <field name="client_ref"/>
@@ -268,6 +270,21 @@
         <field name="code">
             if records:
                 res = records.action_confirm()
+                if isinstance(res, dict):
+                    action = res
+        </field>
+    </record>
+
+    <record id="action_quarantine_wizard_multi_prepress_proof" model="ir.actions.server">
+        <field name="name">Put in quarantine</field>
+        <field name="model_id" ref="prepress_management.model_prepress_proof"/>
+        <field name="binding_model_id" ref="prepress_management.model_prepress_proof"/>
+        <field name="binding_view_types">list</field>
+        <field name="groups_id" eval="[(4, ref('prepress_management.group_prepress_proof_quarantine_process'))]"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                res = records.action_quarantine_wizard()
                 if isinstance(res, dict):
                     action = res
         </field>

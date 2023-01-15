@@ -121,7 +121,7 @@ class PrepressProof(models.Model):
             'res_model': 'prepress.proof.quarantined.history',
             'type': 'ir.actions.act_window',
             'target': 'current',
-            'res_ids': self.quarantined_history_ids.ids,
+            'domain':[('id','in',self.quarantined_history_ids.ids)]
         }
 
     def action_confirm(self):
@@ -205,8 +205,8 @@ class PrepressProof(models.Model):
     def quarantine_check(self):
         for each in self:
             if each.state not in QUARANTINE_STATES:
-                raise UserError(
-                    _("Can not put the Prepress Proof %s in quarantine,you have to check the state!") % each.name)
+                raise ValidationError(
+                    _("Can not put the Prepress Proof %s in quarantine,you have to check the state!") % (each.name))
 
     def _update_prepress_proof_version(self):
         for each in self:
@@ -318,7 +318,6 @@ class PrepressProof(models.Model):
         }
 
     def action_quarantine_wizard(self):
-        self.ensure_one()
         prepress_proof_quarantined_confirmation_wizard = self.env['prepress.proof.quarantined.confirmation'].create({})
         return {
             'name': _('Quarantine Confirmation'),

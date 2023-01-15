@@ -834,7 +834,7 @@ msgstr "Êtes-vous sûr de vouloir mettre ce BAT en quarantaine?"
 msgid ""
 "Can not put the Prepress Proof %s in quarantine,you have to check the state!"
 msgstr ""
-"Impossible de mettre le BAT %is en quarantaine, Veuillez vérifier le statut!"
+"Impossible de mettre le BAT %s en quarantaine, Veuillez vérifier le statut!"
 
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_proof.py:123
@@ -853,7 +853,9 @@ msgid "Manage Prepress Proof quarantine process"
 msgstr "Gérer le processus de la mise en quarantaine des BAT's"
 
 #. module: prepress_management
+#: model:ir.actions.server,name:prepress_management.action_quarantine_wizard_multi_prepress_proof
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_tree
 msgid "Put in quarantine"
 msgstr "Mettre en quarantaine"
 

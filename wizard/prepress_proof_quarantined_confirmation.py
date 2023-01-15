@@ -14,9 +14,9 @@ class PrepressProofQuarantinedConfirmation(models.TransientModel):
     def apply(self):
         if not self.quarantined_motif_id:
             raise ValidationError(_("Quarantined motif is required!"))
-        prepress_proof_id = self.env.context.get("active_id")
-        prepress_proof = self.env['prepress.proof'].browse(prepress_proof_id)
-        return prepress_proof.action_quarantine(self.quarantined_motif_id)
+        prepress_proof_ids = self.env.context.get("active_ids")
+        prepress_proofs = self.env['prepress.proof'].browse(prepress_proof_ids)
+        return prepress_proofs.action_quarantine(self.quarantined_motif_id)
 
 
 
