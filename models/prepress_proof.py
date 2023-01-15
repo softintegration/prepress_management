@@ -168,19 +168,20 @@ class PrepressProof(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
-    def action_quarantine(self, quarantined_motif):
+    def action_quarantine(self, quarantined_motif,date=False):
         self.quarantine_check()
         # we have to register the current state to know how to return
         self._register_current_state()
-        self._register_quarantine_history(quarantined_motif)
+        self._register_quarantine_history(quarantined_motif,date=date)
         self._action_quarantine()
 
-    def _register_quarantine_history(self, quarantined_motif):
+    def _register_quarantine_history(self, quarantined_motif,date=False):
         for each in self:
             self.env['prepress.proof.quarantined.history'].create({
                 'prepress_proof_id': each.id,
                 'quarantined_motif': quarantined_motif.name,
-                'quarantined_motif_description': quarantined_motif.description
+                'quarantined_motif_description': quarantined_motif.description,
+                'quarantined_date':date and date or fields.Datetime.now()
             })
 
     def _action_quarantine(self):

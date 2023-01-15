@@ -8,6 +8,12 @@
             <field name="arch" type="xml">
                 <form string="Quarantined motif">
                 <p>
+                    <strong>Quarantined date</strong>
+                </p>
+                <group>
+                    <field name="quarantined_date" nolabel="1" required="1"/>
+                </group>
+                <p>
                     <strong>What is the reason for this Quarantine?</strong>
                 </p>
                 <group>

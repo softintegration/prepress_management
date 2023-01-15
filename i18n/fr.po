@@ -1663,6 +1663,7 @@ msgid "Quarantined confirmation"
 msgstr "Confirmation de mise en quarantaine"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__quarantined_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__quarantined_date
 msgid "Quarantined date"
 msgstr "Date mise en quarantaine"
@@ -1700,3 +1701,8 @@ msgstr "Étui"
 #: model_terms:prepress.type,name:prepress_management.prepress_type_leaflet
 msgid "Leaflet"
 msgstr "Notice"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_quarantined_confirmation_form
+msgid "<strong>Quarantined date</strong>"
+msgstr "<strong>Date mise en quarantaine</strong>"
