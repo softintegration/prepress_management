@@ -860,10 +860,14 @@ msgid "Put in quarantine"
 msgstr "Mettre en quarantaine"
 
 #. module: prepress_management
-#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__quarantined
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "Quarantined"
 msgstr "Mise en quarantaine"
+
+#. module: prepress_management
+#: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__quarantined
+msgid "Quarantined"
+msgstr "En quarantaine"
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
