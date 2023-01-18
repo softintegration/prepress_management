@@ -273,7 +273,7 @@ class PrepressProof(models.Model):
                 prepress_proof_not_in_progress |= each
             if not each.confirm_date:
                 prepress_proof_without_confirm_date |= each
-            if each.product_id.color_cpt != len(each.color_ids):
+            if each.color_cpt != len(each.color_ids):
                 prepress_proof_with_incoherent_color_nbr |= each
             if len(each.color_ids) != len(each.color_ids.mapped("color_id")):
                 prepress_proof_with_wrong_color_nbr |= each
