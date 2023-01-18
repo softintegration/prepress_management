@@ -28,6 +28,7 @@ class PrepressProof(models.Model):
                                  domain=[('customer_rank', '>', 0), ('parent_id', '=', False)])
     product_id = fields.Many2one('product.product', string=u'Product', required=True,
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False, index=True)
+    color_cpt = fields.Integer(string='Number of Colors',states={'in_progress': [('readonly', False)]}, readonly=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
                                     readonly=True)
     product_height = fields.Float(string='Height', related='product_id.height',
@@ -86,6 +87,9 @@ class PrepressProof(models.Model):
     def _onchange_product_id(self):
         self.update({
             'prepress_type': self.product_id and self.product_id.prepress_type and self.product_id.prepress_type.id or False})
+        if not self.color_cpt:
+            self.update({'color_cpt':self.product_id.color_cpt})
+
 
     @api.depends('flash_line_ids')
     def _compute_flash_line_ids_count(self):
