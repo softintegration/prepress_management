@@ -87,8 +87,7 @@ class PrepressProof(models.Model):
     def _onchange_product_id(self):
         self.update({
             'prepress_type': self.product_id and self.product_id.prepress_type and self.product_id.prepress_type.id or False})
-        if not self.color_cpt:
-            self.update({'color_cpt':self.product_id.color_cpt})
+        self.update({'color_cpt':self.product_id.color_cpt})
 
 
     @api.depends('flash_line_ids')
