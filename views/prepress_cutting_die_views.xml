@@ -71,7 +71,7 @@
                             <field name="prepress_type" options="{'no_create_edit': True}"/>
                             <field name="prepress_type_code" invisible="1"/>
                             <field name="format_type_id"
-                                   attrs="{'invisible':[('prepress_type_code','!=','case')],'required':[('prepress_type_code','=','case')]}"
+                                   attrs="{'invisible':[('prepress_type_code','!=','0')],'required':[('prepress_type_code','=','0')]}"
                                    options="{'no_create_edit': True}"/>
                             <label for="height"/>
                             <div name="height">
@@ -83,8 +83,8 @@
                                 <field name="width" class="oe_inline"/>
                                 <field name="width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <label for="thickness" attrs="{'invisible':[('prepress_type_code','!=','case')]}"/>
-                            <div name="thickness" attrs="{'invisible':[('prepress_type_code','!=','case')]}">
+                            <label for="thickness" attrs="{'invisible':[('prepress_type_code','!=','0')]}"/>
+                            <div name="thickness" attrs="{'invisible':[('prepress_type_code','!=','0')]}">
                                 <field name="thickness" class="oe_inline"/>
                                 <field name="thickness_uom_id" readonly="1" class="oe_inline"/>
                             </div>
@@ -102,18 +102,18 @@
                         <group name="prepress_cutting_die_right_group">
                             <field name="mounting_type_id"/>
                             <field name="exposure_nbr"/>
-                            <label for="fin_height" attrs="{'invisible':[('prepress_type_code','!=','case')]}"/>
-                            <div name="fin_height" attrs="{'invisible':[('prepress_type_code','!=','case')]}">
+                            <label for="fin_height" attrs="{'invisible':[('prepress_type_code','!=','0')]}"/>
+                            <div name="fin_height" attrs="{'invisible':[('prepress_type_code','!=','0')]}">
                                 <field name="fin_height" class="oe_inline"/>
                                 <field name="fin_height_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <label for="fin_width" attrs="{'invisible':[('prepress_type_code','!=','case')]}"/>
-                            <div name="fin_width" attrs="{'invisible':[('prepress_type_code','!=','case')]}">
+                            <label for="fin_width" attrs="{'invisible':[('prepress_type_code','!=','0')]}"/>
+                            <div name="fin_width" attrs="{'invisible':[('prepress_type_code','!=','0')]}">
                                 <field name="fin_width" class="oe_inline"/>
                                 <field name="fin_width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                             <field name="cutting_count"
-                                   attrs="{'invisible':[('prepress_type_code','!=','case')],'required':[('prepress_type_code','=','case')]}"/>
+                                   attrs="{'invisible':[('prepress_type_code','!=','0')],'required':[('prepress_type_code','=','0')]}"/>
                             <field name="with_braille" widget="boolean_toggle"/>
                             <field name="shelling" widget="boolean_toggle"/>
                             <label for="creasing_rule"/>

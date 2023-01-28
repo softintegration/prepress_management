@@ -6,18 +6,17 @@
 
         <record id="prepress_type_case" model="prepress.type">
             <field name="name">Étui</field>
-            <!--<field name="code">0</field>-->
-            <field name="code">case</field>
+            <field name="code">0</field>
+            <!-- <field name="code">case</field> -->
             <field name="description">Case</field>
         </record>
 
         <record id="prepress_type_leaflet" model="prepress.type">
             <field name="name">Notice</field>
-            <!--<field name="code">1</field>-->
-            <field name="code">leaflet</field>
+            <field name="code">1</field>
+            <!--<field name="code">leaflet</field>-->
             <field name="description">Leaflet</field>
         </record>
-
 
         <record id="prepress_type_other" model="prepress.type">
             <field name="name">Autre</field>
