@@ -18,7 +18,7 @@ class PrepressCuttingDie(models.Model):
                              tracking=True, default='draft')
     partner_ids = fields.Many2many('res.partner', 'prepress_cutting_die_res_partner', string='Customers',
                                    states={'draft': [('readonly', False)]}, readonly=True,
-                                   domain=[('customer_rank', '>', 0)],
+                                   domain=[('customer_rank', '>', 0),('parent_id','=',False)],
                                    required=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'draft': [('readonly', False)]},
                                     readonly=True, required=True)
