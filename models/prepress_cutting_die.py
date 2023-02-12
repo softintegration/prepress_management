@@ -63,6 +63,32 @@ class PrepressCuttingDie(models.Model):
                                states={'draft': [('readonly', False)]}, readonly=True)
     locked = fields.Boolean(string='Locked', help="If the cutting die is locked we can't edit Customers",
                             default=False)
+    prepress_proof_ids_count = fields.Integer(compute='_compute_prepress_proof_ids_count')
+
+
+    def _prepress_proofs(self):
+        domain = [('cutting_die_id','in',self.ids)]
+        prepress_proofs = self.env['prepress.proof.flash.line'].search(domain).mapped("prepress_proof_id")
+        return prepress_proofs
+
+    def _compute_prepress_proof_ids_count(self):
+        for each in self:
+            each.prepress_proof_ids_count = len(each._prepress_proofs())
+
+
+    def show_flashed_prepress_proofs(self):
+        self.ensure_one()
+        return {
+            'name': _('Flashed Prepress proofs'),
+            'view_mode': 'tree,form',
+            'views': [(self.env.ref('prepress_management.view_prepress_proof_readonly_tree').id, 'tree'),
+                      (self.env.ref('prepress_management.view_prepress_proof_form').id, 'form')],
+            'res_model': 'prepress.proof',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'domain': [('id','in',self._prepress_proofs().ids)],
+        }
+
 
     def action_confirm(self):
         return self._action_confirm()
