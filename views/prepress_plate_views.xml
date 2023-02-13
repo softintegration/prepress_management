@@ -110,7 +110,7 @@
                                 <field name="width" class="oe_inline"/>
                                 <field name="width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <field name="exposure_nbr" readonly="1" force_save="1"/>
+                            <field name="exposure_nbr"/>
                         </group>
                     </group>
                 </sheet>
