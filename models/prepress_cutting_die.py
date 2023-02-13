@@ -42,14 +42,7 @@ class PrepressCuttingDie(models.Model):
     cut_width = fields.Float(string='Mounting width', states={'draft': [('readonly', False)]}, readonly=True)
     cut_width_uom_id = fields.Many2one('uom.uom', string="Mounting Width Unit of Measure",
                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
-    fin_height = fields.Float(string='Finishing height', states={'draft': [('readonly', False)]}, readonly=True)
-    fin_height_uom_id = fields.Many2one('uom.uom', string="Fin Height Unit of Measure",
-                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
-    fin_width = fields.Float(string='Finishing width', states={'draft': [('readonly', False)]}, readonly=True)
-    fin_width_uom_id = fields.Many2one('uom.uom', string="Fin Width Unit of Measure",
-                                       default=lambda self: self.env.ref('uom.product_uom_millimeter'))
     exposure_nbr = fields.Integer('Exposure Nbr', states={'draft': [('readonly', False)]}, readonly=True)
-    cutting_count = fields.Integer('Cutting count', states={'draft': [('readonly', False)]}, readonly=True)
     with_braille = fields.Boolean(string='With braille', states={'draft': [('readonly', False)]}, readonly=True)
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)

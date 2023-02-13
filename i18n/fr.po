@@ -520,11 +520,6 @@ msgid "Cutting Die is required!"
 msgstr "Forme de découpe est obligatoire!"
 
 #. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__cutting_count
-msgid "Cutting count"
-msgstr "Nbr de formes de découpes"
-
-#. module: prepress_management
 #: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_main_action
 #: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_action_menu
 #: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_menu
@@ -616,26 +611,6 @@ msgstr "Nombre de pose"
 #, python-format
 msgid "Exposure Nbr must be strictly positive"
 msgstr "Nombre de pose doit être strictement positif"
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_height_uom_id
-msgid "Fin Height Unit of Measure"
-msgstr "UdM Hauteur.finition"
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_width_uom_id
-msgid "Fin Width Unit of Measure"
-msgstr "UdM Largeur.finition"
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_height
-msgid "Finishing height"
-msgstr "Hauteur finition"
-
-#. module: prepress_management
-#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__fin_width
-msgid "Finishing width"
-msgstr "Largeur finition"
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_proof_flash
