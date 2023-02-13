@@ -151,8 +151,8 @@ class PrepressProof(models.Model):
             'prepress_proof_id': self.id,
             'flash_date': flash_date,
             'cutting_die_id': cutting_die.id,
-            'exposure_nbr': cutting_die.exposure_nbr,
             'prepress_plate_ctp_id': prepress_plate_ctp and prepress_plate_ctp.id or False,
+            'exposure_nbr': prepress_plate_ctp and prepress_plate_ctp.exposure_nbr,
             'prepress_plate_varnish_id': prepress_plate_varnish and prepress_plate_varnish.id or False
         }
 
