@@ -317,11 +317,11 @@
             <form string="Flash line">
                 <sheet>
                     <group>
-                        <field name="cutting_die_id"/>
-                        <field name="prepress_plate_varnish_id"/>
-                        <field name="exposure_nbr"/>
-                        <field name="prepress_plate_ctp_id"/>
                         <field name="flash_date"/>
+                        <field name="prepress_plate_ctp_id"/>
+                        <field name="cutting_die_id"/>
+                        <field name="exposure_nbr"/>
+                        <field name="prepress_plate_varnish_id"/>
                     </group>
                 </sheet>
             </form>
@@ -333,11 +333,11 @@
         <field name="model">prepress.proof.flash.line</field>
         <field name="arch" type="xml">
             <tree string="Flash line">
-                <field name="cutting_die_id"/>
-                <field name="prepress_plate_varnish_id"/>
-                <field name="exposure_nbr"/>
-                <field name="prepress_plate_ctp_id"/>
                 <field name="flash_date"/>
+                <field name="prepress_plate_ctp_id"/>
+                <field name="cutting_die_id"/>
+                <field name="exposure_nbr"/>
+                <field name="prepress_plate_varnish_id"/>
             </tree>
         </field>
     </record>
