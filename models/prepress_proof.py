@@ -346,7 +346,7 @@ class PrepressProofFlashLine(models.Model):
     prepress_plate_ctp_id = fields.Many2one('prepress.plate', string="CTP Plate")
     prepress_plate_varnish_id = fields.Many2one('prepress.plate', string="Varnish Plate")
     is_default = fields.Boolean(string="Default", default=False)
-    exposure_nbr = fields.Integer('Exposure Nbr', related='cutting_die_id.exposure_nbr', store=True)
+    exposure_nbr = fields.Integer('Exposure Nbr', store=True)
 
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
