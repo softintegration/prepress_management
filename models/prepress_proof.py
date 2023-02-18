@@ -78,6 +78,10 @@ class PrepressProof(models.Model):
     flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
     flash_cpt = fields.Integer(string='Flash cpt', default=0)
 
+    def _check_validity_for_product(self, product_id):
+        current_prepress_proof = self._get_by_product(product_id)
+        return current_prepress_proof == self
+
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
         if self.product_id and self.product_id.partner_id != self.partner_id:
