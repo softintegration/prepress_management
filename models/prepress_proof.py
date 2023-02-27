@@ -218,7 +218,7 @@ class PrepressProof(models.Model):
 
     def _update_prepress_proof_version(self):
         for each in self:
-            each.product_id._increment_prepress_proof_version()
+            each.product_id.with_context(force_update=True)._increment_prepress_proof_version()
 
     @api.model
     def _get_by_product_id(self, product_id, count=False):
