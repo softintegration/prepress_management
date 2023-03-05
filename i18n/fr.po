@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-12 09:17+0000\n"
-"PO-Revision-Date: 2023-02-12 09:17+0000\n"
+"POT-Creation-Date: 2023-03-05 10:38+0000\n"
+"PO-Revision-Date: 2023-03-05 10:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -195,6 +195,12 @@ msgid ""
 "Can not put the Prepress Proof %s in quarantine,you have to check the state!"
 msgstr ""
 "Impossible de mettre le BAT %is en quarantaine, Veuillez vérifier le statut!"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:0
+#, python-format
+msgid "Can not put the same product many times in the same CTP plate"
+msgstr "Interdit de mettre le même article plusieurs fois"
 
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_proof.py:0
@@ -441,6 +447,7 @@ msgstr "Créer un nouveau Type de vernis"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__create_uid
@@ -462,6 +469,7 @@ msgstr "Crée par"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__create_date
@@ -552,6 +560,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__display_name
@@ -605,6 +614,14 @@ msgstr "Plaque CTP exclue"
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_search
 msgid "Exposure Nbr"
 msgstr "Nombre de pose"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_plate.py:0
+#, python-format
+msgid "Exposure Nbr must be less than or equal to Cutting die Exposure Nbr"
+msgstr ""
+"Le nombre de pose doit être inférieur ou égale au nombre de pose de la forme"
+" de découpe"
 
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_cutting_die.py:0
@@ -810,6 +827,7 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__id
@@ -895,6 +913,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash____last_update
@@ -916,6 +935,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__write_uid
@@ -937,6 +957,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__write_date
@@ -1230,6 +1251,7 @@ msgstr "Format optimal"
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_plate
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__plate_id
 #: model:ir.ui.menu,name:prepress_management.prepress_plate_menu
 #: model:ir.ui.menu,name:prepress_management.prepress_plate_prepress_config_menu
 msgid "Plate"
@@ -1285,6 +1307,7 @@ msgstr "Prépresse"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__prepress_proof_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__prepress_proof_id
@@ -1366,6 +1389,7 @@ msgstr "BATs"
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_product_product
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__product_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__product_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__product_id
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
@@ -1546,6 +1570,7 @@ msgstr "Statut initial"
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__state
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__state
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__state
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_search
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
@@ -1562,6 +1587,12 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__sub_product_ids
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+msgid "Sub-products"
+msgstr "Sous-produits"
 
 #. module: prepress_management
 #: model:ir.model.constraint,message:prepress_management.constraint_prepress_tags_name_uniq
@@ -1796,6 +1827,11 @@ msgid "complexity.factor"
 msgstr "Facteur de complexité"
 
 #. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_plate_sub_product
+msgid "prepress.plate.sub.product"
+msgstr ""
+
+#. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_proof_color
 msgid "prepress.proof.color"
 msgstr "Couleur"
@@ -1819,10 +1855,3 @@ msgstr "Motif mise en quarantaine"
 #: model:ir.model,name:prepress_management.model_prepress_type
 msgid "prepress.type"
 msgstr "Type"
-
-
-#. module: prepress_management
-#: code:addons/prepress_management/models/prepress_plate.py:158
-#, python-format
-msgid "Exposure Nbr must be less than or equal to Cutting die Exposure Nbr"
-msgstr "Le nombre de pose doit être inférieur ou égale au nombre de pose de la forme de découpe"

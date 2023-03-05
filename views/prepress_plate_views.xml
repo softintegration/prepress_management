@@ -113,6 +113,19 @@
                             <field name="exposure_nbr"/>
                         </group>
                     </group>
+                    <group name="sub_products" string="Sub-products"
+                           attrs="{'invisible':['|',('product_plate_type','!=','plate_ctp'),('product_id','=',False)]}">
+                        <field name="sub_product_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="product_id" options="{'no_create':True,'no_edit':True}"
+                                       domain="[('partner_id','=',parent.partner_id),('id','!=',parent.product_id),('type','=','product')]"
+                                       context="{'default_type':'product','default_partner_id':parent.partner_id}"
+                                        />
+                                <field name="prepress_proof_id" attrs="{'invisible':[('product_id','=',False)]}" readonly="1" force_save="1"/>
+                                <field name="state" invisible="1"/>
+                            </tree>
+                        </field>
+                    </group>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>

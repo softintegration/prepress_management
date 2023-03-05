@@ -49,11 +49,14 @@ class PrepressPlate(models.Model):
                                    readonly=True)
     point_form_id = fields.Many2one('prepress.plate.point.form', string='Point forme', states={'draft': [('readonly', False)]},
                                     readonly=True)
+    sub_product_ids = fields.One2many('prepress.plate.sub.product','plate_id',string='Sub-products',
+                                      states={'draft': [('readonly', False)]},readonly=True)
+
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
         if self.product_id and self.product_id.partner_id != self.partner_id:
-            self.update({'product_id': False})
+            self.update({'product_id': False,'sub_product_ids':False})
 
     @api.onchange('product_id','cutting_die_id')
     def _onchange_product_id(self):
@@ -156,6 +159,34 @@ class PrepressPlate(models.Model):
         for each in self.filtered(lambda e:e.cutting_die_id and e.exposure_nbr):
             if each.exposure_nbr > each.cutting_die_id.exposure_nbr:
                 raise ValidationError(_("Exposure Nbr must be less than or equal to Cutting die Exposure Nbr"))
+
+    @api.constrains('product_id','sub_product_ids')
+    def _check_sub_product_ids(self):
+        for each in self.filtered(lambda e:e.sub_product_ids):
+            if each.product_id.id in each.sub_product_ids.mapped("product_id").ids or len(each.sub_product_ids.mapped("product_id")) != len(each.sub_product_ids):
+                raise ValidationError(_("Can not put the same product many times in the same CTP plate"))
+
+
+
+class PrepressPlateSubProduct(models.Model):
+    _name = 'prepress.plate.sub.product'
+
+    plate_id = fields.Many2one('prepress.plate',ondelete='cascade')
+    product_id = fields.Many2one('product.product', string='Product', states={'draft': [('readonly', False)]},
+                                 readonly=True, domain=[('type', '=', 'product')],required=True)
+    prepress_proof_id = fields.Many2one('prepress.proof', string='Prepress Proof',
+                                        states={'draft': [('readonly', False)]}, readonly=True,required=True)
+    state = fields.Selection(related='plate_id.state')
+
+    @api.onchange('product_id')
+    def _onchange_product_id(self):
+        self._update_prepress_proof()
+
+    def _update_prepress_proof(self):
+        if not self.product_id:
+            return
+        prepress_proof = self.env['prepress.proof']._get_by_product(self.product_id)
+        self.update({'prepress_proof_id': prepress_proof and prepress_proof.id or False})
 
 
 class PrepressPlateFrameType(models.Model):
