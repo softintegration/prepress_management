@@ -106,6 +106,12 @@
                             groups="prepress_management.group_prepress_proof_quarantine_process"/>
                     <button name="action_cancel_with_motif" type="object" states="validated,flashed" string="Cancel"
                             data-hotkey="a"/>
+                    <button name="action_lock" string="Lock" type="object"
+                                attrs="{'invisible':['|',('locked','=',True),('state','in',('in_progress','cancel'))]}"
+                                groups="prepress_management.group_prepress_proof_lock_unlock"/>
+                    <button name="action_unlock" string="Unlock" type="object"
+                                attrs="{'invisible':['|',('locked','=',False),('state','in',('in_progress','cancel'))]}"
+                                groups="prepress_management.group_prepress_proof_lock_unlock"/>
                     <field name="state" widget="statusbar" statusbar_visible="in_progress,validated,flashed"/>
                 </header>
                 <sheet>
@@ -142,6 +148,7 @@
                     </div>
                     <group name="prepress_proof_header">
                         <group name="prepress_proof_general_info">
+                            <field name="locked" invisible="1"/>
                             <field name="client_ref"/>
                             <field name="partner_id"/>
                             <field name="product_id" domain="[('partner_id','=',partner_id)]"
@@ -184,7 +191,7 @@
                     </group>
                     <div class="o_new-group o_new-group-big">Colors</div>
                     <group name="colors">
-                        <field name="color_ids" nolabel="1">
+                        <field name="color_ids" nolabel="1" attrs="{'readonly':['|',('locked','=',True),('state','=','cancel')]}">
                             <tree editable="bottom">
                                 <field name="sequence" widget="handle"/>
                                 <field name="color_id"/>

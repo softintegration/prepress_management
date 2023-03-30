@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-05 10:38+0000\n"
-"PO-Revision-Date: 2023-03-05 10:38+0000\n"
+"POT-Creation-Date: 2023-03-30 12:51+0000\n"
+"PO-Revision-Date: 2023-03-30 12:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -883,6 +883,11 @@ msgstr ""
 "clients"
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_proof__locked
+msgid "If the prepress proof is locked,no field can be edited"
+msgstr ""
+
+#. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__prepress_proof__state__in_progress
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_search
 msgid "In progress"
@@ -978,16 +983,23 @@ msgstr "Linéature"
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Lock"
 msgstr "Bloquer"
 
 #. module: prepress_management
 #: model:res.groups,name:prepress_management.group_prepress_cutting_die_lock_unlock
 msgid "Lock/Unlock Cutting Dies"
-msgstr "Verrouiller/déverrouiller les formes de découpe"
+msgstr "Bloquer/déverrouiller les formes de découpe"
+
+#. module: prepress_management
+#: model:res.groups,name:prepress_management.group_prepress_proof_lock_unlock
+msgid "Lock/Unlock Prepress proofs"
+msgstr "Bloquer/déverrouiller les BATs"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__locked
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__locked
 msgid "Locked"
 msgstr "Verrouillée"
 
@@ -1654,6 +1666,7 @@ msgstr ""
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Unlock"
 msgstr "Déverrouiller"
 

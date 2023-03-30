@@ -58,8 +58,7 @@ class PrepressProof(models.Model):
     confirm_date = fields.Date(string='Confirm date', states={'in_progress': [('readonly', False)]}, readonly=True)
     update_date = fields.Date(string='Update date', states={'in_progress': [('readonly', False)]}, readonly=True)
     cancel_date = fields.Date(string='Cancel date', states={'in_progress': [('readonly', False)]}, readonly=True)
-    color_ids = fields.One2many('prepress.proof.color', 'prepress_proof_id', string="Colors",
-                                states={'in_progress': [('readonly', False)]}, readonly=True)
+    color_ids = fields.One2many('prepress.proof.color', 'prepress_proof_id', string="Colors")
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
     note = fields.Html('Note', states={'in_progress': [('readonly', False)]}, readonly=True)
@@ -77,6 +76,20 @@ class PrepressProof(models.Model):
     flash_line_ids = fields.One2many('prepress.proof.flash.line', 'prepress_proof_id')
     flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
     flash_cpt = fields.Integer(string='Flash cpt', default=0)
+    locked = fields.Boolean(string='Locked', help="If the prepress proof is locked,no field can be edited",
+                            default=False)
+
+    def action_lock(self):
+        self._action_lock()
+
+    def action_unlock(self):
+        self._action_unlock()
+
+    def _action_lock(self):
+        self.write({'locked': True})
+
+    def _action_unlock(self):
+        self.write({'locked': False})
 
     def _check_validity_for_product(self, product_id):
         current_prepress_proof = self._get_by_product(product_id)
@@ -132,6 +145,7 @@ class PrepressProof(models.Model):
         }
 
     def action_confirm(self):
+        self.sudo().action_lock()
         return self._action_confirm()
 
     def _action_confirm(self):
