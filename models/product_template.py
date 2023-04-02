@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
                                     ('folded','Folded')], string='Type of notice')
     folding_dimension = fields.Char(string='Folding dimension')
     varnish_type = fields.Many2one('product.varnish', string='Varnish type')
-    gram_weight = fields.Float(string='Weight')
+    gram_weight = fields.Integer(string='Weight')
     gram_weight_uom_id = fields.Many2one('uom.uom', string="Weight unit of Measure",
                                    default=lambda self: self.env.ref('uom.product_uom_gram'))
     color_code = fields.Char(string='Color')

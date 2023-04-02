@@ -48,7 +48,7 @@ class PrepressProof(models.Model):
                                                string="Thickness Unit of Measure",
                                                default=lambda self: self.env.ref('uom.product_uom_millimeter'),
                                                store=True)
-    product_gram_weight = fields.Float(string='Weight', related='product_id.gram_weight',
+    product_gram_weight = fields.Integer(string='Weight', related='product_id.gram_weight',
                                        states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_uom_id = fields.Many2one('uom.uom', related='product_id.gram_weight_uom_id',
                                                  string="Weight Unit of Measure",
