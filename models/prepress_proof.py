@@ -354,6 +354,12 @@ class PrepressProof(models.Model):
             'type': 'ir.actions.act_window',
         }
 
+    @api.model
+    def reset_correct_product_gram_weight(self):
+        proofs = self.search([('product_gram_weight','=',False)])
+        for each in proofs:
+            each.write({'product_gram_weight':each.product_id.gram_weight})
+
 
 class PrepressProofFlashLine(models.Model):
     _name = 'prepress.proof.flash.line'
