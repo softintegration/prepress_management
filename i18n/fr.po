@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-30 12:51+0000\n"
-"PO-Revision-Date: 2023-03-30 12:51+0000\n"
+"POT-Creation-Date: 2023-04-17 09:38+0000\n"
+"PO-Revision-Date: 2023-04-17 09:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -450,6 +450,7 @@ msgstr "Créer un nouveau Type de vernis"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__create_uid
@@ -472,6 +473,7 @@ msgstr "Crée par"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__create_date
@@ -500,6 +502,16 @@ msgstr "Client"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__client_ref
 msgid "Customer Prepress proof reference"
 msgstr "Rèfèrence BAT client"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "Customer Signature"
+msgstr "Signature du client"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__customer_signatures
+msgid "Customer Signatures"
+msgstr "Signature du client"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__partner_ids
@@ -538,6 +550,11 @@ msgid "Cutting die"
 msgstr "Forme de découpe"
 
 #. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_proof_customer_signature__signed_on
+msgid "Date of the signature."
+msgstr "Date de la signature."
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__is_default
 msgid "Default"
 msgstr "Par défaut"
@@ -563,6 +580,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__display_name
@@ -830,6 +848,7 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__id
@@ -911,6 +930,11 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__function
+msgid "Job Position"
+msgstr "Poste occupé"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_complexity_factor____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type____last_update
@@ -921,6 +945,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation____last_update
@@ -943,6 +968,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__write_uid
@@ -965,6 +991,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_confirmation__write_date
@@ -990,7 +1017,7 @@ msgstr "Bloquer"
 #. module: prepress_management
 #: model:res.groups,name:prepress_management.group_prepress_cutting_die_lock_unlock
 msgid "Lock/Unlock Cutting Dies"
-msgstr "Bloquer/déverrouiller les formes de découpe"
+msgstr "Verrouiller/déverrouiller les formes de découpe"
 
 #. module: prepress_management
 #: model:res.groups,name:prepress_management.group_prepress_proof_lock_unlock
@@ -1150,7 +1177,6 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__note
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Note"
 msgstr ""
 
@@ -1321,6 +1347,7 @@ msgstr "Prépresse"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__prepress_proof_id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__prepress_proof_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_quarantined_history__prepress_proof_id
 msgid "Prepress Proof"
@@ -1573,6 +1600,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__shelling
 msgid "Shelling"
 msgstr "Décorticage"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__signature
+msgid "Signature"
+msgstr "Signature"
+
+#. module: prepress_management
+#: model:ir.model.fields,help:prepress_management.field_prepress_proof_customer_signature__signature
+msgid "Signature received through the portal."
+msgstr "Signature reçue via le portail."
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__signed_on
+msgid "Signed On"
+msgstr "Signé le"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_customer_signature__signed_by
+msgid "Signed by"
+msgstr "Signé par"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__state_before_quarantined
@@ -1848,6 +1895,11 @@ msgstr ""
 #: model:ir.model,name:prepress_management.model_prepress_proof_color
 msgid "prepress.proof.color"
 msgstr "Couleur"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_proof_customer_signature
+msgid "prepress.proof.customer.signature"
+msgstr ""
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_proof_flash_line

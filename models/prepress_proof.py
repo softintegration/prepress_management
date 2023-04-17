@@ -76,6 +76,7 @@ class PrepressProof(models.Model):
     flash_line_ids = fields.One2many('prepress.proof.flash.line', 'prepress_proof_id')
     flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
     flash_cpt = fields.Integer(string='Flash cpt', default=0)
+    customer_signatures = fields.One2many('prepress.proof.customer.signature','prepress_proof_id')
     locked = fields.Boolean(string='Locked', help="If the prepress proof is locked,no field can be edited",
                             default=False)
 
@@ -422,3 +423,18 @@ class PrepressProofColor(models.Model):
         for each in self:
             if each.color_id and not each.color_code:
                 each.color_code = each.color_id.color_code
+
+
+class PrepressProofCustomerSignature(models.Model):
+    _name = 'prepress.proof.customer.signature'
+
+    prepress_proof_id = fields.Many2one('prepress.proof', required=True, ondelete='cascade')
+    signed_by = fields.Many2one('res.partner',string='Signed by',required=True)
+    function = fields.Char(string='Job Position',related='signed_by.function',store=True)
+    signed_on = fields.Datetime('Signed On', help='Date of the signature.',required=True)
+    signature = fields.Image('Signature', help='Signature received through the portal.', attachment=True,
+                             max_width=1024, max_height=1024)
+
+
+
+
