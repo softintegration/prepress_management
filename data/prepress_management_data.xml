@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <function model="prepress.proof" name="reset_correct_product_gram_weight" />
-    </data>
     <data noupdate="1">
 
         <!-- Prepress type Data-->
