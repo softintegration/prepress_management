@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from random import randint
 from odoo.tools.float_utils import float_compare
+
 DEFAULT_CODE_PLATE = "prepress.plate"
 
 
@@ -13,7 +14,7 @@ class PrepressPlate(models.Model):
     _description = "Plate"
 
     name = fields.Char(string='Name', required=True, copy=False, index=True,
-                       states={'draft': [('readonly', False)]},readonly=True,default='New')
+                       states={'draft': [('readonly', False)]}, readonly=True, default='New')
     state = fields.Selection([('draft', 'Draft'),
                               ('validated', 'Validated'),
                               ('cancel', 'Cancelled')], string='Status', required=True, readonly=True, copy=False,
@@ -21,17 +22,25 @@ class PrepressPlate(models.Model):
     product_plate_type = fields.Selection([('plate_ctp', 'CTP Plate'),
                                            ('plate_varnish', 'Varnish Plate')], string='Type',
                                           states={'draft': [('readonly', False)]}, readonly=True)
-    product_varnish_id = fields.Many2one('product.product',string='Varnish',states={'draft': [('readonly', False)]},
+    product_varnish_id = fields.Many2one('product.product', string='Varnish', states={'draft': [('readonly', False)]},
                                          readonly=True)
-    cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die", states={'draft': [('readonly', False)]},
+    cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die",
+                                     states={'draft': [('readonly', False)]},
                                      readonly=True)
     exposure_nbr = fields.Integer('Exposure Nbr', states={'draft': [('readonly', False)]}, readonly=True)
     partner_id = fields.Many2one('res.partner', string="Customer",
                                  states={'draft': [('readonly', False)]}, readonly=True,
                                  domain=[('customer_rank', '>', 0), ('parent_id', '=', False)])
     product_id = fields.Many2one('product.product', string='Product', states={'draft': [('readonly', False)]},
-                                 readonly=True,domain=[('type', '=', 'product')])
-    prepress_proof_id = fields.Many2one('prepress.proof',string='Prepress Proof',states={'draft': [('readonly', False)]}, readonly=True)
+                                 readonly=True, domain=[('type', '=', 'product')])
+    product_height = fields.Float(related='product_id.height')
+    product_height_uom_id = fields.Many2one(related='product_id.height_uom_id')
+    product_width = fields.Float(related='product_id.width')
+    product_width_uom_id = fields.Many2one(related='product_id.width_uom_id')
+    product_thickness = fields.Float(related='product_id.thickness')
+    product_thickness_uom_id = fields.Many2one(related='product_id.thickness_uom_id')
+    prepress_proof_id = fields.Many2one('prepress.proof', string='Prepress Proof',
+                                        states={'draft': [('readonly', False)]}, readonly=True)
     height = fields.Float(string='Height', states={'draft': [('readonly', False)]}, readonly=True)
     height_uom_id = fields.Many2one('uom.uom', string="Height Unit of Measure",
                                     default=lambda self: self.env.ref('uom.product_uom_millimeter'))
@@ -45,34 +54,35 @@ class PrepressPlate(models.Model):
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
     lineation = fields.Char(string='Lineation', states={'draft': [('readonly', False)]}, readonly=True)
-    frame_type_id = fields.Many2one('prepress.plate.frame.type', string='Frame type', states={'draft': [('readonly', False)]},
-                                   readonly=True)
-    point_form_id = fields.Many2one('prepress.plate.point.form', string='Point forme', states={'draft': [('readonly', False)]},
+    frame_type_id = fields.Many2one('prepress.plate.frame.type', string='Frame type',
+                                    states={'draft': [('readonly', False)]},
                                     readonly=True)
-    sub_product_ids = fields.One2many('prepress.plate.sub.product','plate_id',string='Sub-products',
-                                      states={'draft': [('readonly', False)]},readonly=True)
-
+    point_form_id = fields.Many2one('prepress.plate.point.form', string='Point forme',
+                                    states={'draft': [('readonly', False)]},
+                                    readonly=True)
+    sub_product_ids = fields.One2many('prepress.plate.sub.product', 'plate_id', string='Sub-products',
+                                      states={'draft': [('readonly', False)]}, readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
         if self.product_id and self.product_id.partner_id != self.partner_id:
-            self.update({'product_id': False,'sub_product_ids':False})
+            self.update({'product_id': False, 'sub_product_ids': False})
 
-    @api.onchange('product_id','cutting_die_id')
+    @api.onchange('product_id')
     def _onchange_product_id(self):
         self._update_prepress_proof()
+        self.update({'cutting_die_id': False})
+
+    @api.onchange('cutting_die_id')
+    def _onchange_cutting_die_id(self):
         if self.cutting_die_id:
             self.update({'exposure_nbr': self.cutting_die_id.exposure_nbr})
-
-
-
 
     def _update_prepress_proof(self):
         if not self.product_id:
             return
         prepress_proof = self.env['prepress.proof']._get_by_product(self.product_id)
         self.update({'prepress_proof_id': prepress_proof and prepress_proof.id or False})
-
 
     def action_confirm(self):
         return self._action_confirm()
@@ -93,9 +103,10 @@ class PrepressPlate(models.Model):
                 raise ValidationError(_("Product is required in CTP Plate!"))
             elif each.product_plate_type == 'plate_ctp' and not each.prepress_proof_id:
                 raise ValidationError(_("Prepress Proof is required in CTP Plate!"))
-            elif each.product_plate_type == 'plate_ctp' and each.prepress_proof_id.id != self.env['prepress.proof']._get_by_product(each.product_id).id:
-                raise ValidationError(_("Prepress Proof has been changed,Please refresh the Prepress proof by re-selecting the product!"))
-
+            elif each.product_plate_type == 'plate_ctp' and each.prepress_proof_id.id != self.env[
+                'prepress.proof']._get_by_product(each.product_id).id:
+                raise ValidationError(
+                    _("Prepress Proof has been changed,Please refresh the Prepress proof by re-selecting the product!"))
 
     def _set_name_by_sequence(self):
         self.ensure_one()
@@ -118,8 +129,8 @@ class PrepressPlate(models.Model):
     def _build_dynamic_prefix_fields(self):
         self.ensure_one()
         vals = {}
-        for field_name,_ in self._fields.items():
-            vals.update({field_name:getattr(self,field_name)})
+        for field_name, _ in self._fields.items():
+            vals.update({field_name: getattr(self, field_name)})
         return vals
 
     def action_cancel(self):
@@ -130,7 +141,6 @@ class PrepressPlate(models.Model):
 
     def _action_cancel(self):
         self.write({'state': 'cancel'})
-
 
     def action_reset(self):
         for each in self:
@@ -145,37 +155,37 @@ class PrepressPlate(models.Model):
         for each in self:
             if each.state == 'validated':
                 raise ValidationError(_("Can not remove validated Plate!"))
-        return super(PrepressPlate,self).unlink()
+        return super(PrepressPlate, self).unlink()
 
-    @api.constrains('height','width')
+    @api.constrains('height', 'width')
     def _check_dimensions(self):
         for each in self:
-            if float_compare(each.height, 0, precision_rounding=each.height_uom_id.rounding) <= 0 or float_compare(each.width, 0, precision_rounding=each.width_uom_id.rounding) <= 0:
+            if float_compare(each.height, 0, precision_rounding=each.height_uom_id.rounding) <= 0 or float_compare(
+                    each.width, 0, precision_rounding=each.width_uom_id.rounding) <= 0:
                 raise ValidationError(_("Height/Width must be more than 0"))
 
-
-    @api.constrains('exposure_nbr','cutting_die_id')
+    @api.constrains('exposure_nbr', 'cutting_die_id')
     def _check_exposure_nbr(self):
-        for each in self.filtered(lambda e:e.cutting_die_id and e.exposure_nbr):
+        for each in self.filtered(lambda e: e.cutting_die_id and e.exposure_nbr):
             if each.exposure_nbr > each.cutting_die_id.exposure_nbr:
                 raise ValidationError(_("Exposure Nbr must be less than or equal to Cutting die Exposure Nbr"))
 
-    @api.constrains('product_id','sub_product_ids')
+    @api.constrains('product_id', 'sub_product_ids')
     def _check_sub_product_ids(self):
-        for each in self.filtered(lambda e:e.sub_product_ids):
-            if each.product_id.id in each.sub_product_ids.mapped("product_id").ids or len(each.sub_product_ids.mapped("product_id")) != len(each.sub_product_ids):
+        for each in self.filtered(lambda e: e.sub_product_ids):
+            if each.product_id.id in each.sub_product_ids.mapped("product_id").ids or len(
+                    each.sub_product_ids.mapped("product_id")) != len(each.sub_product_ids):
                 raise ValidationError(_("Can not put the same product many times in the same CTP plate"))
-
 
 
 class PrepressPlateSubProduct(models.Model):
     _name = 'prepress.plate.sub.product'
 
-    plate_id = fields.Many2one('prepress.plate',ondelete='cascade')
+    plate_id = fields.Many2one('prepress.plate', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product', states={'draft': [('readonly', False)]},
-                                 readonly=True, domain=[('type', '=', 'product')],required=True)
+                                 readonly=True, domain=[('type', '=', 'product')], required=True)
     prepress_proof_id = fields.Many2one('prepress.proof', string='Prepress Proof',
-                                        states={'draft': [('readonly', False)]}, readonly=True,required=True)
+                                        states={'draft': [('readonly', False)]}, readonly=True, required=True)
     state = fields.Selection(related='plate_id.state')
 
     @api.onchange('product_id')
@@ -209,4 +219,3 @@ class PrepressPlateFrameType(models.Model):
     description = fields.Text(string='Description')
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
-

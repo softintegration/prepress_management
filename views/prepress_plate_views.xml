@@ -95,8 +95,17 @@
                             <field name="point_form_id" options="{'no_create':True}" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
                         </group>
                         <group name="prepress_plate_right_group">
+                            <field name="product_height" invisible="1"/>
+                            <field name="product_height_uom_id" invisible="1"/>
+                            <field name="product_width" invisible="1"/>
+                            <field name="product_width_uom_id" invisible="1"/>
+                            <field name="product_thickness" invisible="1"/>
+                            <field name="product_thickness_uom_id" invisible="1"/>
                             <field name="cutting_die_id"
                                    attrs="{'invisible':[('product_id','=',False),('product_varnish_id','=',False)]}"
+                                   domain="[('height','=',product_height),('height_uom_id','=',product_height_uom_id),
+                                   ('width','=',product_width),('width_uom_id','=',product_width_uom_id),
+                                   ('thickness','=',product_thickness),('thickness_uom_id','=',product_thickness_uom_id),]"
                                    options="{'no_create':True,'no_edit':True}"
                                    />
                             <field name="type_format" required="1"/>
