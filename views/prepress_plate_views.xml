@@ -20,6 +20,7 @@
                 <field name="width" optional="show"/>
                 <field name="width_uom_id" optional="hide"/>
                 <field name="exposure_nbr" optional="show"/>
+                <field name="calibration" optional="hide"/>
                 <field name="state" decoration-bf="state == 'draft'"
                        decoration-success="state == 'validated'" decoration-danger="state == 'cancel'" widget="badge"/>
             </tree>
@@ -93,6 +94,7 @@
                             <field name="lineation" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
                             <field name="frame_type_id" options="{'no_create':True}" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
                             <field name="point_form_id" options="{'no_create':True}" attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
+                            <field name="calibration"  attrs="{'invisible':[('product_plate_type','!=','plate_ctp')]}"/>
                         </group>
                         <group name="prepress_plate_right_group">
                             <field name="product_height" invisible="1"/>

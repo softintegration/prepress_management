@@ -62,6 +62,7 @@ class PrepressPlate(models.Model):
                                     readonly=True)
     sub_product_ids = fields.One2many('prepress.plate.sub.product', 'plate_id', string='Sub-products',
                                       states={'draft': [('readonly', False)]}, readonly=True)
+    calibration = fields.Boolean(string='Calibration',states={'draft': [('readonly', False)]}, readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
