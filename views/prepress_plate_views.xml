@@ -52,8 +52,8 @@
 
     <!-- Prepress Plate Form View -->
 
-    <record id="view_prepress_plate_form" model="ir.ui.view">
-        <field name="name">view.prepress.plate.form</field>
+    <record id="view_prepress_plate_ctp_form" model="ir.ui.view">
+        <field name="name">view.prepress.plate.ctp.form</field>
         <field name="model">prepress.plate</field>
         <field name="arch" type="xml">
             <form>
@@ -136,6 +136,72 @@
                                 <field name="state" invisible="1"/>
                             </tree>
                         </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prepress_plate_varnish_form" model="ir.ui.view">
+        <field name="name">view.prepress.plate.varnish.form</field>
+        <field name="model">prepress.plate</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                     <button name="action_confirm" type="object" states="draft" string="Validate"
+                            class="oe_highlight"
+                            data-hotkey="v"/>
+                    <button name="action_reset" type="object" states="validated" string="Reset to Draft"
+                    data-hotkey="r" confirm="Are you sure you want reset this Plate to Draft?"/>
+                    <button name="action_cancel" type="object" states="validated" string="Cancel"
+                            data-hotkey="c" confirm="Are you sure you want cancel this Plate?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group name="prepress_plate_header">
+                        <group name="prepress_plate_left_group">
+                            <field name="company_id" invisible="1"/>
+                            <field name="product_plate_type" required="1" invisible="1"/>
+                            <field name="product_varnish_id"
+                                   attrs="{'invisible':[('product_plate_type','!=','plate_varnish')],'required':[('product_plate_type','=','plate_varnish')]}"
+                                   options="{'no_create':True,'no_edit':True}"/>
+                        </group>
+                        <group name="prepress_plate_right_group">
+                            <field name="product_height" invisible="1"/>
+                            <field name="product_height_uom_id" invisible="1"/>
+                            <field name="product_width" invisible="1"/>
+                            <field name="product_width_uom_id" invisible="1"/>
+                            <field name="product_thickness" invisible="1"/>
+                            <field name="product_thickness_uom_id" invisible="1"/>
+                            <field name="cutting_die_id"
+                                   attrs="{'invisible':[('product_varnish_id','=',False)]}"
+                                   options="{'no_create':True,'no_edit':True}"
+                                   />
+                            <field name="type_format" required="1"/>
+                            <label for="height"/>
+                            <div name="height">
+                                <field name="height" class="oe_inline"/>
+                                <field name="height_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <label for="width"/>
+                            <div name="width">
+                                <field name="width" class="oe_inline"/>
+                                <field name="width_uom_id" readonly="1" class="oe_inline"/>
+                            </div>
+                            <field name="exposure_nbr"/>
+                        </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
@@ -247,7 +313,9 @@
         <field name="view_mode">tree,form</field>
         <field name="domain">[('product_plate_type','=','plate_ctp')]</field>
         <field name="context">{'default_product_plate_type':'plate_ctp'}</field>
-        <field name="view_id" ref="prepress_management.view_prepress_plate_ctp_tree"/>
+        <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('prepress_management.view_prepress_plate_ctp_tree')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('prepress_management.view_prepress_plate_ctp_form')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new CTP Plate
@@ -269,7 +337,9 @@
         <field name="view_mode">tree,form</field>
         <field name="domain">[('product_plate_type','=','plate_varnish')]</field>
         <field name="context">{'default_product_plate_type':'plate_varnish'}</field>
-        <field name="view_id" ref="prepress_management.view_prepress_plate_varnish_tree"/>
+        <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('prepress_management.view_prepress_plate_varnish_tree')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('prepress_management.view_prepress_plate_varnish_form')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new Varnish Plate

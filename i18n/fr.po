@@ -136,7 +136,7 @@ msgid "Alternate Format"
 msgstr ""
 
 #. module: prepress_management
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
 msgid "Are you sure you want cancel this Plate?"
 msgstr "Êtes-vous sûr de vouloir annuler cette Plaque"
 
@@ -146,7 +146,7 @@ msgid "Are you sure you want cancel this cutting die?"
 msgstr "Êtes-vous sûr de vouloir annuler cette forme de découpe?"
 
 #. module: prepress_management
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
 msgid "Are you sure you want reset this Plate to Draft?"
 msgstr "Êtes-vous sûr de vouloir remettre cette Plaque à brouillon?"
 
@@ -249,7 +249,7 @@ msgstr ""
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_flash_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Cancel"
 msgstr "Annuler"
@@ -1558,7 +1558,7 @@ msgstr "Remettre au statut initial"
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
 msgid "Reset to Draft"
 msgstr "Remettre à brouillon"
 
@@ -1649,7 +1649,7 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__sub_product_ids
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
 msgid "Sub-products"
 msgstr "Sous-produits"
 
@@ -1765,7 +1765,7 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.actions.server,name:prepress_management.action_confirm_multi_prepress_proof
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
-#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_tree
 msgid "Validate"
