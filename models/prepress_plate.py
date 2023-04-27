@@ -63,6 +63,12 @@ class PrepressPlate(models.Model):
     sub_product_ids = fields.One2many('prepress.plate.sub.product', 'plate_id', string='Sub-products',
                                       states={'draft': [('readonly', False)]}, readonly=True)
     calibration = fields.Boolean(string='Calibration',states={'draft': [('readonly', False)]}, readonly=True)
+    cut_height = fields.Float(string='Mounting height', states={'draft': [('readonly', False)]}, readonly=True)
+    cut_height_uom_id = fields.Many2one('uom.uom', string="Mounting Height Unit of Measure",
+                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
+    cut_width = fields.Float(string='Mounting width', states={'draft': [('readonly', False)]}, readonly=True)
+    cut_width_uom_id = fields.Many2one('uom.uom', string="Mounting Width Unit of Measure",
+                                       default=lambda self: self.env.ref('uom.product_uom_millimeter'))
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -77,7 +83,12 @@ class PrepressPlate(models.Model):
     @api.onchange('cutting_die_id')
     def _onchange_cutting_die_id(self):
         if self.cutting_die_id:
-            self.update({'exposure_nbr': self.cutting_die_id.exposure_nbr})
+            self.update({'exposure_nbr': self.cutting_die_id.exposure_nbr,
+                         'cut_height':self.cutting_die_id.cut_height,
+                         'cut_height_uom_id':self.cut_height_uom_id and self.cut_height_uom_id.id or False,
+                         'cut_width':self.cutting_die_id.cut_width,
+                         'cut_width_uom_id':self.cutting_die_id.cut_width_uom_id and self.cutting_die_id.cut_width_uom_id.id or False})
+
 
     def _update_prepress_proof(self):
         if not self.product_id:
