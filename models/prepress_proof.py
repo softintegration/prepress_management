@@ -56,6 +56,7 @@ class PrepressProof(models.Model):
                                                  default=lambda self: self.env.ref('uom.product_uom_gram'), store=True)
     notice_type = fields.Selection(string='Type of notice',related='product_id.notice_type',store=True)
     folding_dimension = fields.Char(string='Folding dimension',related='product_id.folding_dimension',store=True)
+    with_braille = fields.Boolean(string='With braille',related='product_id.with_braille',store=True)
     creation_date = fields.Date(string='Creation date', states={'in_progress': [('readonly', False)]}, readonly=True,
                                 default=lambda self: fields.Datetime.now())
     confirm_date = fields.Date(string='Confirm date', states={'in_progress': [('readonly', False)]}, readonly=True)

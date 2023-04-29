@@ -178,6 +178,7 @@
                                 <field name="product_gram_weight" class="oe_inline" readonly="1"/>
                                 <field name="product_gram_weight_uom_id" readonly="1" class="oe_inline"/>
                             </div>
+                            <field name="with_braille" widget="boolean_toggle"/>
                             <field name="color_cpt"/>
                         </group>
                         <group name="prepress_proof_dates_info">

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-29 15:37+0000\n"
-"PO-Revision-Date: 2023-04-29 15:37+0000\n"
+"POT-Creation-Date: 2023-04-29 16:47+0000\n"
+"PO-Revision-Date: 2023-04-29 16:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1909,6 +1909,7 @@ msgstr "UdM.Largeur"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__with_braille
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__with_braille
 #: model:ir.model.fields,field_description:prepress_management.field_product_product__with_braille
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__with_braille
 msgid "With braille"
