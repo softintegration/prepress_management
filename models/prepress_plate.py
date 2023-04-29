@@ -69,6 +69,8 @@ class PrepressPlate(models.Model):
     cut_width = fields.Float(string='Mounting width', states={'draft': [('readonly', False)]}, readonly=True)
     cut_width_uom_id = fields.Many2one('uom.uom', string="Mounting Width Unit of Measure",
                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
+    tag_ids = fields.Many2many('prepress.tags', relation='prepress_plate_tags_rel', string='Tags'
+                               ,states={'draft': [('readonly', False)]}, readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -231,3 +233,4 @@ class PrepressPlateFrameType(models.Model):
     description = fields.Text(string='Description')
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
+

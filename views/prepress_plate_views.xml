@@ -132,6 +132,12 @@
                                 <field name="width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                             <field name="exposure_nbr"/>
+                            <field name="tag_ids"
+                                   widget="many2many_tags"
+                                   placeholder="Tags..."
+                                   options="{'color_field': 'color'}"
+                                   domain="[('model','=','prepress.plate')]"
+                                   context="{'default_model':'prepress.plate'}"/>
                         </group>
                     </group>
                     <group name="sub_products" string="Sub-products"
@@ -211,6 +217,12 @@
                                 <field name="width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                             <field name="exposure_nbr"/>
+                            <field name="tag_ids"
+                                   widget="many2many_tags"
+                                   placeholder="Tags..."
+                                   options="{'color_field': 'color'}"
+                                   domain="[('model','=','prepress.plate')]"
+                                   context="{'default_model':'prepress.plate'}"/>
                         </group>
                     </group>
                 </sheet>
@@ -405,5 +417,23 @@
               action="prepress_management.prepress_plate_point_form_main_action"
               sequence="10"/>
 
+        <record id="prepress_plate_tags_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">prepress.tags</field>
+            <field name="domain">[('model','=','prepress.plate')]</field>
+            <field name="context">{'default_model':'prepress.plate'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No tags found. Let's create one!
+                </p>
+                <p>
+                    Use tags to categorize your Plates.
+                </p>
+            </field>
+        </record>
+
+    <menuitem action="prepress_plate_tags_action" id="menu_prepress_plate_tags_action"
+              parent="prepress_plate_prepress_config_menu"
+              sequence="11"/>
 
 </odoo>

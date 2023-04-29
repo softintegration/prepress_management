@@ -344,19 +344,19 @@
               sequence="5"/>
 
         <record id="prepress_cutting_die_tags_action" model="ir.actions.act_window">
-        <field name="name">Tags</field>
-        <field name="res_model">prepress.tags</field>
-        <field name="domain">[('model','=','prepress.cutting.die')]</field>
-        <field name="context">{'default_model':'prepress.cutting.die'}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                No tags found. Let's create one!
-            </p>
-            <p>
-                Use tags to categorize your Cutting Dies.
-            </p>
-        </field>
-    </record>
+            <field name="name">Tags</field>
+            <field name="res_model">prepress.tags</field>
+            <field name="domain">[('model','=','prepress.cutting.die')]</field>
+            <field name="context">{'default_model':'prepress.cutting.die'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No tags found. Let's create one!
+                </p>
+                <p>
+                    Use tags to categorize your Cutting Dies.
+                </p>
+            </field>
+        </record>
 
     <menuitem action="prepress_cutting_die_tags_action" id="menu_prepress_cutting_die_tags_act"
               parent="prepress_cutting_die_prepress_config_menu"

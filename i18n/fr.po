@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-27 14:25+0000\n"
-"PO-Revision-Date: 2023-04-27 14:25+0000\n"
+"POT-Creation-Date: 2023-04-29 15:02+0000\n"
+"PO-Revision-Date: 2023-04-29 15:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1176,6 +1176,7 @@ msgstr "Aucun motif de mise en quarantaine n'a été trouvé. Créons-en une!"
 
 #. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_tags_action
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_tags_action
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_tags_action
 msgid "No tags found. Let's create one!"
 msgstr "Aucunes étiquettes trouvées. Créons-en une!"
@@ -1675,15 +1676,24 @@ msgstr "L'étiquette est unique"
 
 #. module: prepress_management
 #: model:ir.actions.act_window,name:prepress_management.prepress_cutting_die_tags_action
+#: model:ir.actions.act_window,name:prepress_management.prepress_plate_tags_action
 #: model:ir.actions.act_window,name:prepress_management.prepress_proof_tags_action
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__tag_ids
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__tag_ids
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__tag_ids
 #: model:ir.ui.menu,name:prepress_management.menu_prepress_cutting_die_tags_act
+#: model:ir.ui.menu,name:prepress_management.menu_prepress_plate_tags_action
 #: model:ir.ui.menu,name:prepress_management.menu_prepress_proof_tags_act
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_tags_form_view
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_tags_tree_view
 msgid "Tags"
 msgstr "Étiquettes"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_ctp_form
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_plate_varnish_form
+msgid "Tags..."
+msgstr "Étiquettes..."
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__thickness
@@ -1768,6 +1778,11 @@ msgstr "Date de mise à jour"
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_tags_action
 msgid "Use tags to categorize your Cutting Dies."
 msgstr "Utilisez les étiquetes pour catégoriser vos Formes de découpes"
+
+#. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_tags_action
+msgid "Use tags to categorize your Plates."
+msgstr ""
 
 #. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_proof_tags_action
