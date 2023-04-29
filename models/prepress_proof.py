@@ -31,6 +31,7 @@ class PrepressProof(models.Model):
     color_cpt = fields.Integer(string='Number of Colors',states={'in_progress': [('readonly', False)]}, readonly=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
                                     readonly=True)
+    prepress_type_code = fields.Char(related='prepress_type.code')
     product_height = fields.Float(string='Height', related='product_id.height',
                                   states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_height_uom_id = fields.Many2one('uom.uom', related='product_id.height_uom_id',
@@ -53,6 +54,8 @@ class PrepressProof(models.Model):
     product_gram_weight_uom_id = fields.Many2one('uom.uom', related='product_id.gram_weight_uom_id',
                                                  string="Weight Unit of Measure",
                                                  default=lambda self: self.env.ref('uom.product_uom_gram'), store=True)
+    notice_type = fields.Selection(string='Type of notice',related='product_id.notice_type',store=True)
+    folding_dimension = fields.Char(string='Folding dimension',related='product_id.folding_dimension',store=True)
     creation_date = fields.Date(string='Creation date', states={'in_progress': [('readonly', False)]}, readonly=True,
                                 default=lambda self: fields.Datetime.now())
     confirm_date = fields.Date(string='Confirm date', states={'in_progress': [('readonly', False)]}, readonly=True)
@@ -79,6 +82,7 @@ class PrepressProof(models.Model):
     customer_signatures = fields.One2many('prepress.proof.customer.signature','prepress_proof_id')
     locked = fields.Boolean(string='Locked', help="If the prepress proof is locked,no field can be edited",
                             default=False)
+
 
     def action_lock(self):
         self._action_lock()
