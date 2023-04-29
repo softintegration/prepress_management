@@ -107,7 +107,7 @@
                                    attrs="{'invisible':[('product_id','=',False),('product_varnish_id','=',False)]}"
                                    domain="[('height','=',product_height),('height_uom_id','=',product_height_uom_id),
                                    ('width','=',product_width),('width_uom_id','=',product_width_uom_id),
-                                   ('thickness','=',product_thickness),('thickness_uom_id','=',product_thickness_uom_id),]"
+                                   ('thickness','=',product_thickness),('thickness_uom_id','=',product_thickness_uom_id),('state','=','validated')]"
                                    options="{'no_create':True,'no_edit':True}"
                                    />
                             <label for="cut_height" attrs="{'invisible':[('cutting_die_id','=',False)]}"/>
@@ -202,6 +202,7 @@
                             <field name="product_thickness" invisible="1"/>
                             <field name="product_thickness_uom_id" invisible="1"/>
                             <field name="cutting_die_id"
+                                   domain="[('state','=','validated')]"
                                    attrs="{'invisible':[('product_varnish_id','=',False)]}"
                                    options="{'no_create':True,'no_edit':True}"
                                    />
