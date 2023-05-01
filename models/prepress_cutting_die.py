@@ -57,6 +57,8 @@ class PrepressCuttingDie(models.Model):
     locked = fields.Boolean(string='Locked', help="If the cutting die is locked we can't edit Customers",
                             default=False)
     prepress_proof_ids_count = fields.Integer(compute='_compute_prepress_proof_ids_count')
+    product_id = fields.Many2one('product.product', string='Product', states={'draft': [('readonly', False)]},
+                                 readonly=True, domain=[('type', '=', 'product')])
 
 
     def _prepress_proofs(self):

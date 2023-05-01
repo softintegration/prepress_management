@@ -125,6 +125,7 @@
                                    domain="[('model','=','prepress.cutting.die')]"
                                    options="{'color_field': 'color'}"
                                    context="{'default_model':'prepress.cutting.die'}"/>
+                            <field name="product_id"/>
                         </group>
                     </group>
                     <div class="o_new-group o_new-group-big">Dummy</div>
