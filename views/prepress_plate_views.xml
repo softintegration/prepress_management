@@ -58,7 +58,6 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-
                      <button name="action_confirm" type="object" states="draft" string="Validate"
                             class="oe_highlight"
                             data-hotkey="v"/>
@@ -153,6 +152,17 @@
                             </tree>
                         </field>
                     </group>
+                    <group name="screen_angle_lines" string="Screen angle"
+                           attrs="{'invisible':['|',('product_plate_type','!=','plate_ctp'),('prepress_proof_id','=',False)]}">
+                        <field name="screen_angle_lines" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="color_id"/>
+                                <field name="color_code" widget="color" force_save="1"/>
+                                <field name="screen_angle"/>
+                            </tree>
+                        </field>
+                    </group>
+
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>

@@ -71,6 +71,7 @@ class PrepressPlate(models.Model):
                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
     tag_ids = fields.Many2many('prepress.tags', relation='prepress_plate_tags_rel', string='Tags'
                                ,states={'draft': [('readonly', False)]}, readonly=True)
+    screen_angle_lines = fields.One2many('prepress.plate.screen.angle','plate_id',states={'draft': [('readonly', False)]}, readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -81,6 +82,10 @@ class PrepressPlate(models.Model):
     def _onchange_product_id(self):
         self._update_prepress_proof()
         self.update({'cutting_die_id': False})
+
+    @api.onchange('prepress_proof_id')
+    def _onchange_prepress_proof_id(self):
+        self._update_screen_angle_lines()
 
     @api.onchange('cutting_die_id')
     def _onchange_cutting_die_id(self):
@@ -97,6 +102,18 @@ class PrepressPlate(models.Model):
             return
         prepress_proof = self.env['prepress.proof']._get_by_product(self.product_id)
         self.update({'prepress_proof_id': prepress_proof and prepress_proof.id or False})
+
+    def _update_screen_angle_lines(self):
+        self.screen_angle_lines = False
+        screen_angle_lines = []
+        if self.prepress_proof_id:
+            for color_line in self.prepress_proof_id.color_ids:
+                screen_angle_lines.append((0,0,{
+                    'color_id':color_line.color_id.id,
+                    'color_code':color_line.color_code
+                }))
+        self.update({'screen_angle_lines': screen_angle_lines})
+
 
     def action_confirm(self):
         return self._action_confirm()
@@ -233,4 +250,14 @@ class PrepressPlateFrameType(models.Model):
     description = fields.Text(string='Description')
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
+
+class PrepressPlateScreenAngle(models.Model):
+    _name = 'prepress.plate.screen.angle'
+
+    plate_id = fields.Many2one("prepress.plate",ondelete='cascade')
+    color_id = fields.Many2one('product.product', string='Reference', required=True,
+                               domain=[('color_code', '!=', False), ('type', '=', 'product')])
+    color_code = fields.Char(string='Color', compute='_compute_color_code', required=True, store=True, readonly=False)
+    screen_angle = fields.Float(string='Screen angle')
+
 
