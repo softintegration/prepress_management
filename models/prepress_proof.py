@@ -28,7 +28,7 @@ class PrepressProof(models.Model):
                                  domain=[('customer_rank', '>', 0), ('parent_id', '=', False)])
     product_id = fields.Many2one('product.product', string=u'Product', required=True,
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False, index=True)
-    color_cpt = fields.Integer(string='Number of Colors',states={'in_progress': [('readonly', False)]}, readonly=True)
+    color_cpt = fields.Integer(string='Number of Colors', states={'in_progress': [('readonly', False)]}, readonly=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
                                     readonly=True)
     prepress_type_code = fields.Char(related='prepress_type.code')
@@ -50,13 +50,13 @@ class PrepressProof(models.Model):
                                                default=lambda self: self.env.ref('uom.product_uom_millimeter'),
                                                store=True)
     product_gram_weight = fields.Integer(string='Weight', related='product_id.gram_weight',
-                                       states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
+                                         states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_uom_id = fields.Many2one('uom.uom', related='product_id.gram_weight_uom_id',
                                                  string="Weight Unit of Measure",
                                                  default=lambda self: self.env.ref('uom.product_uom_gram'), store=True)
-    notice_type = fields.Selection(string='Type of notice',related='product_id.notice_type',store=True)
-    folding_dimension = fields.Char(string='Folding dimension',related='product_id.folding_dimension',store=True)
-    with_braille = fields.Boolean(string='With braille',related='product_id.with_braille',store=True)
+    notice_type = fields.Selection(string='Type of notice', related='product_id.notice_type', store=True)
+    folding_dimension = fields.Char(string='Folding dimension', related='product_id.folding_dimension', store=True)
+    with_braille = fields.Boolean(string='With braille', related='product_id.with_braille', store=True)
     creation_date = fields.Date(string='Creation date', states={'in_progress': [('readonly', False)]}, readonly=True,
                                 default=lambda self: fields.Datetime.now())
     confirm_date = fields.Date(string='Confirm date', states={'in_progress': [('readonly', False)]}, readonly=True)
@@ -80,10 +80,10 @@ class PrepressProof(models.Model):
     flash_line_ids = fields.One2many('prepress.proof.flash.line', 'prepress_proof_id')
     flash_line_ids_count = fields.Integer(compute='_compute_flash_line_ids_count')
     flash_cpt = fields.Integer(string='Flash cpt', default=0)
-    customer_signatures = fields.One2many('prepress.proof.customer.signature','prepress_proof_id')
+    prepress_plates_ids_count = fields.Integer(compute='_compute_prepress_plates_ids_count')
+    customer_signatures = fields.One2many('prepress.proof.customer.signature', 'prepress_proof_id')
     locked = fields.Boolean(string='Locked', help="If the prepress proof is locked,no field can be edited",
                             default=False)
-
 
     def action_lock(self):
         self._action_lock()
@@ -110,8 +110,7 @@ class PrepressProof(models.Model):
     def _onchange_product_id(self):
         self.update({
             'prepress_type': self.product_id and self.product_id.prepress_type and self.product_id.prepress_type.id or False})
-        self.update({'color_cpt':self.product_id.color_cpt})
-
+        self.update({'color_cpt': self.product_id.color_cpt})
 
     @api.depends('flash_line_ids')
     def _compute_flash_line_ids_count(self):
@@ -132,6 +131,31 @@ class PrepressProof(models.Model):
             'domain': domain,
         }
 
+    def _get_related_prepress_plates_domain(self):
+        return [('prepress_proof_id', 'in', self.ids), ('state', '=', 'validated'),
+                ('product_plate_type', '=', 'plate_ctp')]
+
+    def _get_related_prepress_plates(self):
+        return self.env['prepress.plate'].search(self._get_related_prepress_plates_domain())
+
+    def show_prepress_plates(self):
+        self.ensure_one()
+        domain = self._get_related_prepress_plates_domain()
+        return {
+            'name': _('Plate CTP'),
+            'view_mode': 'tree,form',
+            'views': [(self.env.ref('prepress_management.view_prepress_plate_ctp_tree').id, 'tree'),
+                      (self.env.ref('prepress_management.view_prepress_plate_ctp_form').id, 'form')],
+            'res_model': 'prepress.plate',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'domain': domain,
+        }
+
+    def _compute_prepress_plates_ids_count(self):
+        for each in self:
+            each.prepress_plates_ids_count = len(each._get_related_prepress_plates())
+
     @api.depends('quarantined_history_ids')
     def _compute_quarantined_history_ids_count(self):
         for each in self:
@@ -147,7 +171,7 @@ class PrepressProof(models.Model):
             'res_model': 'prepress.proof.quarantined.history',
             'type': 'ir.actions.act_window',
             'target': 'current',
-            'domain':[('id','in',self.quarantined_history_ids.ids)]
+            'domain': [('id', 'in', self.quarantined_history_ids.ids)]
         }
 
     def action_confirm(self):
@@ -195,20 +219,20 @@ class PrepressProof(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
-    def action_quarantine(self, quarantined_motif,date=False):
+    def action_quarantine(self, quarantined_motif, date=False):
         self.quarantine_check()
         # we have to register the current state to know how to return
         self._register_current_state()
-        self._register_quarantine_history(quarantined_motif,date=date)
+        self._register_quarantine_history(quarantined_motif, date=date)
         self._action_quarantine()
 
-    def _register_quarantine_history(self, quarantined_motif,date=False):
+    def _register_quarantine_history(self, quarantined_motif, date=False):
         for each in self:
             self.env['prepress.proof.quarantined.history'].create({
                 'prepress_proof_id': each.id,
                 'quarantined_motif': quarantined_motif.name,
                 'quarantined_motif_description': quarantined_motif.description,
-                'quarantined_date':date and date or fields.Datetime.now()
+                'quarantined_date': date and date or fields.Datetime.now()
             })
 
     def _action_quarantine(self):
@@ -287,7 +311,7 @@ class PrepressProof(models.Model):
             raise ValidationError(_("Only one Validated/Flashed Prepress Proof is authorised by product!"))
 
     def _check_prepress_proof_data(self):
-        prepress_proof_not_in_progress= self.env['prepress.proof']
+        prepress_proof_not_in_progress = self.env['prepress.proof']
         prepress_proof_without_confirm_date = self.env['prepress.proof']
         prepress_proof_with_incoherent_color_nbr = self.env['prepress.proof']
         prepress_proof_with_wrong_color_nbr = self.env['prepress.proof']
@@ -309,16 +333,14 @@ class PrepressProof(models.Model):
                 _("Confirm date is required,no confirm date has been detected in the prepress proofs %s!") % (
                     ",".join(prepress_proof_without_confirm_date.mapped("name"))))
         if prepress_proof_with_incoherent_color_nbr:
-            raise ValidationError(_("Number of Colors in product must be the same as the number of colors in Prepress proof,"
-                                    "The Prepress proofs %s does not respect this rule!")% (
+            raise ValidationError(
+                _("Number of Colors in product must be the same as the number of colors in Prepress proof,"
+                  "The Prepress proofs %s does not respect this rule!") % (
                     ",".join(prepress_proof_with_incoherent_color_nbr.mapped("name"))))
         if prepress_proof_with_wrong_color_nbr:
             raise ValidationError(
                 _("Can not select the same color many times,please check the colors in %s!") % (
                     ",".join(prepress_proof_with_wrong_color_nbr.mapped("name"))))
-
-
-
 
     def action_flash_wizard(self):
         ''' Open the prepress.proof.flash wizard to flash the current Prepress Proof.
@@ -361,7 +383,6 @@ class PrepressProof(models.Model):
         }
 
 
-
 class PrepressProofFlashLine(models.Model):
     _name = 'prepress.proof.flash.line'
 
@@ -369,10 +390,12 @@ class PrepressProofFlashLine(models.Model):
     prepress_proof_id = fields.Many2one('prepress.proof', required=True, ondelete='cascade')
     cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die", required=True)
     prepress_plate_ctp_id = fields.Many2one('prepress.plate', string="CTP Plate")
-    cut_height = fields.Float(string='Mounting height',related='prepress_plate_ctp_id.cut_height',store=True)
-    cut_height_uom_id = fields.Many2one('uom.uom',string="Mounting Height Unit of Measure",related='prepress_plate_ctp_id.cut_height_uom_id',store=True)
-    cut_width = fields.Float(string='Mounting width',related='prepress_plate_ctp_id.cut_width',store=True)
-    cut_width_uom_id = fields.Many2one('uom.uom',string="Mounting Width Unit of Measure",related='prepress_plate_ctp_id.cut_width_uom_id',store=True)
+    cut_height = fields.Float(string='Mounting height', related='prepress_plate_ctp_id.cut_height', store=True)
+    cut_height_uom_id = fields.Many2one('uom.uom', string="Mounting Height Unit of Measure",
+                                        related='prepress_plate_ctp_id.cut_height_uom_id', store=True)
+    cut_width = fields.Float(string='Mounting width', related='prepress_plate_ctp_id.cut_width', store=True)
+    cut_width_uom_id = fields.Many2one('uom.uom', string="Mounting Width Unit of Measure",
+                                       related='prepress_plate_ctp_id.cut_width_uom_id', store=True)
     prepress_plate_varnish_id = fields.Many2one('prepress.plate', string="Varnish Plate")
     is_default = fields.Boolean(string="Default", default=False)
     exposure_nbr = fields.Integer('Exposure Nbr', store=True)
@@ -401,7 +424,7 @@ class PrepressProofQuarantinedHistory(models.Model):
         res = []
         for quarantined_history in self:
             res.append((quarantined_history.id, '%s (%s)' % (
-            quarantined_history.prepress_proof_id.name, quarantined_history.quarantined_motif)))
+                quarantined_history.prepress_proof_id.name, quarantined_history.quarantined_motif)))
         return res
 
 
@@ -433,12 +456,8 @@ class PrepressProofCustomerSignature(models.Model):
     _name = 'prepress.proof.customer.signature'
 
     prepress_proof_id = fields.Many2one('prepress.proof', required=True, ondelete='cascade')
-    signed_by = fields.Many2one('res.partner',string='Signed by',required=True)
-    function = fields.Char(string='Job Position',related='signed_by.function',store=True)
-    signed_on = fields.Datetime('Signed On', help='Date of the signature.',required=True)
+    signed_by = fields.Many2one('res.partner', string='Signed by', required=True)
+    function = fields.Char(string='Job Position', related='signed_by.function', store=True)
+    signed_on = fields.Datetime('Signed On', help='Date of the signature.', required=True)
     signature = fields.Image('Signature', help='Signature received through the portal.', attachment=True,
                              max_width=1024, max_height=1024)
-
-
-
-
