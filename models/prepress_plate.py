@@ -24,6 +24,7 @@ class PrepressPlate(models.Model):
                                           states={'draft': [('readonly', False)]}, readonly=True)
     product_varnish_id = fields.Many2one('product.product', string='Varnish', states={'draft': [('readonly', False)]},
                                          readonly=True)
+    date = fields.Date(string='Date',states={'draft': [('readonly', False)]}, readonly=True)
     cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die",
                                      states={'draft': [('readonly', False)]},
                                      readonly=True)

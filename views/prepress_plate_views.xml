@@ -13,6 +13,7 @@
                   decoration-info="state == 'validated'"  js_class="lazy_column_list"
             >
                 <field name="name" readonly="1" decoration-bf="1"/>
+                <field name="date" optional="show"/>
                 <field name="type_format" optional="show"/>
                 <field name="product_id" optional="show"/>
                 <field name="height" optional="show"/>
@@ -102,6 +103,7 @@
                             <field name="product_width_uom_id" invisible="1"/>
                             <field name="product_thickness" invisible="1"/>
                             <field name="product_thickness_uom_id" invisible="1"/>
+                            <field name="date"/>
                             <field name="cutting_die_id"
                                    attrs="{'invisible':[('product_id','=',False),('product_varnish_id','=',False)]}"
                                    domain="[('height','=',product_height),('height_uom_id','=',product_height_uom_id),
