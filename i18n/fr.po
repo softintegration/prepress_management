@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 13:08+0000\n"
-"PO-Revision-Date: 2023-05-01 13:08+0000\n"
+"POT-Creation-Date: 2023-05-07 14:20+0000\n"
+"PO-Revision-Date: 2023-05-07 14:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -420,6 +420,11 @@ msgid "Create a new Frame Type"
 msgstr "Créer un nouveau type de trame"
 
 #. module: prepress_management
+#: model_terms:ir.actions.act_window,help:prepress_management.prepress_plate_lineature_main_action
+msgid "Create a new Lineature"
+msgstr Créer une nouvelle linéature"
+
+#. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.prepress_cutting_die_mounting_type_main_action
 msgid "Create a new Mounting Type"
 msgstr "Créer un nouveau Type de montage"
@@ -456,6 +461,7 @@ msgstr "Créer un nouveau Type de vernis"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__create_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__create_uid
@@ -480,6 +486,7 @@ msgstr "Crée par"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__create_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle__create_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__create_date
@@ -575,6 +582,7 @@ msgstr "Par défaut"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__description
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__description
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__description
 #: model:ir.model.fields,field_description:prepress_management.field_product_varnish__description
@@ -588,6 +596,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__display_name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle__display_name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__display_name
@@ -860,6 +869,7 @@ msgstr "Vous aide à gérer votre processus Prépresse : BAT, etc."
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__id
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle__id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__id
@@ -958,6 +968,7 @@ msgstr "Poste occupé"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type____last_update
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle____last_update
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product____last_update
@@ -982,6 +993,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__write_uid
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle__write_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__write_uid
@@ -1006,6 +1018,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_mounting_type__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_frame_type__write_date
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_point_form__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_screen_angle__write_date
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_sub_product__write_date
@@ -1026,6 +1039,12 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__lineation
 msgid "Lineation"
+msgstr "Linéature"
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.prepress_plate_lineature_main_action
+#: model:ir.ui.menu,name:prepress_management.prepress_plate_lineature_action_menu
+msgid "Lineature"
 msgstr "Linéature"
 
 #. module: prepress_management
@@ -1149,6 +1168,7 @@ msgstr ""
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__name
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_plate_lineature__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_tags__name
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__name
@@ -1950,6 +1970,11 @@ msgstr "Annuler"
 #: model:ir.model,name:prepress_management.model_complexity_factor
 msgid "complexity.factor"
 msgstr "Facteur de complexité"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_prepress_plate_lineature
+msgid "prepress.plate.lineature"
+msgstr ""
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_plate_screen_angle

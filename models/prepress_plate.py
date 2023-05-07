@@ -53,7 +53,8 @@ class PrepressPlate(models.Model):
                                    states={'draft': [('readonly', False)]}, readonly=True)
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
-    lineation = fields.Char(string='Lineation', states={'draft': [('readonly', False)]}, readonly=True)
+    lineation = fields.Many2one('prepress.plate.lineature', string='Lineation', states={'draft': [('readonly', False)]},
+                                readonly=True)
     frame_type_id = fields.Many2one('prepress.plate.frame.type', string='Frame type',
                                     states={'draft': [('readonly', False)]},
                                     readonly=True)
@@ -62,7 +63,7 @@ class PrepressPlate(models.Model):
                                     readonly=True)
     sub_product_ids = fields.One2many('prepress.plate.sub.product', 'plate_id', string='Sub-products',
                                       states={'draft': [('readonly', False)]}, readonly=True)
-    calibration = fields.Boolean(string='Calibration',states={'draft': [('readonly', False)]}, readonly=True)
+    calibration = fields.Boolean(string='Calibration', states={'draft': [('readonly', False)]}, readonly=True)
     cut_height = fields.Float(string='Mounting height', states={'draft': [('readonly', False)]}, readonly=True)
     cut_height_uom_id = fields.Many2one('uom.uom', string="Mounting Height Unit of Measure",
                                         default=lambda self: self.env.ref('uom.product_uom_millimeter'))
@@ -70,8 +71,9 @@ class PrepressPlate(models.Model):
     cut_width_uom_id = fields.Many2one('uom.uom', string="Mounting Width Unit of Measure",
                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
     tag_ids = fields.Many2many('prepress.tags', relation='prepress_plate_tags_rel', string='Tags'
-                               ,states={'draft': [('readonly', False)]}, readonly=True)
-    screen_angle_lines = fields.One2many('prepress.plate.screen.angle','plate_id',states={'draft': [('readonly', False)]}, readonly=True)
+                               , states={'draft': [('readonly', False)]}, readonly=True)
+    screen_angle_lines = fields.One2many('prepress.plate.screen.angle', 'plate_id',
+                                         states={'draft': [('readonly', False)]}, readonly=True)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -91,11 +93,10 @@ class PrepressPlate(models.Model):
     def _onchange_cutting_die_id(self):
         if self.cutting_die_id:
             self.update({'exposure_nbr': self.cutting_die_id.exposure_nbr,
-                         'cut_height':self.cutting_die_id.cut_height,
-                         'cut_height_uom_id':self.cut_height_uom_id and self.cut_height_uom_id.id or False,
-                         'cut_width':self.cutting_die_id.cut_width,
-                         'cut_width_uom_id':self.cutting_die_id.cut_width_uom_id and self.cutting_die_id.cut_width_uom_id.id or False})
-
+                         'cut_height': self.cutting_die_id.cut_height,
+                         'cut_height_uom_id': self.cut_height_uom_id and self.cut_height_uom_id.id or False,
+                         'cut_width': self.cutting_die_id.cut_width,
+                         'cut_width_uom_id': self.cutting_die_id.cut_width_uom_id and self.cutting_die_id.cut_width_uom_id.id or False})
 
     def _update_prepress_proof(self):
         if not self.product_id:
@@ -108,12 +109,11 @@ class PrepressPlate(models.Model):
         screen_angle_lines = []
         if self.prepress_proof_id:
             for color_line in self.prepress_proof_id.color_ids:
-                screen_angle_lines.append((0,0,{
-                    'color_id':color_line.color_id.id,
-                    'color_code':color_line.color_code
+                screen_angle_lines.append((0, 0, {
+                    'color_id': color_line.color_id.id,
+                    'color_code': color_line.color_code
                 }))
         self.update({'screen_angle_lines': screen_angle_lines})
-
 
     def action_confirm(self):
         return self._action_confirm()
@@ -251,13 +251,19 @@ class PrepressPlateFrameType(models.Model):
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
 
+
 class PrepressPlateScreenAngle(models.Model):
     _name = 'prepress.plate.screen.angle'
 
-    plate_id = fields.Many2one("prepress.plate",ondelete='cascade')
+    plate_id = fields.Many2one("prepress.plate", ondelete='cascade')
     color_id = fields.Many2one('product.product', string='Reference', required=True,
                                domain=[('color_code', '!=', False), ('type', '=', 'product')])
     color_code = fields.Char(string='Color', compute='_compute_color_code', required=True, store=True, readonly=False)
     screen_angle = fields.Float(string='Screen angle')
 
 
+class PrepressPlateLineature(models.Model):
+    _name = 'prepress.plate.lineature'
+
+    name = fields.Char(string='Name', required=True)
+    description = fields.Text(string='Description')

@@ -332,6 +332,36 @@
         </field>
     </record>
 
+
+    <!-- Lineature form view -->
+
+    <record model="ir.ui.view" id="prepress_plate_lineature_form_view">
+        <field name="name">prepress.plate.lineature.form.view</field>
+        <field name="model">prepress.plate.lineature</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Lineature form Tree view -->
+    <record model="ir.ui.view" id="prepress_plate_lineature_tree_view">
+        <field name="name">prepress.plate.lineature.tree.view</field>
+        <field name="model">prepress.plate.lineature</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
     <!-- Menu and Actions -->
 
     <menuitem id="prepress_plate_menu"
@@ -428,6 +458,25 @@
               action="prepress_management.prepress_plate_point_form_main_action"
               sequence="10"/>
 
+
+    <record id="prepress_plate_lineature_main_action" model="ir.actions.act_window">
+        <field name="name">Lineature</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prepress.plate.lineature</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Lineature
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="prepress_plate_lineature_action_menu"
+              parent="prepress_plate_prepress_config_menu"
+              name="Lineature"
+              action="prepress_management.prepress_plate_lineature_main_action"
+              sequence="15"/>
+
         <record id="prepress_plate_tags_action" model="ir.actions.act_window">
             <field name="name">Tags</field>
             <field name="res_model">prepress.tags</field>
@@ -445,6 +494,6 @@
 
     <menuitem action="prepress_plate_tags_action" id="menu_prepress_plate_tags_action"
               parent="prepress_plate_prepress_config_menu"
-              sequence="11"/>
+              sequence="20"/>
 
 </odoo>
