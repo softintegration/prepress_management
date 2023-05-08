@@ -96,9 +96,9 @@
                     <button name="action_confirm" type="object" states="in_progress" string="Validate"
                             class="oe_highlight"
                             data-hotkey="c"/>
-                    <button name="action_flash_wizard" type="object" states="validated,flashed" string="Flash"
+                    <!--<button name="action_flash_wizard" type="object" states="validated,flashed" string="Flash"
                             class="oe_highlight"
-                            data-hotkey="f"/>
+                            data-hotkey="f"/>-->
                     <button name="action_quarantine_wizard" type="object" states="validated,flashed" string="Put in quarantine"
                             groups="prepress_management.group_prepress_proof_quarantine_process" data-hotkey="q"/>
                     <button name="action_reset_from_quarantine" type="object" states="quarantined"
