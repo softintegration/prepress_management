@@ -116,7 +116,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="show_flash_lines" icon="fa-list"
+                        <!--<button class="oe_stat_button" name="show_flash_lines" icon="fa-list"
                                 type="object" attrs="{'invisible':[('flash_line_ids_count','=',0)]}">
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value">
@@ -127,7 +127,7 @@
                                     Lines
                                 </span>
                             </div>
-                        </button>
+                        </button>-->
                         <button class="oe_stat_button" name="show_quarantined_history" icon="fa-list"
                                 type="object" attrs="{'invisible':[('quarantined_history_ids_count','=',0)]}">
                             <div class="o_field_widget o_stat_info">
