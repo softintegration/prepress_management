@@ -265,21 +265,29 @@ class PrepressProof(models.Model):
             each.product_id.with_context(force_update=True)._increment_prepress_proof_version()
 
     @api.model
-    def _get_by_product_id(self, product_id, count=False):
+    def _get_by_product_id(self, product_id, count=False,excluded_states=False,limit=False):
         """:param : product_id : ID of the product"""
         domain = [('product_id', '=', product_id)]
+        if excluded_states:
+            domain.append(('state','not in',excluded_states))
         if count:
             return self.search_count(domain)
+        elif limit:
+            return self.search(domain,limit=limit)
         else:
             return self.search(domain)
 
     @api.model
-    def _get_by_product_tmpl_id(self, product_tmpl_id, count=False):
+    def _get_by_product_tmpl_id(self, product_tmpl_id, count=False,excluded_states=False,limit=False):
         """:param : product_tmpl_id : ID of the product template"""
         product_variant_ids = self.env['product.template'].browse(product_tmpl_id).product_variant_ids
         domain = [('product_id', 'in', product_variant_ids.ids)]
+        if excluded_states:
+            domain.append(('state','not in',excluded_states))
         if count:
             return self.search_count(domain)
+        elif limit:
+            return self.search(domain, limit=limit)
         else:
             return self.search(domain)
 

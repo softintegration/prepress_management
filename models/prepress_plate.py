@@ -102,7 +102,9 @@ class PrepressPlate(models.Model):
     def _update_prepress_proof(self):
         if not self.product_id:
             return
-        prepress_proof = self.env['prepress.proof']._get_by_product(self.product_id)
+        prepress_proof = self.env['prepress.proof']._get_by_product_id(self.product_id.id,
+                                                                       excluded_states=('in_progress','quarantined','cancel'),
+                                                                       limit=1)
         self.update({'prepress_proof_id': prepress_proof and prepress_proof.id or False})
 
     def _update_screen_angle_lines(self):
@@ -124,6 +126,8 @@ class PrepressPlate(models.Model):
         for each in self:
             each._set_name_by_sequence()
         self.write({'state': 'validated'})
+
+
 
     def _check_validated_plate(self):
         for each in self:
