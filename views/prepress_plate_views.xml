@@ -22,6 +22,7 @@
                 <field name="width" optional="show"/>
                 <field name="width_uom_id" optional="hide"/>
                 <field name="exposure_nbr" optional="show"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="show"/>
                 <field name="cut_height" optional="show"/>
                 <field name="cut_height_uom_id" optional="hide"/>
                 <field name="cut_width" optional="show"/>
