@@ -132,7 +132,7 @@ class PrepressProof(models.Model):
         }
 
     def _get_related_prepress_plates_domain(self):
-        return [('prepress_proof_id', 'in', self.ids), ('state', '=', 'validated'),
+        return [('prepress_proof_id', 'in', self.ids), ('state', 'in', ('validated','cancel')),
                 ('product_plate_type', '=', 'plate_ctp')]
 
     def _get_related_prepress_plates(self):
