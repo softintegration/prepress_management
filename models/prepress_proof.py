@@ -183,9 +183,14 @@ class PrepressProof(models.Model):
         self._update_prepress_proof_version()
         self.write({'state': 'validated'})
 
-    def action_flash(self, flash_date, cutting_die, prepress_plate_ctp, prepress_plate_varnish):
+    def __action_flash(self, flash_date, cutting_die, prepress_plate_ctp, prepress_plate_varnish):
         flash_line = self._prepare_flash_line(flash_date, cutting_die, prepress_plate_ctp, prepress_plate_varnish)
         self.env['prepress.proof.flash.line'].create(flash_line)
+        self.incr_flash_cpt()
+        if self.state != 'flashed':
+            return self._action_flash()
+
+    def action_flash(self):
         self.incr_flash_cpt()
         if self.state != 'flashed':
             return self._action_flash()

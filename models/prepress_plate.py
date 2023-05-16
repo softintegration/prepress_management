@@ -119,7 +119,13 @@ class PrepressPlate(models.Model):
         self.update({'screen_angle_lines': screen_angle_lines})
 
     def action_confirm(self):
+        self._flash_related_prepress_proofs()
         return self._action_confirm()
+
+    def _flash_related_prepress_proofs(self):
+        for each in self.filtered(lambda pl:pl.product_plate_type == 'plate_ctp'):
+            each.prepress_proof_id.action_flash()
+
 
     def _action_confirm(self):
         self._check_validated_plate()
