@@ -75,6 +75,10 @@ class PrepressPlate(models.Model):
                                , states={'draft': [('readonly', False)]}, readonly=True)
     screen_angle_lines = fields.One2many('prepress.plate.screen.angle', 'plate_id',
                                          states={'draft': [('readonly', False)]}, readonly=True)
+    plate_varnish_id = fields.Many2one('prepress.plate',string='Varnish plate',domain=[('product_plate_type','=','plate_varnish'),
+                                                                                       ('state','=','validated')],
+                                       states={'draft': [('readonly', False)]}, readonly=True)
+
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):

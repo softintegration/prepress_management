@@ -28,6 +28,7 @@
                 <field name="cut_width_uom_id" optional="hide"/>
                 <field name="exposure_nbr" optional="show"/>
                 <field name="calibration" optional="hide"/>
+                <field name="plate_varnish_id" optional="hide"/>
                 <field name="state" decoration-bf="state == 'draft'"
                        decoration-success="state == 'validated'" decoration-danger="state == 'cancel'" widget="badge"/>
             </tree>
@@ -117,6 +118,9 @@
                                    ('thickness','=',product_thickness),('thickness_uom_id','=',product_thickness_uom_id),('state','=','validated')]"
                                    options="{'no_create':True,'no_edit':True}"
                                    />
+                            <field name="plate_varnish_id"
+                                   context="{'form_view_ref': 'prepress_management.view_prepress_plate_varnish_form'}"
+                                   options="{'no_create':True,'no_edit':True}"/>
                             <label for="cut_height" attrs="{'invisible':[('cutting_die_id','=',False)]}"/>
                             <div name="cut_height" attrs="{'invisible':[('cutting_die_id','=',False)]}">
                                 <field name="cut_height" class="oe_inline"/>
