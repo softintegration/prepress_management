@@ -461,7 +461,7 @@ class PrepressProofColor(models.Model):
     @api.depends('color_id')
     def _compute_color_code(self):
         for each in self:
-            if each.color_id and not each.color_code:
+            if each.color_id:
                 each.color_code = each.color_id.color_code
 
 
