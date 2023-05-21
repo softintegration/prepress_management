@@ -120,7 +120,10 @@
                                    />
                             <field name="plate_varnish_id"
                                    context="{'form_view_ref': 'prepress_management.view_prepress_plate_varnish_form'}"
-                                   options="{'no_create':True,'no_edit':True}"/>
+                                   options="{'no_create':True,'no_edit':True}"
+                                   attrs="{'invisible':[('cutting_die_id','=',False)]}"
+                                   domain="[('product_plate_type','=','plate_varnish'),('state','=','validated'),
+                                   ('cutting_die_id','=',cutting_die_id)]"/>
                             <label for="cut_height" attrs="{'invisible':[('cutting_die_id','=',False)]}"/>
                             <div name="cut_height" attrs="{'invisible':[('cutting_die_id','=',False)]}">
                                 <field name="cut_height" class="oe_inline"/>
