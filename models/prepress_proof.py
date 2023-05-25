@@ -219,7 +219,18 @@ class PrepressProof(models.Model):
                                  default_display_cancel_date=True)._action_cancel_motif_wizard()
 
     def action_cancel(self):
+        self._check_cancel()
         return self._action_cancel()
+
+    def _check_cancel(self):
+        self._check_related_plates_state()
+
+    def _check_related_plates_state(self):
+        for each in self:
+            plates_states = each._get_related_prepress_plates().mapped("state")
+            if plates_states and (len(plates_states) != 1 or plates_states[0] != 'cancel'):
+                raise ValidationError(_("All related CTP plates must be cancelled!"))
+
 
     def _action_cancel(self):
         self.write({'state': 'cancel'})
