@@ -228,7 +228,7 @@ class PrepressProof(models.Model):
     def _check_related_plates_state(self):
         for each in self:
             plates_states = each._get_related_prepress_plates().mapped("state")
-            if plates_states and (len(plates_states) != 1 or plates_states[0] != 'cancel'):
+            if plates_states and (len(set(plates_states)) != 1 or plates_states[0] != 'cancel'):
                 raise ValidationError(_("All related CTP plates must be cancelled!"))
 
 
