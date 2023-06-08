@@ -131,16 +131,17 @@ class PrepressProof(models.Model):
             'domain': domain,
         }
 
-    def _get_related_prepress_plates_domain(self):
-        return [('prepress_proof_id', 'in', self.ids), ('state', 'in', ('validated','cancel')),
+    def _get_related_prepress_plates_domain(self,sub_product_plates=[]):
+        return ['|',('prepress_proof_id', 'in', self.ids),('id','in',sub_product_plates), ('state', 'in', ('validated','cancel')),
                 ('product_plate_type', '=', 'plate_ctp')]
 
     def _get_related_prepress_plates(self):
-        return self.env['prepress.plate'].search(self._get_related_prepress_plates_domain())
+        return self.env['prepress.plate'].search(self._get_related_prepress_plates_domain(self._get_sub_product_plates().ids))
 
     def show_prepress_plates(self):
         self.ensure_one()
-        domain = self._get_related_prepress_plates_domain()
+        # we have to put the ctp plates whose proof is attached to the sub-products
+        domain = self._get_related_prepress_plates_domain(self._get_sub_product_plates().ids)
         return {
             'name': _('Plate CTP'),
             'view_mode': 'tree,form',
@@ -151,6 +152,9 @@ class PrepressProof(models.Model):
             'target': 'current',
             'domain': domain,
         }
+
+    def _get_sub_product_plates(self):
+        return self.env['prepress.plate.sub.product'].search([('prepress_proof_id','in',self.ids)]).mapped("plate_id")
 
     def _compute_prepress_plates_ids_count(self):
         for each in self:
