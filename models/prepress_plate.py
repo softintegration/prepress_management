@@ -150,14 +150,14 @@ class PrepressPlate(models.Model):
                 raise ValidationError(_("Product is required in CTP Plate!"))
             elif each.product_plate_type == 'plate_ctp' and not each.prepress_proof_id:
                 raise ValidationError(_("Prepress Proof is required in CTP Plate!"))
-            elif each.product_plate_type == 'plate_ctp' and each.prepress_proof_id.id != self.env[
+            elif not each._is_revalidation() and each.product_plate_type == 'plate_ctp' and each.prepress_proof_id.id != self.env[
                 'prepress.proof']._get_by_product(each.product_id).id:
                 raise ValidationError(
                     _("Prepress Proof has been changed,Please refresh the Prepress proof by re-selecting the product!"))
 
     def _set_name_by_sequence(self):
         self.ensure_one()
-        if self.name != "New":
+        if self._is_revalidation():
             return
         if self._sequence_dynamic_installed():
             # FIXME:We have to test this in important data volume
@@ -167,6 +167,10 @@ class PrepressPlate(models.Model):
         else:
             name = self.env['ir.sequence'].next_by_code(DEFAULT_CODE_PLATE)
         self.name = name
+
+    def _is_revalidation(self):
+        self.ensure_one()
+        return self.name != "New"
 
     @api.model
     def _sequence_dynamic_installed(self):

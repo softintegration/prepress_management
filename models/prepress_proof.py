@@ -195,9 +195,10 @@ class PrepressProof(models.Model):
             return self._action_flash()
 
     def action_flash(self):
-        for each in self:
+        proofs_to_flash = self.filtered(lambda pp:pp.state not in ('flashed','quarantined'))
+        for each in proofs_to_flash:
             each.incr_flash_cpt()
-        return self.filtered(lambda pp:pp.state != 'flashed')._action_flash()
+        return proofs_to_flash._action_flash()
 
     def incr_flash_cpt(self):
         self.ensure_one()
