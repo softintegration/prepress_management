@@ -128,9 +128,15 @@ class PrepressPlate(models.Model):
 
     def _flash_related_prepress_proofs(self):
         for each in self.filtered(lambda pl:pl.product_plate_type == 'plate_ctp'):
-            each.prepress_proof_id.action_flash()
-            each.sub_product_ids.mapped("prepress_proof_id").action_flash()
+            each._get_related_prepress_proofs().action_flash()
+            #each.prepress_proof_id.action_flash()
+            #each.sub_product_ids.mapped("prepress_proof_id").action_flash()
 
+    def _get_related_prepress_proofs(self):
+        self.ensure_one()
+        related_proofs = self.prepress_proof_id
+        related_proofs |= self.sub_product_ids.mapped("prepress_proof_id")
+        return related_proofs
 
     def _action_confirm(self):
         self._check_validated_plate()
@@ -197,6 +203,12 @@ class PrepressPlate(models.Model):
         for each in self:
             if each.state != 'validated':
                 raise ValidationError(_("Only validated Plates can be reset!"))
+            # if this plate is related to only one prepress proof we have to reset the related proof to validated as side
+            # effect of this operation
+            if len(each._get_related_prepress_proofs()) == 1:
+                # it should be noted here that we have used _action_confirm instead of action_confirm,this is necessary to bypass the controls
+                # in the later method because here we are in reverse case "flashed=>validated"
+                each._get_related_prepress_proofs()._action_confirm()
         return self._action_reset()
 
     def _action_reset(self):

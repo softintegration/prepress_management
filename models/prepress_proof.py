@@ -180,11 +180,11 @@ class PrepressProof(models.Model):
 
     def action_confirm(self):
         self.sudo().action_lock()
+        self._check_validated_prepress_proofs()
+        self._update_prepress_proof_version()
         return self._action_confirm()
 
     def _action_confirm(self):
-        self._check_validated_prepress_proofs()
-        self._update_prepress_proof_version()
         self.write({'state': 'validated'})
 
     def __action_flash(self, flash_date, cutting_die, prepress_plate_ctp, prepress_plate_varnish):
