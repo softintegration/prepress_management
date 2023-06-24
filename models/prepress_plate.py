@@ -212,8 +212,9 @@ class PrepressPlate(models.Model):
     def _update_related_prepress_proofs(self):
         prepress_proofs_to_reset = self.env['prepress.proof']
         for each in self:
-            # we have to reset the related prepress proofs to validated as side effect of this operation
-            for prepress_proof in each._get_related_prepress_proofs():
+            # we have to reset the related prepress proofs to validated as side effect of this operation,the quarantined and canceled
+            # prepress proofs are excluded
+            for prepress_proof in each._get_related_prepress_proofs().filtered(lambda pp:pp.state not in ('quarantined','cancel')):
                 # we reset the status of the related proof to validated only if all other related plates are draft
                 related_plates_states = prepress_proof._get_related_prepress_plates().filtered(
                         lambda plate: plate.id != each.id).mapped("state")
