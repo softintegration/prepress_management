@@ -10,7 +10,7 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.127',
+    'version': '1.0.1.128',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal',

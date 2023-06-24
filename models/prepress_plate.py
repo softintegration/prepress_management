@@ -24,7 +24,7 @@ class PrepressPlate(models.Model):
                                           states={'draft': [('readonly', False)]}, readonly=True)
     product_varnish_id = fields.Many2one('product.product', string='Varnish', states={'draft': [('readonly', False)]},
                                          readonly=True)
-    date = fields.Date(string='Date',states={'draft': [('readonly', False)]}, readonly=True)
+    date = fields.Date(string='Date', states={'draft': [('readonly', False)]}, readonly=True)
     cutting_die_id = fields.Many2one('prepress.cutting.die', string="Cutting Die",
                                      states={'draft': [('readonly', False)]},
                                      readonly=True)
@@ -75,10 +75,10 @@ class PrepressPlate(models.Model):
                                , states={'draft': [('readonly', False)]}, readonly=True)
     screen_angle_lines = fields.One2many('prepress.plate.screen.angle', 'plate_id',
                                          states={'draft': [('readonly', False)]}, readonly=True)
-    plate_varnish_id = fields.Many2one('prepress.plate',string='Varnish plate',domain=[('product_plate_type','=','plate_varnish'),
-                                                                                       ('state','=','validated')],
+    plate_varnish_id = fields.Many2one('prepress.plate', string='Varnish plate',
+                                       domain=[('product_plate_type', '=', 'plate_varnish'),
+                                               ('state', '=', 'validated')],
                                        states={'draft': [('readonly', False)]}, readonly=True)
-
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -107,7 +107,8 @@ class PrepressPlate(models.Model):
         if not self.product_id:
             return
         prepress_proof = self.env['prepress.proof']._get_by_product_id(self.product_id.id,
-                                                                       excluded_states=('in_progress','quarantined','cancel'),
+                                                                       excluded_states=(
+                                                                       'in_progress', 'quarantined', 'cancel'),
                                                                        limit=1)
         self.update({'prepress_proof_id': prepress_proof and prepress_proof.id or False})
 
@@ -127,10 +128,10 @@ class PrepressPlate(models.Model):
         return self._action_confirm()
 
     def _flash_related_prepress_proofs(self):
-        for each in self.filtered(lambda pl:pl.product_plate_type == 'plate_ctp'):
+        for each in self.filtered(lambda pl: pl.product_plate_type == 'plate_ctp'):
             each._get_related_prepress_proofs().action_flash()
-            #each.prepress_proof_id.action_flash()
-            #each.sub_product_ids.mapped("prepress_proof_id").action_flash()
+            # each.prepress_proof_id.action_flash()
+            # each.sub_product_ids.mapped("prepress_proof_id").action_flash()
 
     def _get_related_prepress_proofs(self):
         self.ensure_one()
@@ -144,8 +145,6 @@ class PrepressPlate(models.Model):
             each._set_name_by_sequence()
         self.write({'state': 'validated'})
 
-
-
     def _check_validated_plate(self):
         for each in self:
             if each.state != 'draft':
@@ -156,8 +155,9 @@ class PrepressPlate(models.Model):
                 raise ValidationError(_("Product is required in CTP Plate!"))
             elif each.product_plate_type == 'plate_ctp' and not each.prepress_proof_id:
                 raise ValidationError(_("Prepress Proof is required in CTP Plate!"))
-            elif not each._is_revalidation() and each.product_plate_type == 'plate_ctp' and each.prepress_proof_id.id != self.env[
-                'prepress.proof']._get_by_product(each.product_id).id:
+            elif not each._is_revalidation() and each.product_plate_type == 'plate_ctp' and each.prepress_proof_id.id != \
+                    self.env[
+                        'prepress.proof']._get_by_product(each.product_id).id:
                 raise ValidationError(
                     _("Prepress Proof has been changed,Please refresh the Prepress proof by re-selecting the product!"))
 
@@ -200,16 +200,29 @@ class PrepressPlate(models.Model):
         self.write({'state': 'cancel'})
 
     def action_reset(self):
+        self._check_action_reset()
+        self._update_related_prepress_proofs()
+        return self._action_reset()
+
+    def _check_action_reset(self):
         for each in self:
             if each.state != 'validated':
                 raise ValidationError(_("Only validated Plates can be reset!"))
-            # if this plate is related to only one prepress proof we have to reset the related proof to validated as side
-            # effect of this operation
-            if len(each._get_related_prepress_proofs()) == 1:
-                # it should be noted here that we have used _action_confirm instead of action_confirm,this is necessary to bypass the controls
-                # in the later method because here we are in reverse case "flashed=>validated"
-                each._get_related_prepress_proofs()._action_confirm()
-        return self._action_reset()
+
+    def _update_related_prepress_proofs(self):
+        prepress_proofs_to_reset = self.env['prepress.proof']
+        for each in self:
+            # we have to reset the related prepress proofs to validated as side effect of this operation
+            for prepress_proof in each._get_related_prepress_proofs():
+                # we reset the status of the related proof to validated only if all other related plates are draft
+                related_plates_states = prepress_proof._get_related_prepress_plates().filtered(
+                        lambda plate: plate.id != each.id).mapped("state")
+                if any(state not in ('draft', 'cancel') for state in related_plates_states):
+                    continue
+                prepress_proofs_to_reset |= prepress_proof
+        # it should be noted here that we have used _action_confirm instead of action_confirm,this is necessary to bypass the controls
+        # in the later method because here we are in reverse case "flashed=>validated"
+        prepress_proofs_to_reset._action_confirm()
 
     def _action_reset(self):
         self.write({'state': 'draft'})
