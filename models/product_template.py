@@ -15,6 +15,8 @@ class ProductTemplate(models.Model):
     with_braille = fields.Boolean(string='With braille')
     complexity_factor_id = fields.Many2one('complexity.factor', string="Complexity factor")
     both_sides = fields.Boolean(string='Both sides', default=False)
+    front_color_cpt = fields.Integer(string='Front number of Colors')
+    back_color_cpt = fields.Integer(string='Back number of Colors')
     is_varnish = fields.Boolean(string='Varnish')
     format_type_id = fields.Many2one('prepress.cutting.die.format.type', string='Format type')
     notice_type = fields.Selection([('flat','Flat'),

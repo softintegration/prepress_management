@@ -39,6 +39,8 @@
                        attrs="{'invisible':[('type','!=','product')]}" options="{'no_create':True,'no_edit':True}"/>
                 <field name="both_sides" attrs="{'invisible':[('type','!=','product')]}"
                        widget="boolean_toggle"/>
+                <field name="front_color_cpt" attrs="{'invisible':['|',('both_sides','=',False),('type','!=','product')]}"/>
+                <field name="back_color_cpt" attrs="{'invisible':['|',('both_sides','=',False),('type','!=','product')]}"/>
                 <field name="varnish_type"
                        options="{'no_create':True,'no_edit':True}"
                        attrs="{'invisible':[('type','!=','product')]}"/>
