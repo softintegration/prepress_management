@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError,ValidationError
 
 
 class ProductTemplate(models.Model):
@@ -27,6 +27,13 @@ class ProductTemplate(models.Model):
     gram_weight_uom_id = fields.Many2one('uom.uom', string="Weight unit of Measure",
                                    default=lambda self: self.env.ref('uom.product_uom_gram'))
     color_code = fields.Char(string='Color')
+
+
+    @api.constrains('both_sides','front_color_cpt','back_color_cpt')
+    def _check_both_sides_color_cpt(self):
+        for each in self:
+            if each.both_sides and (not each.front_color_cpt or not each.back_color_cpt):
+                raise ValidationError(_("Front number of Colors and Back number of Colors should be strictly positive in the case of both sides product"))
 
 
     def _update_prepress_proof_next_version(self):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-15 17:25+0000\n"
-"PO-Revision-Date: 2023-07-15 17:25+0000\n"
+"POT-Creation-Date: 2023-07-16 10:29+0000\n"
+"PO-Revision-Date: 2023-07-16 10:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -830,6 +830,16 @@ msgstr "Type de trame"
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__front_color_cpt
 msgid "Front number of Colors"
 msgstr "Nombre de couleur Recto"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/product_template.py:0
+#, python-format
+msgid ""
+"Front number of Colors and Back number of Colors should be strictly positive"
+" in the case of both sides product"
+msgstr ""
+"Le nombre de couleurs Recto et le nombre de couleurs Verso doivent être strictement positifs"
+" dans le cas d'un article recto-verso"
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.prepress_proof_flash_line_search_view
