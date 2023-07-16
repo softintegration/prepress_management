@@ -50,7 +50,7 @@ class PrepressProof(models.Model):
                                                string="Thickness Unit of Measure",
                                                default=lambda self: self.env.ref('uom.product_uom_millimeter'),
                                                store=True)
-    product_gram_weight_type = fields.Selection(related='product_id.gram_weight_type')
+    product_gram_weight_type = fields.Selection(related='product_id.gram_weight_type',store=True)
     product_gram_weight_min = fields.Integer(string='Min weight',related='product_id.gram_weight_min',
                                          states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_max = fields.Integer(string='Max weight',related='product_id.gram_weight_max',

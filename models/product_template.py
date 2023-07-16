@@ -32,7 +32,7 @@ class ProductTemplate(models.Model):
                                    default=lambda self: self.env.ref('uom.product_uom_gram'))
     color_code = fields.Char(string='Color')
 
-    @api.constrains('gram_weight_type','gram_weight_min','gram_weight_max')
+    @api.constrains('gram_weight_type','gram_weight_max','gram_weight_min')
     def _check_gram_weight_interval(self):
         for each in self:
             if each.gram_weight_type == 'interval' and each.gram_weight_min > each.gram_weight_max:
