@@ -84,7 +84,6 @@
                     <field name="gram_weight_max" class="oe_inline"/>
                     <field name="gram_weight_uom_id" class="oe_inline" force_save="1" readonly="1"/>
                 </div>
-                <field name="gram_weight_tolerance"/>
                 <label for="gram_weight_tolerance"/>
                 <div>
                     <field name="gram_weight_tolerance" class="oe_inline"/> %

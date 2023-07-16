@@ -202,6 +202,10 @@
                                 <field name="product_gram_weight_max" class="oe_inline" readonly="1"/>
                                 <field name="product_gram_weight_uom_id" readonly="1" class="oe_inline"/>
                             </div>
+                            <label for="gram_weight_tolerance"/>
+                            <div>
+                                <field name="gram_weight_tolerance" class="oe_inline"/> %
+                            </div>
                             <field name="with_braille" widget="boolean_toggle"/>
                             <field name="color_cpt"/>
                         </group>

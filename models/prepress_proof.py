@@ -60,6 +60,8 @@ class PrepressProof(models.Model):
     product_gram_weight_uom_id = fields.Many2one('uom.uom', related='product_id.gram_weight_uom_id',
                                                  string="Weight Unit of Measure",
                                                  default=lambda self: self.env.ref('uom.product_uom_gram'), store=True)
+    gram_weight_tolerance = fields.Integer(string='Weight tolerance',related='product_id.gram_weight_tolerance',
+                                           store=True)
     notice_type = fields.Selection(string='Type of notice', related='product_id.notice_type', store=True)
     folding_dimension = fields.Char(string='Folding dimension', related='product_id.folding_dimension', store=True)
     with_braille = fields.Boolean(string='With braille', related='product_id.with_braille', store=True)
