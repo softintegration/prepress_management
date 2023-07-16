@@ -30,6 +30,7 @@ class ProductTemplate(models.Model):
     gram_weight = fields.Integer(string='Weight')
     gram_weight_uom_id = fields.Many2one('uom.uom', string="Weight unit of Measure",
                                    default=lambda self: self.env.ref('uom.product_uom_gram'))
+    gram_weight_tolerance = fields.Integer(string='Weight tolerance')
     color_code = fields.Char(string='Color')
 
     @api.constrains('gram_weight_type','gram_weight_max','gram_weight_min')
