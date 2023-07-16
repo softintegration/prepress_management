@@ -68,8 +68,9 @@
         <field name="inherit_id" ref="product_dimensions.product_template_form_view_inherited"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='thickness']" position="after">
-                <label for="gram_weight" attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
-                <div name="gram_weight" attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+                <field name="gram_weight_type"/>
+                <label for="gram_weight" attrs="{'invisible':['|',('gram_weight_type','=','interval'),'&amp;',('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
+                <div name="gram_weight" attrs="{'invisible':['|',('gram_weight_type','=','interval'),'&amp;',('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
                     <field name="gram_weight" class="oe_inline"/>
                     <field name="gram_weight_uom_id" class="oe_inline" force_save="1" readonly="1"/>
                 </div>
