@@ -25,10 +25,19 @@ class ProductTemplate(models.Model):
     varnish_type = fields.Many2one('product.varnish', string='Varnish type')
     gram_weight_type = fields.Selection([('fix','Fix'),
                                   ('interval','Interval')],string='Weight type',default='fix')
+    gram_weight_min = fields.Integer(string='Min weight')
+    gram_weight_max = fields.Integer(string='Max weight')
     gram_weight = fields.Integer(string='Weight')
     gram_weight_uom_id = fields.Many2one('uom.uom', string="Weight unit of Measure",
                                    default=lambda self: self.env.ref('uom.product_uom_gram'))
     color_code = fields.Char(string='Color')
+
+    @api.constrains('gram_weight_type','gram_weight_min','gram_weight_max')
+    def _check_gram_weight_interval(self):
+        for each in self:
+            if each.gram_weight_type == 'interval' and each.gram_weight_min > each.gram_weight_max:
+                raise ValidationError(_("Max weight must be greater than or equal to Min weight"))
+
 
 
     @api.constrains('both_sides','front_color_cpt','back_color_cpt')

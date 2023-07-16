@@ -28,6 +28,7 @@ class PrepressProof(models.Model):
                                  domain=[('customer_rank', '>', 0), ('parent_id', '=', False)])
     product_id = fields.Many2one('product.product', string=u'Product', required=True,
                                  states={'in_progress': [('readonly', False)]}, readonly=True, copy=False, index=True)
+    gram_weight_type = fields.Selection(related='product_id.gram_weight_type')
     color_cpt = fields.Integer(string='Number of Colors', states={'in_progress': [('readonly', False)]}, readonly=True)
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'in_progress': [('readonly', False)]},
                                     readonly=True)
@@ -49,6 +50,11 @@ class PrepressProof(models.Model):
                                                string="Thickness Unit of Measure",
                                                default=lambda self: self.env.ref('uom.product_uom_millimeter'),
                                                store=True)
+    product_gram_weight_type = fields.Selection(related='product_id.gram_weight_type')
+    product_gram_weight_min = fields.Integer(string='Min weight',related='product_id.gram_weight_min',
+                                         states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
+    product_gram_weight_max = fields.Integer(string='Max weight',related='product_id.gram_weight_max',
+                                         states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight = fields.Integer(string='Weight', related='product_id.gram_weight',
                                          states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_uom_id = fields.Many2one('uom.uom', related='product_id.gram_weight_uom_id',

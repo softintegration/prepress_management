@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 11:39+0000\n"
-"PO-Revision-Date: 2023-07-16 11:39+0000\n"
+"POT-Creation-Date: 2023-07-16 13:10+0000\n"
+"PO-Revision-Date: 2023-07-16 13:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -686,7 +686,7 @@ msgstr "Nombre de pose doit être strictement positif"
 #. module: prepress_management
 #: model:ir.model.fields.selection,name:prepress_management.selection__product_template__gram_weight_type__fix
 msgid "Fix"
-msgstr "Fix"
+msgstr ""
 
 #. module: prepress_management
 #: model:ir.model,name:prepress_management.model_prepress_proof_flash
@@ -1121,6 +1121,19 @@ msgid "Manage Prepress Proof quarantine process"
 msgstr "Gérer le processus de la mise en quarantaine des BAT's"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_gram_weight_max
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__gram_weight_max
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__gram_weight_max
+msgid "Max weight"
+msgstr "Grammage maximum"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/product_template.py:0
+#, python-format
+msgid "Max weight must be greater than or equal to Min weight"
+msgstr "Grammage maximum doit étre supérieur ou egal au grammage minimum"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__message_has_error
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__message_has_error
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_has_error
@@ -1133,6 +1146,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__message_ids
 msgid "Messages"
 msgstr ""
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_gram_weight_min
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__gram_weight_min
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__gram_weight_min
+msgid "Min weight"
+msgstr "Grammage minimum"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_tags__model
@@ -1981,6 +2001,8 @@ msgid "Weight Unit of Measure"
 msgstr "UdM.Grammage"
 
 #. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__gram_weight_type
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__product_gram_weight_type
 #: model:ir.model.fields,field_description:prepress_management.field_product_product__gram_weight_type
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__gram_weight_type
 msgid "Weight type"
