@@ -61,7 +61,22 @@ class PrepressCuttingDie(models.Model):
     prepress_proof_ids_count = fields.Integer(compute='_compute_prepress_proof_ids_count')
     product_id = fields.Many2one('product.product', string='Product', states={'draft': [('readonly', False)]},
                                  readonly=True, domain=[('type', '=', 'product')])
+    virtual_available = fields.Float(string='Virtual available',compute='_compute_virtual_available')
 
+
+    def _compute_virtual_available(self):
+        for each in self:
+            res = each.product_id.product_tmpl_id._compute_quantities_dict()
+            each.virtual_available = res[each.product_id.product_tmpl_id.id]['virtual_available']
+
+    def action_product_forecast_report(self):
+        self.ensure_one()
+        action = self.product_id.action_product_forecast_report()
+        action['context'] = {
+            'active_id': self.product_id.id,
+            'active_model': 'product.product',
+        }
+        return action
 
     def action_create_product(self):
         self._check_product_creation()

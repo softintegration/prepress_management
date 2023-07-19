@@ -131,7 +131,17 @@
                                    domain="[('model','=','prepress.cutting.die')]"
                                    options="{'color_field': 'color'}"
                                    context="{'default_model':'prepress.cutting.die'}"/>
-                            <field name="product_id"/>
+                            <label for="product_id"/>
+                            <div>
+                                <field name="product_id" style="oe_inline"/>
+                                <button type="object" name="action_product_forecast_report" icon="fa-area-chart text-success"
+                                        attrs="{'invisible': [('virtual_available', '&lt;=', 0)]}" style="oe_inline"/>
+                                <button type="object" name="action_product_forecast_report" icon="fa-area-chart"
+                                        attrs="{'invisible': ['|',('virtual_available', '&lt;', 0),('virtual_available', '&gt;', 0)]}" style="oe_inline"/>
+                                <button type="object" name="action_product_forecast_report" icon="fa-area-chart text-danger"
+                                        attrs="{'invisible': [('virtual_available', '&gt;=', 0)]}"/>
+                                <field name="virtual_available" invisible="1"/>
+                            </div>
                         </group>
                     </group>
                     <div class="o_new-group o_new-group-big">Dummy</div>
