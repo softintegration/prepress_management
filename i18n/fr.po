@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 09:27+0000\n"
-"PO-Revision-Date: 2023-07-19 09:27+0000\n"
+"POT-Creation-Date: 2023-07-19 12:04+0000\n"
+"PO-Revision-Date: 2023-07-19 12:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -203,6 +203,12 @@ msgstr "La Plaque CTP est obligatoire!"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__calibration
 msgid "Calibration"
 msgstr ""
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_cutting_die.py:0
+#, python-format
+msgid "Can not create product for non validated cutting die!"
+msgstr "Impossible de générer un article a partir d'une forme de découpe non validée"
 
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_proof.py:0
@@ -464,6 +470,11 @@ msgid "Create a new Varnish type"
 msgstr "Créer un nouveau Type de vernis"
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
+msgid "Create product"
+msgstr "Générer l'article"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_complexity_factor__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__create_uid
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__create_uid
@@ -576,6 +587,12 @@ msgstr "Forme de découpe est obligatoire!"
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_tree
 msgid "Cutting die"
 msgstr "Forme de découpe"
+
+#. module: prepress_management
+#: code:addons/prepress_management/models/prepress_cutting_die.py:0
+#, python-format
+msgid "Cutting die %s already related to product %s!"
+msgstr "Forme de découpe %s déjà associée à l'article %s !"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__date

@@ -63,6 +63,33 @@ class PrepressCuttingDie(models.Model):
                                  readonly=True, domain=[('type', '=', 'product')])
 
 
+    def action_create_product(self):
+        self._check_product_creation()
+        return self._action_create_product()
+
+    def _check_product_creation(self):
+        for each in self:
+            if each.state != 'validated':
+                raise ValidationError(_("Can not create product for non validated cutting die!"))
+            if each.product_id:
+                raise ValidationError(_("Cutting die %s already related to product %s!")%(each.name,each.display_name))
+
+    def _action_create_product(self):
+        for each in self:
+            product_dict = each._prepare_product()
+            each.write({'product_id':self.env['product.template'].create(product_dict).product_variant_ids.ids[0]})
+
+    def _prepare_product(self):
+        return {
+            'name':self.name,
+            'sale_ok':True,
+            'type':'product',
+            'height':self.cut_height,
+            'height_uom_id':self.cut_height_uom_id.id,
+            'width':self.cut_width,
+            'width_uom_id':self.cut_width_uom_id.id
+        }
+
     def _prepress_proofs(self):
         domain = [('cutting_die_id','in',self.ids)]
         prepress_proofs = self.env['prepress.proof.flash.line'].search(domain).mapped("prepress_proof_id")

@@ -54,6 +54,9 @@
                     <button name="action_unlock" string="Unlock" type="object"
                                 attrs="{'invisible':['|',('locked','=',False),('state','in',('draft','cancel'))]}"
                                 groups="prepress_management.group_prepress_cutting_die_lock_unlock"/>
+                    <button name="action_create_product" type="object" string="Create product"
+                            class="oe_highlight" attrs="{'invisible':['|',('state','!=','validated'),('product_id','!=',False)]}"/>
+
                     <field name="state" widget="statusbar" statusbar_visible="draft,validated"/>
                 </header>
                 <sheet>
