@@ -108,8 +108,13 @@ class PrepressCuttingDie(models.Model):
         if self._sequence_dynamic_installed():
             # FIXME:We have to test this in important data volume
             dynamic_prefix_fields = self._build_dynamic_prefix_fields()
-            name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields).next_by_code(
-                DEFAULT_CODE_CUTTING_DIE)
+            if self.parent_id:
+                forced_name = self.parent_id.name.split("-")[0]
+                name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields,forced_name=forced_name).next_by_code(
+                    DEFAULT_CODE_CUTTING_DIE)
+            else:
+                name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields).next_by_code(
+                    DEFAULT_CODE_CUTTING_DIE)
         else:
             name = self.env['ir.sequence'].next_by_code(DEFAULT_CODE_CUTTING_DIE)
         self.name = name
