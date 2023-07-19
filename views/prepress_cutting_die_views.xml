@@ -13,6 +13,7 @@
             >
                 <field name="name" readonly="1" decoration-bf="1"/>
                 <field name="partner_ids" widget="many2many_tags"/>
+                <field name="parent_id"/>
                 <field name="mounting_type_id" optional="show"/>
                 <field name="height" optional="show"/>
                 <field name="height_uom_id" optional="show"/>
@@ -112,6 +113,8 @@
                             </div>
                         </group>
                         <group name="prepress_cutting_die_right_group">
+                            <field name="parent_id" options="{'no_create_edit':True}"
+                            attrs="{'invisible':[('state','=','validated'),('parent_id','=',False)]}"/>
                             <field name="mounting_type_id"/>
                             <field name="exposure_nbr"/>
                             <field name="with_braille" widget="boolean_toggle"/>
@@ -192,6 +195,7 @@
         <field name="arch" type="xml">
             <search string="Search Cutting die">
                 <field name="name"/>
+                <field name="parent_id"/>
                 <field name="format_type_id"/>
                 <field name="height"/>
                 <field name="width"/>
@@ -208,6 +212,7 @@
                 <filter name="cancelled" string="Cancelled" domain="[('state','=','cancel')]"
                         help="Cancelled Cutting dies"/>
                 <group expand="0" string="Group By">
+                    <filter name="group_by_parent_id" string="Parent cutting die" context="{'group_by':'parent_id'}"/>
                     <filter name="group_by_format_type_id" string="Format type" context="{'group_by':'format_type_id'}"/>
                     <filter name="group_by_exposure_nbr" string="Exposure Nbr" context="{'group_by':'exposure_nbr'}"/>
                 </group>

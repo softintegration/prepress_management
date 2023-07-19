@@ -20,6 +20,8 @@ class PrepressCuttingDie(models.Model):
                                    states={'draft': [('readonly', False)]}, readonly=True,
                                    domain=[('customer_rank', '>', 0),('parent_id','=',False)],
                                    required=True)
+    parent_id = fields.Many2one('prepress.cutting.die',string='Parent cutting die',states={'draft': [('readonly', False)]},
+                                readonly=True,domain=[('parent_id','=',False),('state','=','validated')])
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'draft': [('readonly', False)]},
                                     readonly=True, required=True)
     prepress_type_code = fields.Char(related='prepress_type.code')

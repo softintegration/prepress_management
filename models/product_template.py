@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
     prepress_proof_next_version = fields.Integer(string='Prepress proof next version', readonly=False, default=0)
     update_prepress_proof_next_version = fields.Boolean(compute='_update_prepress_proof_next_version')
     prepress_proofs_count = fields.Integer(compute='_compute_prepress_proofs_count')
-    color_cpt = fields.Integer(string='Number of Colors')
+    color_cpt = fields.Integer(string='Number of Colors',default=False)
     with_braille = fields.Boolean(string='With braille')
     complexity_factor_id = fields.Many2one('complexity.factor', string="Complexity factor")
     both_sides = fields.Boolean(string='Both sides', default=False)
