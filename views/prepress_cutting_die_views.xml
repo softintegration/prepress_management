@@ -135,11 +135,11 @@
                             <div>
                                 <field name="product_id" style="oe_inline"/>
                                 <button type="object" name="action_product_forecast_report" icon="fa-area-chart text-success"
-                                        attrs="{'invisible': [('virtual_available', '&lt;=', 0)]}" style="oe_inline"/>
+                                        attrs="{'invisible': ['|',('product_id','=',False),('virtual_available', '&lt;=', 0)]}" style="oe_inline"/>
                                 <button type="object" name="action_product_forecast_report" icon="fa-area-chart"
-                                        attrs="{'invisible': ['|',('virtual_available', '&lt;', 0),('virtual_available', '&gt;', 0)]}" style="oe_inline"/>
+                                        attrs="{'invisible': ['|','|',('product_id','=',False),('virtual_available', '&lt;', 0),('virtual_available', '&gt;', 0)]}" style="oe_inline"/>
                                 <button type="object" name="action_product_forecast_report" icon="fa-area-chart text-danger"
-                                        attrs="{'invisible': [('virtual_available', '&gt;=', 0)]}"/>
+                                        attrs="{'invisible': ['|',('product_id','=',False),('virtual_available', '&gt;=', 0)]}"/>
                                 <field name="virtual_available" invisible="1"/>
                             </div>
                         </group>

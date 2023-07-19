@@ -66,8 +66,11 @@ class PrepressCuttingDie(models.Model):
 
     def _compute_virtual_available(self):
         for each in self:
-            res = each.product_id.product_tmpl_id._compute_quantities_dict()
-            each.virtual_available = res[each.product_id.product_tmpl_id.id]['virtual_available']
+            if each.product_id:
+                res = each.product_id.product_tmpl_id._compute_quantities_dict()
+                each.virtual_available = res[each.product_id.product_tmpl_id.id]['virtual_available']
+            else:
+                each.virtual_available = 0.0
 
     def action_product_forecast_report(self):
         self.ensure_one()
