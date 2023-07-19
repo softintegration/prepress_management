@@ -293,6 +293,15 @@ class PrepressProof(models.Model):
         for each in self:
             each.product_id.with_context(force_update=True)._increment_prepress_proof_version()
 
+    @api.constrains('state','color_cpt','color_ids')
+    def _check_colors_cpt_coherence(self):
+        for each in self:
+            if each.state not in ('in_progress','cancel') and each.color_cpt != len(each.color_ids):
+                raise ValidationError(
+                    _("Number of Colors in product must be the same as the number of colors in Prepress proof,"
+                      "The Prepress proofs %s does not respect this rule!") % (
+                        ",".join(each.mapped("name"))))
+
     @api.model
     def _get_by_product_id(self, product_id, count=False,excluded_states=False,limit=False):
         """:param : product_id : ID of the product"""

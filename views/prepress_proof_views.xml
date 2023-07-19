@@ -207,7 +207,7 @@
                                 <field name="gram_weight_tolerance" class="oe_inline"/> %
                             </div>
                             <field name="with_braille" widget="boolean_toggle"/>
-                            <field name="color_cpt"/>
+                            <field name="color_cpt" attrs="{'readonly':[('locked','=',True)]}"/>
                         </group>
                         <group name="prepress_proof_dates_info">
                             <field name="creation_date"/>
