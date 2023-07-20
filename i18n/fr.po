@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 12:04+0000\n"
-"PO-Revision-Date: 2023-07-19 12:04+0000\n"
+"POT-Creation-Date: 2023-07-20 10:15+0000\n"
+"PO-Revision-Date: 2023-07-20 10:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,8 @@ msgstr ""
 #: code:addons/prepress_management/models/prepress_cutting_die.py:0
 #, python-format
 msgid "Can not create product for non validated cutting die!"
-msgstr "Impossible de générer un article a partir d'une forme de découpe non validée"
+msgstr ""
+"Impossible de générer un article a partir d'une forme de découpe non validée"
 
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_proof.py:0
@@ -329,6 +330,12 @@ msgid "Cancelled Proofs"
 msgstr "BAT(s) annulé(s)"
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
+msgid ""
+"Check this option if you want advanced management of prepress proof cancel."
+msgstr "Cochez cette option si vous souhaitez une gestion avancée de l'annulation des BATs"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__prepress_type_code
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof__prepress_type_code
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_type__code
@@ -372,6 +379,11 @@ msgstr "Société"
 #: model:ir.ui.menu,name:prepress_management.complexity_factor_action_menu
 msgid "Complexity factor"
 msgstr "Facteur de complexité"
+
+#. module: prepress_management
+#: model:ir.model,name:prepress_management.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
 
 #. module: prepress_management
 #: model:ir.ui.menu,name:prepress_management.prepress_config_settings
@@ -1321,6 +1333,7 @@ msgstr "Nombre de couleur"
 
 #. module: prepress_management
 #: code:addons/prepress_management/models/prepress_proof.py:0
+#: code:addons/prepress_management/models/prepress_proof.py:0
 #, python-format
 msgid ""
 "Number of Colors in product must be the same as the number of colors in "
@@ -1526,6 +1539,7 @@ msgstr ""
 
 #. module: prepress_management
 #: model:ir.module.category,name:prepress_management.module_category_prepress
+#: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
 msgid "Prepress management"
 msgstr "Prépresse"
 
@@ -1535,9 +1549,15 @@ msgstr "Prépresse"
 #: model:ir.ui.menu,name:prepress_management.prepress_proof_action_menu
 #: model:ir.ui.menu,name:prepress_management.prepress_proof_prepress_config_menu
 #: model_terms:ir.ui.view,arch_db:prepress_management.product_template_form_view_inherited
+#: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
 msgid "Prepress proof"
 msgstr "BAT"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_res_config_settings__module_prepress_proof_advanced_cancel
+msgid "Prepress proof advanced cancel procedure"
+msgstr "Procedure d'annulation avancée du BAT"
 
 #. module: prepress_management
 #: model:ir.actions.act_window,name:prepress_management.prepress_proof_flash_line_action
@@ -1748,6 +1768,12 @@ msgstr "Rechercher BAT"
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__sequence
 msgid "Sequence"
 msgstr ""
+
+#. module: prepress_management
+#: model:ir.actions.act_window,name:prepress_management.action_prepress_management_settings
+#: model:ir.ui.menu,name:prepress_management.prepress_management_settings_menu
+msgid "Settings"
+msgstr "Paramètres"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__shelling
@@ -1996,6 +2022,11 @@ msgstr "Plaque vernis"
 #: model:ir.ui.menu,name:prepress_management.product_varnish_action_menu
 msgid "Varnish type"
 msgstr "Type de vernis"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__virtual_available
+msgid "Virtual available"
+msgstr ""
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__website_message_ids

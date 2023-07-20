@@ -10,7 +10,7 @@
     'qweb': [],
     'description': False,
     'images': [],
-    'version': '1.0.1.142',
+    'version': '1.0.1.143',
     'category': 'Prepress',
     'demo': [],
     'depends': ['portal',
@@ -29,6 +29,7 @@
         'views/prepress_plate_views.xml',
         'views/product_views.xml',
         'views/cancel_motif_views.xml',
+        'views/res_config_settings_views.xml',
         'wizard/prepress_proof_flash_views.xml',
         'wizard/prepress_proof_quarantined_confirmation_views.xml'
     ],
