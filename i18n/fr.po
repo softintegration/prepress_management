@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-20 10:15+0000\n"
-"PO-Revision-Date: 2023-07-20 10:15+0000\n"
+"POT-Creation-Date: 2023-07-22 15:20+0000\n"
+"PO-Revision-Date: 2023-07-22 15:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,9 @@ msgstr "BAT(s) annulé(s)"
 #: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
 msgid ""
 "Check this option if you want advanced management of prepress proof cancel."
-msgstr "Cochez cette option si vous souhaitez une gestion avancée de l'annulation des BATs"
+msgstr ""
+"Cochez cette option si vous souhaitez une gestion avancée de l'annulation "
+"des BATs"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__prepress_type_code
@@ -620,6 +622,12 @@ msgstr "Date de la signature."
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_flash_line__is_default
 msgid "Default"
 msgstr "Par défaut"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_product_product__default_gram_weight
+#: model:ir.model.fields,field_description:prepress_management.field_product_template__default_gram_weight
+msgid "Default weight"
+msgstr "Grammage par défaut"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__description

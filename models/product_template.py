@@ -25,6 +25,7 @@ class ProductTemplate(models.Model):
     varnish_type = fields.Many2one('product.varnish', string='Varnish type')
     gram_weight_type = fields.Selection([('fix','Fix'),
                                   ('interval','Interval')],string='Weight type',default='fix')
+    default_gram_weight = fields.Integer(string='Default weight')
     gram_weight_min = fields.Integer(string='Min weight')
     gram_weight_max = fields.Integer(string='Max weight')
     gram_weight = fields.Integer(string='Weight')
