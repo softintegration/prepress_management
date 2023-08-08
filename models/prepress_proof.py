@@ -51,6 +51,8 @@ class PrepressProof(models.Model):
                                                default=lambda self: self.env.ref('uom.product_uom_millimeter'),
                                                store=True)
     product_gram_weight_type = fields.Selection(related='product_id.gram_weight_type',store=True)
+    product_default_gram_weight = fields.Integer(string='Default weight',related='product_id.default_gram_weight',
+                                         states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_min = fields.Integer(string='Min weight',related='product_id.gram_weight_min',
                                          states={'in_progress': [('readonly', False)]}, readonly=True, store=True)
     product_gram_weight_max = fields.Integer(string='Max weight',related='product_id.gram_weight_max',

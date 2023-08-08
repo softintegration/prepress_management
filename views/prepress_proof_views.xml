@@ -192,7 +192,8 @@
                                 <field name="product_gram_weight" class="oe_inline" readonly="1"/>
                                 <field name="product_gram_weight_uom_id" readonly="1" class="oe_inline"/>
                             </div>
-                            <label for="product_gram_weight_min" attrs="{'invisible':['|',('product_id','=',False),('product_gram_weight_type','!=','interval')]}"/>
+                            <field name="product_default_gram_weight" attrs="{'invisible':['|',('product_id','=',False),('product_gram_weight_type','!=','interval')]}" readonly="1"/>
+                            <label for="product_gram_weight_min" attrs="{'invisible':['|',('product_id','=',False),('product_gram_weight_type','!=','interval')]}" />
                             <div attrs="{'invisible':['|',('product_id','=',False),('product_gram_weight_type','!=','interval')]}">
                                 <field name="product_gram_weight_min" class="oe_inline" readonly="1"/>
                                 <field name="product_gram_weight_uom_id" readonly="1" class="oe_inline"/>
