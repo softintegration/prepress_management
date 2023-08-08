@@ -82,26 +82,26 @@
                             <field name="prepress_type_code" invisible="1"/>
                             <field name="partner_ids" widget="many2many_tags" options="{'no_create_edit': True}"
                             attrs="{'readonly':['|',('locked','=',True),('state','=','cancel')]}"/>
-                            <field name="prepress_type" options="{'no_create_edit': True}"/>
+                            <field name="prepress_type" options="{'no_create_edit': True}" force_save="1" attrs="{'readonly':[('parent_id','!=',False)]}"/>
                             <field name="prepress_type_code" invisible="1"/>
                             <!--<field name="format_type_id"
                                    attrs="{'invisible':[('prepress_type_code','!=','0')],'required':[('prepress_type_code','=','0')]}"
                                    options="{'no_create_edit': True}"/>-->
                             <field name="format_type_id"
-                                   options="{'no_create_edit': True}" attrs="{'required':[('prepress_type_code','=','0')]}"/>
+                                   options="{'no_create_edit': True}" force_save="1" attrs="{'required':[('prepress_type_code','=','0')],'readonly':[('parent_id','!=',False)]}"/>
                             <label for="height"/>
                             <div name="height">
-                                <field name="height" class="oe_inline"/>
+                                <field name="height" class="oe_inline" force_save="1" attrs="{'readonly':[('parent_id','!=',False)]}"/>
                                 <field name="height_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                             <label for="width"/>
                             <div name="width">
-                                <field name="width" class="oe_inline"/>
+                                <field name="width" class="oe_inline" force_save="1" attrs="{'readonly':[('parent_id','!=',False)]}"/>
                                 <field name="width_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                             <label for="thickness" attrs="{'invisible':[('prepress_type_code','!=','0')]}"/>
                             <div name="thickness" attrs="{'invisible':[('prepress_type_code','!=','0')]}">
-                                <field name="thickness" class="oe_inline"/>
+                                <field name="thickness" class="oe_inline" force_save="1" attrs="{'readonly':[('parent_id','!=',False)]}"/>
                                 <field name="thickness_uom_id" readonly="1" class="oe_inline"/>
                             </div>
                             <label for="cut_height"/>

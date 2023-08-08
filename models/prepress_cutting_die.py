@@ -64,6 +64,15 @@ class PrepressCuttingDie(models.Model):
     virtual_available = fields.Float(string='Virtual available',compute='_compute_virtual_available')
 
 
+    @api.onchange('parent_id')
+    def onchange_parent_id(self):
+        if self.parent_id:
+            self.prepress_type = self.parent_id.prepress_type
+            self.format_type_id = self.parent_id.format_type_id
+            self.height = self.parent_id.height
+            self.width = self.parent_id.width
+            self.thickness = self.parent_id.thickness
+
     def _compute_virtual_available(self):
         for each in self:
             if each.product_id:
