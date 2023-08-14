@@ -162,7 +162,7 @@
                     <group name="prepress_proof_header">
                         <group name="prepress_proof_general_info">
                             <field name="locked" invisible="1"/>
-                            <field name="client_ref"/>
+                            <field name="client_ref" attrs="{'readonly':[('locked','=',True)]}"/>
                             <field name="partner_id"/>
                             <field name="product_id" domain="[('partner_id','=',partner_id)]"
                                    context="{'default_partner_id':partner_id}"/>
