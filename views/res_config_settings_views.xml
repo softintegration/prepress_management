@@ -22,6 +22,25 @@
                                 </div>
                             </div>
                         </div>
+                        <h2>Cutting die</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div  class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="product_id_categ"/>
+                                    <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." role="img" aria-label="Values set here are company-specific." groups="base.group_multi_company"/>
+                                    <div class="row">
+                                        <div class="text-muted col-lg-8">
+                                            This is the default category that will be used in the generated product from cutting die.
+                                        </div>
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="product_id_categ"  class="o_light_label" options="{'no_create_edit':True}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </xpath>
             </field>

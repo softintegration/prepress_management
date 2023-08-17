@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from random import randint
+
 DEFAULT_CODE_CUTTING_DIE = "prepress.cutting.die"
 
 
@@ -18,10 +19,11 @@ class PrepressCuttingDie(models.Model):
                              tracking=True, default='draft')
     partner_ids = fields.Many2many('res.partner', 'prepress_cutting_die_res_partner', string='Customers',
                                    states={'draft': [('readonly', False)]}, readonly=True,
-                                   domain=[('customer_rank', '>', 0),('parent_id','=',False)],
+                                   domain=[('customer_rank', '>', 0), ('parent_id', '=', False)],
                                    required=True)
-    parent_id = fields.Many2one('prepress.cutting.die',string='Parent cutting die',states={'draft': [('readonly', False)]},
-                                readonly=True,domain=[('parent_id','=',False),('state','=','validated')])
+    parent_id = fields.Many2one('prepress.cutting.die', string='Parent cutting die',
+                                states={'draft': [('readonly', False)]},
+                                readonly=True, domain=[('parent_id', '=', False), ('state', '=', 'validated')])
     prepress_type = fields.Many2one('prepress.type', string='Type', states={'draft': [('readonly', False)]},
                                     readonly=True, required=True)
     prepress_type_code = fields.Char(related='prepress_type.code')
@@ -35,7 +37,7 @@ class PrepressCuttingDie(models.Model):
     thickness_uom_id = fields.Many2one('uom.uom', string="Thickness Unit of Measure",
                                        default=lambda self: self.env.ref('uom.product_uom_millimeter'))
     mounting_type_id = fields.Many2one('prepress.cutting.die.mounting.type', string='Mounting type',
-                                       states={'draft': [('readonly', False)]}, readonly=True,required=True)
+                                       states={'draft': [('readonly', False)]}, readonly=True, required=True)
     format_type_id = fields.Many2one('prepress.cutting.die.format.type', string='Format type',
                                      states={'draft': [('readonly', False)]}, readonly=True)
     cut_height = fields.Float(string='Mounting height', states={'draft': [('readonly', False)]}, readonly=True)
@@ -48,7 +50,7 @@ class PrepressCuttingDie(models.Model):
     with_braille = fields.Boolean(string='With braille', states={'draft': [('readonly', False)]}, readonly=True)
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
-    shelling = fields.Boolean(string="Shelling",states={'draft': [('readonly', False)]}, readonly=True,default=False)
+    shelling = fields.Boolean(string="Shelling", states={'draft': [('readonly', False)]}, readonly=True, default=False)
     creasing_rule = fields.Float(string='Creasing rule 1 exposure', states={'draft': [('readonly', False)]},
                                  readonly=True)
     creasing_rule_uom_id = fields.Many2one('uom.uom', string="Creasing Rule Unit of Measure",
@@ -61,8 +63,7 @@ class PrepressCuttingDie(models.Model):
     prepress_proof_ids_count = fields.Integer(compute='_compute_prepress_proof_ids_count')
     product_id = fields.Many2one('product.product', string='Product', states={'draft': [('readonly', False)]},
                                  readonly=True, domain=[('type', '=', 'product')])
-    virtual_available = fields.Float(string='Virtual available',compute='_compute_virtual_available')
-
+    virtual_available = fields.Float(string='Virtual available', compute='_compute_virtual_available')
 
     @api.onchange('parent_id')
     def onchange_parent_id(self):
@@ -99,33 +100,35 @@ class PrepressCuttingDie(models.Model):
             if each.state != 'validated':
                 raise ValidationError(_("Can not create product for non validated cutting die!"))
             if each.product_id:
-                raise ValidationError(_("Cutting die %s already related to product %s!")%(each.name,each.display_name))
+                raise ValidationError(
+                    _("Cutting die %s already related to product %s!") % (each.name, each.display_name))
 
     def _action_create_product(self):
         for each in self:
             product_dict = each._prepare_product()
-            each.write({'product_id':self.env['product.template'].create(product_dict).product_variant_ids.ids[0]})
+            each.write({'product_id': self.env['product.template'].create(product_dict).product_variant_ids.ids[0]})
 
     def _prepare_product(self):
         return {
-            'name':self.name,
-            'sale_ok':True,
-            'type':'product',
-            'height':self.cut_height,
-            'height_uom_id':self.cut_height_uom_id.id,
-            'width':self.cut_width,
-            'width_uom_id':self.cut_width_uom_id.id
+            'name': self.name,
+            'sale_ok': True,
+            'type': 'product',
+            'height': self.cut_height,
+            'height_uom_id': self.cut_height_uom_id.id,
+            'width': self.cut_width,
+            'width_uom_id': self.cut_width_uom_id.id,
+            'categ_id': self.company_id.product_id_categ and self.company_id.product_id_categ.id or self.env[
+                'product.template']._get_default_category_id().id
         }
 
     def _prepress_proofs(self):
-        domain = [('cutting_die_id','in',self.ids)]
+        domain = [('cutting_die_id', 'in', self.ids)]
         prepress_proofs = self.env['prepress.proof.flash.line'].search(domain).mapped("prepress_proof_id")
         return prepress_proofs
 
     def _compute_prepress_proof_ids_count(self):
         for each in self:
             each.prepress_proof_ids_count = len(each._prepress_proofs())
-
 
     def show_flashed_prepress_proofs(self):
         self.ensure_one()
@@ -137,9 +140,8 @@ class PrepressCuttingDie(models.Model):
             'res_model': 'prepress.proof',
             'type': 'ir.actions.act_window',
             'target': 'current',
-            'domain': [('id','in',self._prepress_proofs().ids)],
+            'domain': [('id', 'in', self._prepress_proofs().ids)],
         }
-
 
     def action_confirm(self):
         return self._action_confirm()
@@ -148,7 +150,7 @@ class PrepressCuttingDie(models.Model):
         self._check_validated_cutting_die()
         for each in self:
             each._set_name_by_sequence()
-        self.write({'state': 'validated','locked': True})
+        self.write({'state': 'validated', 'locked': True})
 
     def _check_validated_cutting_die(self):
         for each in self:
@@ -164,7 +166,8 @@ class PrepressCuttingDie(models.Model):
             dynamic_prefix_fields = self._build_dynamic_prefix_fields()
             if self.parent_id:
                 forced_name = self.parent_id.name.split("-")[0]
-                name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields,forced_name=forced_name).next_by_code(
+                name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields,
+                                                            forced_name=forced_name).next_by_code(
                     DEFAULT_CODE_CUTTING_DIE)
             else:
                 name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields).next_by_code(
@@ -181,8 +184,8 @@ class PrepressCuttingDie(models.Model):
     def _build_dynamic_prefix_fields(self):
         self.ensure_one()
         vals = {}
-        for field_name,_ in self._fields.items():
-            vals.update({field_name:getattr(self,field_name)})
+        for field_name, _ in self._fields.items():
+            vals.update({field_name: getattr(self, field_name)})
         return vals
 
     def action_cancel(self):
@@ -194,7 +197,6 @@ class PrepressCuttingDie(models.Model):
     def _action_cancel(self):
         self.write({'state': 'cancel'})
 
-
     def action_reset(self):
         for each in self:
             if each.state != 'validated':
@@ -204,19 +206,18 @@ class PrepressCuttingDie(models.Model):
     def _action_reset(self):
         self.write({'state': 'draft'})
 
-
     def action_lock(self):
         self.write({'locked': True})
 
     def action_unlock(self):
         self.write({'locked': False})
 
-
     @api.constrains('exposure_nbr')
     def _check_exposure_nbr(self):
         for each in self:
             if each.exposure_nbr < 1:
                 raise ValidationError(_("Exposure Nbr must be strictly positive"))
+
 
 class CuttingDieMountingType(models.Model):
     _name = 'prepress.cutting.die.mounting.type'
@@ -239,4 +240,3 @@ class CuttingDieFormatType(models.Model):
     dummy = fields.Html(string='Dummy')
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda s: s.env.company.id,
                                  index=True)
-

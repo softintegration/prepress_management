@@ -7,3 +7,4 @@ from . import prepress_type
 from . import prepress_plate
 from . import prepress_tags
 from . import res_config_settings
+from . import res_company

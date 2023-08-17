@@ -6,14 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-08 11:44+0000\n"
-"PO-Revision-Date: 2023-08-08 11:44+0000\n"
+"POT-Creation-Date: 2023-08-17 10:35+0000\n"
+"PO-Revision-Date: 2023-08-17 10:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
@@ -360,6 +368,11 @@ msgid "Colors"
 msgstr "Couleurs"
 
 #. module: prepress_management
+#: model:ir.model,name:prepress_management.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_complexity_factor__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__company_id
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die_format_type__company_id
@@ -597,6 +610,7 @@ msgstr "Forme de découpe est obligatoire!"
 #: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_action_menu
 #: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_menu
 #: model:ir.ui.menu,name:prepress_management.prepress_cutting_die_prepress_config_menu
+#: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_cutting_die_tree
 msgid "Cutting die"
@@ -607,6 +621,12 @@ msgstr "Forme de découpe"
 #, python-format
 msgid "Cutting die %s already related to product %s!"
 msgstr "Forme de découpe %s déjà associée à l'article %s !"
+
+#. module: prepress_management
+#: model:ir.model.fields,field_description:prepress_management.field_res_company__product_id_categ
+#: model:ir.model.fields,field_description:prepress_management.field_res_config_settings__product_id_categ
+msgid "Cutting die product default category"
+msgstr "Catégorie par défaut de l'article de la forme de découpe"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_plate__date
@@ -1884,9 +1904,17 @@ msgid "Thickness Unit of Measure"
 msgstr "UdM.Épaisseur"
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
+msgid ""
+"This is the default category that will be used in the generated product from"
+" cutting die."
+msgstr ""
+"Il s'agit de la catégorie par défaut qui sera utilisée dans l'article généré à partir de la forme de découpe"
+
+#. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.action_prepress_proof_flash
 msgid "This wizard will flash the current Prepress proof."
-msgstr ""
+msgstr "Ceci est l'assistant de flashage du BAT"
 
 #. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_cutting_die__prepress_type
