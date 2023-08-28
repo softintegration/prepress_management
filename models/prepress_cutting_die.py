@@ -111,7 +111,7 @@ class PrepressCuttingDie(models.Model):
     def _prepare_product(self):
         return {
             'name': self.name,
-            'sale_ok': True,
+            'sale_ok': False,
             'type': 'product',
             'height': self.cut_height,
             'height_uom_id': self.cut_height_uom_id.id,
