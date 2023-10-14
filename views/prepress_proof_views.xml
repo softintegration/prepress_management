@@ -104,7 +104,7 @@
                     <button name="action_reset_from_quarantine" type="object" states="quarantined"
                             string="Reset from quarantine"
                             groups="prepress_management.group_prepress_proof_quarantine_process"/>
-                    <button name="action_cancel_with_motif" type="object" states="validated,flashed" string="Cancel"
+                    <button name="action_cancel_with_motif" type="object" states="in_progress,validated,flashed" string="Cancel"
                             data-hotkey="a"/>
                     <button name="action_lock" string="Lock" type="object"
                                 attrs="{'invisible':['|',('locked','=',True),('state','in',('in_progress','cancel'))]}"
