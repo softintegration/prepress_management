@@ -93,7 +93,7 @@ class PrepressProof(models.Model):
     prepress_plates_ids_count = fields.Integer(compute='_compute_prepress_plates_ids_count')
     customer_signatures = fields.One2many('prepress.proof.customer.signature', 'prepress_proof_id')
     locked = fields.Boolean(string='Locked', help="If the prepress proof is locked,no field can be edited",
-                            default=False)
+                            default=False,track_visibility=True)
 
     def action_lock(self):
         self._action_lock()
