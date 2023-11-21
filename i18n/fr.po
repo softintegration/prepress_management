@@ -6,14 +6,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-17 10:35+0000\n"
-"PO-Revision-Date: 2023-08-17 10:35+0000\n"
+"POT-Creation-Date: 2023-11-21 09:25+0000\n"
+"PO-Revision-Date: 2023-11-21 09:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: prepress_management
+#: model:mail.template,body_html:prepress_management.email_template_prepress_proof
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        <t t-set=\"doc_name\" t-value=\"'prepress_proof'\"/>\n"
+"                        Hello,\n"
+"                        <br/>\n"
+"                        We are pleased to send you the attached prepress proof.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        We wish you a good reception.\n"
+"                        <br/>\n"
+"                        Do not hesitate to contact us if you have any questions.\n"
+"                        <br/>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        <t t-set=\"doc_name\" t-value=\"'prepress_proof'\"/>\n"
+"                        Cher client,\n"
+"                        <br/>\n"
+"                        Nous avons le plaisir de vous transmettre le BAT ci-jointe.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Nous vous souhaitons une bonne réception.\n"
+"                        <br/>\n"
+"                        N'hésitez pas à nous contacter si vous avez des questions.\n"
+"                        <br/><br/>
+"						 Cordialement.\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
 
 #. module: prepress_management
 #: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
@@ -1556,6 +1592,11 @@ msgid "Prepress Proof is required in CTP Plate!"
 msgstr "BAT obligatoire dans les Plaques CTP"
 
 #. module: prepress_management
+#: model:mail.template,name:prepress_management.email_template_prepress_proof
+msgid "Prepress Proof: Send by email"
+msgstr "BAT : Envoyer par email"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_product_product__prepress_proofs_count
 #: model:ir.model.fields,field_description:prepress_management.field_product_template__prepress_proofs_count
 msgid "Prepress Proofs Count"
@@ -1573,6 +1614,7 @@ msgid "Prepress management"
 msgstr "Prépresse"
 
 #. module: prepress_management
+#: code:addons/prepress_management/models/prepress_proof.py:0
 #: model:ir.actions.act_window,name:prepress_management.prepress_proof_main_action
 #: model:ir.model,name:prepress_management.model_prepress_proof
 #: model:ir.ui.menu,name:prepress_management.prepress_proof_action_menu
@@ -1580,6 +1622,7 @@ msgstr "Prépresse"
 #: model_terms:ir.ui.view,arch_db:prepress_management.product_template_form_view_inherited
 #: model_terms:ir.ui.view,arch_db:prepress_management.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+#, python-format
 msgid "Prepress proof"
 msgstr "BAT"
 
@@ -1794,6 +1837,11 @@ msgid "Search Prepress proofs"
 msgstr "Rechercher BAT"
 
 #. module: prepress_management
+#: model_terms:ir.ui.view,arch_db:prepress_management.view_prepress_proof_form
+msgid "Send by Email"
+msgstr "Envoyer par email"
+
+#. module: prepress_management
 #: model:ir.model.fields,field_description:prepress_management.field_prepress_proof_color__sequence
 msgid "Sequence"
 msgstr ""
@@ -1909,7 +1957,8 @@ msgid ""
 "This is the default category that will be used in the generated product from"
 " cutting die."
 msgstr ""
-"Il s'agit de la catégorie par défaut qui sera utilisée dans l'article généré à partir de la forme de découpe"
+"Il s'agit de la catégorie par défaut qui sera utilisée dans l'article généré"
+" à partir de la forme de découpe"
 
 #. module: prepress_management
 #: model_terms:ir.actions.act_window,help:prepress_management.action_prepress_proof_flash
@@ -2192,3 +2241,15 @@ msgstr "Motif mise en quarantaine"
 #: model:ir.model,name:prepress_management.model_prepress_type
 msgid "prepress.type"
 msgstr "Type"
+
+#. module: prepress_management
+#: model:mail.template,report_name:prepress_management.email_template_prepress_proof
+msgid "{{ (object.name or '').replace('/','_') }}"
+msgstr ""
+
+#. module: prepress_management
+#: model:mail.template,subject:prepress_management.email_template_prepress_proof
+msgid ""
+"{{ object.company_id.name }} Prepress Proof (Ref {{ object.name or 'n/a' }})"
+msgstr ""
+"{{ object.company_id.name }} BAT (Ref {{ object.name or 'n/a' }})"

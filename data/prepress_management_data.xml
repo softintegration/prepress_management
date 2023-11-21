@@ -25,5 +25,9 @@
             <field name="description">Other</field>
         </record>
 
+        <!-- mail.template data -->
+
+
+
     </data>
 </odoo>
