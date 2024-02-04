@@ -5,6 +5,8 @@ from odoo.exceptions import UserError, ValidationError
 from random import randint
 
 DEFAULT_CODE_CUTTING_DIE = "prepress.cutting.die"
+NAME_STATIC_PART_SPLITTER = "-"
+PARENT_NAME_STATIC_PART_SPLITTER = "-"
 
 
 class PrepressCuttingDie(models.Model):
@@ -159,13 +161,22 @@ class PrepressCuttingDie(models.Model):
 
     def _set_name_by_sequence(self):
         self.ensure_one()
-        if self.name != "New":
-            return
+        #if self.name != "New":
+        #    return
         if self._sequence_dynamic_installed():
             # FIXME:We have to test this in important data volume
             dynamic_prefix_fields = self._build_dynamic_prefix_fields()
-            if self.parent_id:
-                forced_name = self.parent_id.name.split("-")[0]
+            # we have to add the specific case where only the dynamic suffix has to be changed
+            if self.name != "New":
+                # FIXME : this code is must be modified as the assumption made that the "-" separates between the code and the suffix could be not correct
+                static_part_name = self.name.split(NAME_STATIC_PART_SPLITTER)[0]
+                suffix_code = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields,
+                                                                                    only_dynamic_suffix_code=True).next_by_code(
+                    DEFAULT_CODE_CUTTING_DIE)
+                name = "%s%s"%(static_part_name,suffix_code)
+            elif self.parent_id:
+                # FIXME : this code is must be modified as the assumption made that the "-" separates between the code and the suffix could be not correct
+                forced_name = self.parent_id.name.split(PARENT_NAME_STATIC_PART_SPLITTER)[0]
                 name = self.env['ir.sequence'].with_context(dynamic_prefix_fields=dynamic_prefix_fields,
                                                             forced_name=forced_name).next_by_code(
                     DEFAULT_CODE_CUTTING_DIE)
@@ -175,6 +186,7 @@ class PrepressCuttingDie(models.Model):
         else:
             name = self.env['ir.sequence'].next_by_code(DEFAULT_CODE_CUTTING_DIE)
         self.name = name
+
 
     @api.model
     def _sequence_dynamic_installed(self):
