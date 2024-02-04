@@ -81,7 +81,7 @@
                             <field name="locked" invisible="1"/>
                             <field name="prepress_type_code" invisible="1"/>
                             <field name="partner_ids" widget="many2many_tags" options="{'no_create_edit': True}"
-                            attrs="{'readonly':['|',('locked','=',True),('state','=','cancel')]}"/>
+                            attrs="{'readonly':['|','&amp;',('locked','=',True),('state','!=','draft'),('state','=','cancel')]}"/>
                             <field name="prepress_type" options="{'no_create_edit': True}" force_save="1" attrs="{'readonly':[('parent_id','!=',False)]}"/>
                             <field name="prepress_type_code" invisible="1"/>
                             <!--<field name="format_type_id"
